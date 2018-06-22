@@ -37,8 +37,8 @@ VALUES
      ('0010059', 'Miss', 'Cherish', 'Saltan', '1987-01-27 00:00:00:000', 'F')
     ,('0010060', 'Mr', 'Martin', 'Fish', '1985-06-25 00:00:00:000', 'M')
     ,('0010061', 'Master', 'Alex', 'Saltan', '2008-04-28 00:00:00:000', 'M')
-    ,('0010062', 'Mrs', 'Jean', 'Kent', '1987-01-27 00:00:00:000', 'F')
-    ,('0010063', 'Mr', 'Tony', 'Kopamees', '1987-01-27 00:00:00:000', 'F')
+    ,('0010062', 'Mrs', 'Jean', 'Kent', '1965-01-27 00:00:00:000', 'F')
+    ,('0010063', 'Mr', 'Tony', 'Kopamees', '1960-01-27 00:00:00:000', 'M')
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -72,8 +72,8 @@ VALUES
      ('0010059', 'Miss', 'Cherish', 'Saltan', '1987-01-27 00:00:00:000', 'F')
     ,('0010060', 'Mr', 'Martin', 'Fish', '1985-06-25 00:00:00:000', 'M')
     ,('0010061', 'Master', 'Alex', 'Saltan', '2008-04-28 00:00:00:000', 'M')
-    ,('0010062', 'Mrs', 'Jean', 'Kent', '1987-01-27 00:00:00:000', 'F')
-    ,('0010063', 'Mr', 'Tony', 'Kopamees', '1987-01-27 00:00:00:000', 'F')
+    ,('0010062', 'Mrs', 'Jean', 'Kent', '1965-01-27 00:00:00:000', 'F')
+    ,('0010063', 'Mr', 'Tony', 'Kopamees', '1960-01-27 00:00:00:000', 'M')
 
 SELECT *
 FROM [#TestPerson]
@@ -104,8 +104,8 @@ VALUES
      ('0010059', 'Miss', 'Cherish', 'Saltan', '1987-01-27 00:00:00:000', 'F')
     ,('0010060', 'Mr', 'Martin', 'Fish', '1985-06-25 00:00:00:000', 'M')
     ,('0010061', 'Master', 'Alex', 'Saltan', '2008-04-28 00:00:00:000', 'M')
-    ,('0010062', 'Mrs', 'Jean', 'Kent', '1987-01-27 00:00:00:000', 'F')
-    ,('0010063', 'Mr', 'Tony', 'Kopamees', '1987-01-27 00:00:00:000', 'F')
+    ,('0010062', 'Mrs', 'Jean', 'Kent', '1965-01-27 00:00:00:000', 'F')
+    ,('0010063', 'Mr', 'Tony', 'Kopamees', '1960-01-27 00:00:00:000', 'M')
 
 SELECT *
 FROM @TestPerson
@@ -117,18 +117,63 @@ FROM @TestPerson
 --  Common Table Expression (CTE)
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 --  A CTE is a temporary named result set that you can reference within a SELECT, INSERT, UPDATE, or DELETE.
---  It is usual to create a dataset within a CTE from one or more tables (JOINS) but in this example its populated directly:
+--  It is usual to create a dataset within a CTE from one or more tables but in this example its populated directly:
 
 WITH CTE_TestPerson ([PersonCode], [Title], [Forename], [Surname], [DateOfBirth], [GenderCode]) AS
 (
 SELECT '0010059', 'Miss', 'Cherish', 'Saltan', '1987-01-27 00:00:00:000', 'F' UNION ALL
 SELECT '0010060', 'Mr', 'Martin', 'Fish', '1985-06-25 00:00:00:000', 'M'      UNION ALL
 SELECT '0010061', 'Master', 'Alex', 'Saltan', '2008-04-28 00:00:00:000', 'M'  UNION ALL
-SELECT '0010062', 'Mrs', 'Jean', 'Kent', '1987-01-27 00:00:00:000', 'F'       UNION ALL
-SELECT '0010063', 'Mr', 'Tony', 'Kopamees', '1987-01-27 00:00:00:000', 'F'
+SELECT '0010062', 'Mrs', 'Jean', 'Kent', '1965-01-27 00:00:00:000', 'F'       UNION ALL
+SELECT '0010063', 'Mr', 'Tony', 'Kopamees', '1960-01-27 00:00:00:000', 'M'
 ) 
 
 SELECT *
 FROM CTE_TestPerson
 
+GO
+
+--  Another example:
+WITH CTE_Test
+AS
+(
+    SELECT Forename, Surname, YEAR(DateOfBirth) AS BirthYear
+    FROM [dbo].[TestPerson]
+)
+SELECT forename, Surname, BirthYear
+FROM CTE_Test
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ --------------------------------------------------------------------------------------------------------------------------------------------------------
+--  Derived Table
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+--  A derived table is essentially a sub-query within the FROM statement:
+
+SELECT *
+FROM
+    (
+    SELECT [PersonCode], [Title], [Forename], [Surname], [DateOfBirth], [GenderCode]
+    FROM [dbo].[TestPerson]
+    WHERE GenderCode = 'M'
+    ) AS DerivedTable
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ --------------------------------------------------------------------------------------------------------------------------------------------------------
+--  Sub-query
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+--  A sub-query is used within the SELECT or WHERE IN statement to identify a sub-set of data:
+
+SELECT [PersonCode], [Title], [Forename], [Surname], [DateOfBirth], [GenderCode]
+FROM [dbo].[TestPerson]
+WHERE PersonCode IN
+    (
+    SELECT PersonCode
+    FROM [dbo].[TestPerson]
+    WHERE GenderCode = 'M'
+    )
+
+--------------------------------
