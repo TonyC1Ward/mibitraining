@@ -3,7 +3,7 @@
 
     Table: [dbo].[TableTypes]
     
-    Examples of different table types and datasets.
+    Examples of different table types and datasets. Original information and examples supplied by Philip Dimsdale. 
 
     Martin Fish
     22 June 2018
@@ -176,4 +176,4 @@ WHERE PersonCode IN
     WHERE GenderCode = 'M'
     )
 
---------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
