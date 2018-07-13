@@ -233,7 +233,8 @@ SELECT  [sod].[ProductID],
 FROM [Sales].[SalesOrderDetail] AS [sod]
 GROUP BY [sod].[ProductID],
          [sod].[SpecialofferID]
-ORDER BY [sod].[ProductID];
+ORDER BY [sod].[ProductID],
+         [sod].[SpecialOfferID];
 
 --GROUPING SETS
 SELECT  [sod].[ProductID],
@@ -245,3 +246,9 @@ GROUP BY GROUPING SETS
           [sod].[SpecialofferID]),
          ([sod].[SpecialOfferID]))
 ORDER BY [sod].[ProductID];
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+-- HAVING CLAUSE
+--------------------------------------------------------------------------------------------------------------------------------------------
+SELECT sod.ProductId
+FROM sales.salesorderdetail

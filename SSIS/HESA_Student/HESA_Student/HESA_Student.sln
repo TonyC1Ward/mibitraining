@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "HESA_Student", "HESA_Student\HESA_Student.dtproj", "{EB224A3C-8521-4A44-91BF-7045CB2C87CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB224A3C-8521-4A44-91BF-7045CB2C87CE}.Development|Default.ActiveCfg = Development
+		{EB224A3C-8521-4A44-91BF-7045CB2C87CE}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AD7796D-11BE-4732-BFC8-4F95449DCA1D}
+	EndGlobalSection
+EndGlobal
