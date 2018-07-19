@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "HESA_Student_01", "HESA_Student_01\HESA_Student_01.rptproj", "{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}.Debug|Default.ActiveCfg = Debug
+		{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}.Debug|Default.Build.0 = Debug
+		{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}.Debug|Default.Deploy.0 = Debug
+		{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}.DebugLocal|Default.Build.0 = DebugLocal
+		{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}.Release|Default.ActiveCfg = Release
+		{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}.Release|Default.Build.0 = Release
+		{DD03C98A-3C29-43F2-A0A1-49E6580A3F94}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99C0AF5D-AEAD-4E7E-95E7-AEC03D5B643B}
+	EndGlobalSection
+EndGlobal

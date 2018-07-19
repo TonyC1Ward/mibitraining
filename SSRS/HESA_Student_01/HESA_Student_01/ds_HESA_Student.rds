@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="ds_HESA_Student">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=BI-SQL-01v12;Initial Catalog=Dev_Philip_02_DataWarehouse</ConnectString>
+    <IntegratedSecurity>true</IntegratedSecurity>
+  </ConnectionProperties>
+  <DataSourceID>7b8f9bfe-a711-4fbc-a5d7-cc2e4d28544b</DataSourceID>
+</RptDataSource>
