@@ -3,6 +3,1885 @@
   "compatibilityLevel": 1200,
   "model": {
     "culture": "en-GB",
+    "dataSources": [
+      {
+        "name": "SqlServer BI-SQL-01v12 Dev_Philip_02_DataWarehouse",
+        "connectionString": "Provider=SQLNCLI11;Data Source=BI-SQL-01v12;Initial Catalog=Dev_Philip_02_DataWarehouse;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateCurrentUser",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      },
+      {
+        "name": "SqlServer BI-SQL-01v12 Dev_Philip_02_DataWarehouse 2",
+        "connectionString": "Provider=SQLNCLI11;Data Source=BI-SQL-01v12;Initial Catalog=Dev_Philip_02_DataWarehouse;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateAccount",
+        "account": "ADIR\\584781",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "DimHESA_StudentAll",
+        "columns": [
+          {
+            "name": "PoSInstanceKey",
+            "dataType": "string",
+            "sourceColumn": "PoSInstanceKey",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ModuleInstanceCount",
+            "dataType": "int64",
+            "sourceColumn": "ModuleInstanceCount",
+            "sourceProviderType": "BigInt"
+          },
+          {
+            "name": "StudentPoSYear",
+            "dataType": "string",
+            "sourceColumn": "StudentPoSYear",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "StudentId",
+            "dataType": "string",
+            "sourceColumn": "StudentId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "YearAcademic",
+            "dataType": "string",
+            "sourceColumn": "YearAcademic",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "YearHESAReport",
+            "dataType": "int64",
+            "sourceColumn": "YearHESAReport",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "YearHESAReportDate",
+            "dataType": "dateTime",
+            "sourceColumn": "YearHESAReportDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "IsHESAset01",
+            "dataType": "int64",
+            "sourceColumn": "IsHESAset01",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsUoHset01",
+            "dataType": "int64",
+            "sourceColumn": "IsUoHset01",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsNonConUoHset01",
+            "dataType": "int64",
+            "sourceColumn": "IsNonConUoHset01",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsNonConHESAset01",
+            "dataType": "int64",
+            "sourceColumn": "IsNonConHESAset01",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsRegisteredNextYear",
+            "dataType": "int64",
+            "sourceColumn": "IsRegisteredNextYear",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsPoSTopUp",
+            "dataType": "int64",
+            "sourceColumn": "IsPoSTopUp",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsP4Q12",
+            "dataType": "int64",
+            "sourceColumn": "IsP4Q12",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsFoundationYear",
+            "dataType": "int64",
+            "sourceColumn": "IsFoundationYear",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StudentIdHESA",
+            "dataType": "string",
+            "sourceColumn": "StudentIdHESA",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Faculty",
+            "dataType": "string",
+            "sourceColumn": "Faculty",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FacultyShortName",
+            "dataType": "string",
+            "sourceColumn": "FacultyShortName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "School",
+            "dataType": "string",
+            "sourceColumn": "School",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SchoolShortName",
+            "dataType": "string",
+            "sourceColumn": "SchoolShortName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SubjectGroupArea",
+            "dataType": "string",
+            "sourceColumn": "SubjectGroupArea",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "OU3codeOriginal",
+            "dataType": "string",
+            "sourceColumn": "OU3codeOriginal",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "OU3CodeMap",
+            "dataType": "string",
+            "sourceColumn": "OU3CodeMap",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PoSIdRegistration",
+            "dataType": "string",
+            "sourceColumn": "PoSIdRegistration",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PoSIdCurrent",
+            "dataType": "string",
+            "sourceColumn": "PoSIdCurrent",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PoSIdHESA",
+            "dataType": "string",
+            "sourceColumn": "PoSIdHESA",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PoSTitle",
+            "dataType": "string",
+            "sourceColumn": "PoSTitle",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Forenames",
+            "dataType": "string",
+            "sourceColumn": "Forenames",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Surname",
+            "dataType": "string",
+            "sourceColumn": "Surname",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DateOfBirth",
+            "dataType": "dateTime",
+            "sourceColumn": "DateOfBirth",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "GenderId",
+            "dataType": "string",
+            "sourceColumn": "GenderId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "IsGenderSameAsAtBirth",
+            "dataType": "string",
+            "sourceColumn": "IsGenderSameAsAtBirth",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DisabilityId",
+            "dataType": "string",
+            "sourceColumn": "DisabilityId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Disability",
+            "dataType": "string",
+            "sourceColumn": "Disability",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "EthnicId",
+            "dataType": "string",
+            "sourceColumn": "EthnicId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Ethnicity",
+            "dataType": "string",
+            "sourceColumn": "Ethnicity",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NationalityId",
+            "dataType": "string",
+            "sourceColumn": "NationalityId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Nationality",
+            "dataType": "string",
+            "sourceColumn": "Nationality",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ReligionId",
+            "dataType": "string",
+            "sourceColumn": "ReligionId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ReligiousBelief",
+            "dataType": "string",
+            "sourceColumn": "ReligiousBelief",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SexId",
+            "dataType": "string",
+            "sourceColumn": "SexId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Sex",
+            "dataType": "string",
+            "sourceColumn": "Sex",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SexualOrinationId",
+            "dataType": "string",
+            "sourceColumn": "SexualOrinationId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SexualOrientation",
+            "dataType": "string",
+            "sourceColumn": "SexualOrientation",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ScottishCandidateNumber",
+            "dataType": "string",
+            "sourceColumn": "ScottishCandidateNumber",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimeAccommodationId",
+            "dataType": "string",
+            "sourceColumn": "TermTimeAccommodationId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimeAccommodation",
+            "dataType": "string",
+            "sourceColumn": "TermTimeAccommodation",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "TermTimePostcode",
+            "dataType": "string",
+            "sourceColumn": "TermTimePostcode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimePostcodeAreaCode",
+            "dataType": "string",
+            "sourceColumn": "TermTimePostcodeAreaCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimePostcodeDistrictCode",
+            "dataType": "string",
+            "sourceColumn": "TermTimePostcodeDistrictCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimePostcodeSectorCode",
+            "dataType": "string",
+            "sourceColumn": "TermTimePostcodeSectorCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimePolar3",
+            "dataType": "int64",
+            "sourceColumn": "TermTimePolar3",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TermTimePolar4",
+            "dataType": "int64",
+            "sourceColumn": "TermTimePolar4",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "TermTimeLocalToHull",
+            "dataType": "string",
+            "sourceColumn": "TermTimeLocalToHull",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimeDistanceMiles",
+            "dataType": "double",
+            "sourceColumn": "TermTimeDistanceMiles",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "TermTimeDistanceMilesBand",
+            "dataType": "string",
+            "sourceColumn": "TermTimeDistanceMilesBand",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimePostCodeElectoralWard",
+            "dataType": "string",
+            "sourceColumn": "TermTimePostCodeElectoralWard",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimePostCodeLocalAuthorityDistrict",
+            "dataType": "string",
+            "sourceColumn": "TermTimePostCodeLocalAuthorityDistrict",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimePostCodeCounty",
+            "dataType": "string",
+            "sourceColumn": "TermTimePostCodeCounty",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TermTimePostCodeRegion",
+            "dataType": "string",
+            "sourceColumn": "TermTimePostCodeRegion",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudentIdUCAS",
+            "dataType": "string",
+            "sourceColumn": "StudentIdUCAS",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "UniqueLearnerNumber",
+            "dataType": "string",
+            "sourceColumn": "UniqueLearnerNumber",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CareLeaverId",
+            "dataType": "string",
+            "sourceColumn": "CareLeaverId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CareLeaverDescription",
+            "dataType": "string",
+            "sourceColumn": "CareLeaverDescription",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DomicileId",
+            "dataType": "string",
+            "sourceColumn": "DomicileId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CountryOfDomicile",
+            "dataType": "string",
+            "sourceColumn": "CountryOfDomicile",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ParentalEducationId",
+            "dataType": "string",
+            "sourceColumn": "ParentalEducationId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ParentHigherEdQuals",
+            "dataType": "string",
+            "sourceColumn": "ParentHigherEdQuals",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PGCEclassId",
+            "dataType": "string",
+            "sourceColumn": "PGCEclassId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PGCEclassification",
+            "dataType": "string",
+            "sourceColumn": "PGCEclassification",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "PGCEsubject1Id",
+            "dataType": "string",
+            "sourceColumn": "PGCEsubject1Id",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PGCEsubject1",
+            "dataType": "string",
+            "sourceColumn": "PGCEsubject1",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "PGCEsubject2Id",
+            "dataType": "string",
+            "sourceColumn": "PGCEsubject2Id",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PGCEsubject2",
+            "dataType": "string",
+            "sourceColumn": "PGCEsubject2",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "HomePostcode",
+            "dataType": "string",
+            "sourceColumn": "HomePostcode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomePostcodeAreaCode",
+            "dataType": "string",
+            "sourceColumn": "HomePostcodeAreaCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomePostcodeDistrictCode",
+            "dataType": "string",
+            "sourceColumn": "HomePostcodeDistrictCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomePostcodeSectorCode",
+            "dataType": "string",
+            "sourceColumn": "HomePostcodeSectorCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomePolar3",
+            "dataType": "int64",
+            "sourceColumn": "HomePolar3",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "HomePolar4",
+            "dataType": "int64",
+            "sourceColumn": "HomePolar4",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "HomeLocalToHull",
+            "dataType": "string",
+            "sourceColumn": "HomeLocalToHull",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomeDistanceMiles",
+            "dataType": "double",
+            "sourceColumn": "HomeDistanceMiles",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "HomeDistanceMilesBand",
+            "dataType": "string",
+            "sourceColumn": "HomeDistanceMilesBand",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomeDistanceMilesCategory",
+            "dataType": "string",
+            "sourceColumn": "HomeDistanceMilesCategory",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomePostCodeElectoralWard",
+            "dataType": "string",
+            "sourceColumn": "HomePostCodeElectoralWard",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomePostCodeLocalAuthorityDistrict",
+            "dataType": "string",
+            "sourceColumn": "HomePostCodeLocalAuthorityDistrict",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomePostCodeCounty",
+            "dataType": "string",
+            "sourceColumn": "HomePostCodeCounty",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomePostCodeRegion",
+            "dataType": "string",
+            "sourceColumn": "HomePostCodeRegion",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PreviousProvider",
+            "dataType": "string",
+            "sourceColumn": "PreviousProvider",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HighestEntryQualId",
+            "dataType": "string",
+            "sourceColumn": "HighestEntryQualId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HighestQualificationOnEntry",
+            "dataType": "string",
+            "sourceColumn": "HighestQualificationOnEntry",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SECId",
+            "dataType": "string",
+            "sourceColumn": "SECId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SocioEconomicClassification",
+            "dataType": "string",
+            "sourceColumn": "SocioEconomicClassification",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Occupation1Id",
+            "dataType": "string",
+            "sourceColumn": "Occupation1Id",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Occupation1",
+            "dataType": "string",
+            "sourceColumn": "Occupation1",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Occupation2Id",
+            "dataType": "string",
+            "sourceColumn": "Occupation2Id",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Occupation2",
+            "dataType": "string",
+            "sourceColumn": "Occupation2",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "UCASApplicationNumber",
+            "dataType": "string",
+            "sourceColumn": "UCASApplicationNumber",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "YearLeftLastProvider",
+            "dataType": "string",
+            "sourceColumn": "YearLeftLastProvider",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TypeOfAimId",
+            "dataType": "string",
+            "sourceColumn": "TypeOfAimId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TypeOfAim",
+            "dataType": "string",
+            "sourceColumn": "TypeOfAim",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CampusId",
+            "dataType": "string",
+            "sourceColumn": "CampusId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Campus",
+            "dataType": "string",
+            "sourceColumn": "Campus",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DateStart",
+            "dataType": "dateTime",
+            "sourceColumn": "DateStart",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "CompletionStatusId",
+            "dataType": "string",
+            "sourceColumn": "CompletionStatusId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CompletionStatus",
+            "dataType": "string",
+            "sourceColumn": "CompletionStatus",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DeptHealthFundingBodyId",
+            "dataType": "string",
+            "sourceColumn": "DeptHealthFundingBodyId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DeptHealthFundingBody",
+            "dataType": "string",
+            "sourceColumn": "DeptHealthFundingBody",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "RegulatoryBodyRefNo",
+            "dataType": "string",
+            "sourceColumn": "RegulatoryBodyRefNo",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DisabilityAllowanceId",
+            "dataType": "string",
+            "sourceColumn": "DisabilityAllowanceId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DisabilityAllowance",
+            "dataType": "string",
+            "sourceColumn": "DisabilityAllowance",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "AimingForELQId",
+            "dataType": "string",
+            "sourceColumn": "AimingForELQId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "AimingForELQ",
+            "dataType": "string",
+            "sourceColumn": "AimingForELQ",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DateLeft",
+            "dataType": "dateTime",
+            "sourceColumn": "DateLeft",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "IITProvisionRouteId",
+            "dataType": "string",
+            "sourceColumn": "IITProvisionRouteId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "IITProvisionRoute",
+            "dataType": "string",
+            "sourceColumn": "IITProvisionRoute",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ExchangeProgrammeId",
+            "dataType": "string",
+            "sourceColumn": "ExchangeProgrammeId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ExchangeProgramme",
+            "dataType": "string",
+            "sourceColumn": "ExchangeProgramme",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FeeEligibilityId",
+            "dataType": "string",
+            "sourceColumn": "FeeEligibilityId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FeeEligibility",
+            "dataType": "string",
+            "sourceColumn": "FeeEligibility",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FeeRegimeId",
+            "dataType": "string",
+            "sourceColumn": "FeeRegimeId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FeeRegime",
+            "dataType": "string",
+            "sourceColumn": "FeeRegime",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FEStudentMarker",
+            "dataType": "string",
+            "sourceColumn": "FEStudentMarker",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FEStudentMarkerId",
+            "dataType": "string",
+            "sourceColumn": "FEStudentMarkerId",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FundabilityId",
+            "dataType": "string",
+            "sourceColumn": "FundabilityId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Fundability",
+            "dataType": "string",
+            "sourceColumn": "Fundability",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CompletionStatusYrId",
+            "dataType": "string",
+            "sourceColumn": "CompletionStatusYrId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CompletionStatusYear",
+            "dataType": "string",
+            "sourceColumn": "CompletionStatusYear",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FundingLevelId",
+            "dataType": "string",
+            "sourceColumn": "FundingLevelId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FundingLevel",
+            "dataType": "string",
+            "sourceColumn": "FundingLevel",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FundinModelId",
+            "dataType": "string",
+            "sourceColumn": "FundinModelId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FundinModel",
+            "dataType": "string",
+            "sourceColumn": "FundinModel",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "GrossFee",
+            "dataType": "int64",
+            "sourceColumn": "GrossFee",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "InitiativeId1",
+            "dataType": "string",
+            "sourceColumn": "InitiativeId1",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Initiative1",
+            "dataType": "string",
+            "sourceColumn": "Initiative1",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "InitiativeId2",
+            "dataType": "string",
+            "sourceColumn": "InitiativeId2",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Initiative2",
+            "dataType": "string",
+            "sourceColumn": "Initiative2",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ITTaimId",
+            "dataType": "string",
+            "sourceColumn": "ITTaimId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "InitialTeacherTrainingAim",
+            "dataType": "string",
+            "sourceColumn": "InitialTeacherTrainingAim",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ITTphaseId",
+            "dataType": "string",
+            "sourceColumn": "ITTphaseId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ITTphase",
+            "dataType": "string",
+            "sourceColumn": "ITTphase",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ITTschemeId",
+            "dataType": "string",
+            "sourceColumn": "ITTschemeId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ITTscheme",
+            "dataType": "string",
+            "sourceColumn": "ITTscheme",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DateLearningPlannedEnd",
+            "dataType": "dateTime",
+            "sourceColumn": "DateLearningPlannedEnd",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "StudyLocationId",
+            "dataType": "string",
+            "sourceColumn": "StudyLocationId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudyLocation",
+            "dataType": "string",
+            "sourceColumn": "StudyLocation",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DateModeChange",
+            "dataType": "dateTime",
+            "sourceColumn": "DateModeChange",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "StudyModeId",
+            "dataType": "string",
+            "sourceColumn": "StudyModeId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudyMode",
+            "dataType": "string",
+            "sourceColumn": "StudyMode",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "TuitionFeesSourceId",
+            "dataType": "string",
+            "sourceColumn": "TuitionFeesSourceId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TuitionFeeMainSource",
+            "dataType": "string",
+            "sourceColumn": "TuitionFeeMainSource",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "NetFee",
+            "dataType": "int64",
+            "sourceColumn": "NetFee",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ActiveStudySuspendedId",
+            "dataType": "string",
+            "sourceColumn": "ActiveStudySuspendedId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ActiveStudySuspended",
+            "dataType": "string",
+            "sourceColumn": "ActiveStudySuspended",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "PartnerId",
+            "dataType": "int64",
+            "sourceColumn": "PartnerId",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DatePhDsubmission",
+            "dataType": "string",
+            "sourceColumn": "DatePhDsubmission",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProgrammeTypeId",
+            "dataType": "string",
+            "sourceColumn": "ProgrammeTypeId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProgrammeType",
+            "dataType": "string",
+            "sourceColumn": "ProgrammeType",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "QTSId",
+            "dataType": "string",
+            "sourceColumn": "QTSId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "QualifiedTeacherStatus",
+            "dataType": "string",
+            "sourceColumn": "QualifiedTeacherStatus",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ReasearchCouncilStudentId",
+            "dataType": "string",
+            "sourceColumn": "ReasearchCouncilStudentId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ReasearchCouncilStudent",
+            "dataType": "string",
+            "sourceColumn": "ReasearchCouncilStudent",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ReducedInstanceId",
+            "dataType": "string",
+            "sourceColumn": "ReducedInstanceId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ReducedInstanceReturnIndicator",
+            "dataType": "string",
+            "sourceColumn": "ReducedInstanceReturnIndicator",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ReasonLeftId",
+            "dataType": "string",
+            "sourceColumn": "ReasonLeftId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ReasonForLeaving",
+            "dataType": "string",
+            "sourceColumn": "ReasonForLeaving",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "SpecialFeeId",
+            "dataType": "string",
+            "sourceColumn": "SpecialFeeId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SpecialFeeIndicator",
+            "dataType": "string",
+            "sourceColumn": "SpecialFeeIndicator",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ExpectedLengthStudy",
+            "dataType": "string",
+            "sourceColumn": "ExpectedLengthStudy",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudentSupportNumber",
+            "dataType": "string",
+            "sourceColumn": "StudentSupportNumber",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudentFTE",
+            "dataType": "double",
+            "sourceColumn": "StudentFTE",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "TeacherReferenceNumber",
+            "dataType": "string",
+            "sourceColumn": "TeacherReferenceNumber",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "YearTypeId",
+            "dataType": "string",
+            "sourceColumn": "YearTypeId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "YearType",
+            "dataType": "string",
+            "sourceColumn": "YearType",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "UnitsOfLengthId",
+            "dataType": "string",
+            "sourceColumn": "UnitsOfLengthId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "UnitsOfLength",
+            "dataType": "string",
+            "sourceColumn": "UnitsOfLength",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CourseYear",
+            "dataType": "string",
+            "sourceColumn": "CourseYear",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudentYear",
+            "dataType": "string",
+            "sourceColumn": "StudentYear",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CourseQualificationAimId",
+            "dataType": "string",
+            "sourceColumn": "CourseQualificationAimId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CourseQualificationAim",
+            "dataType": "string",
+            "sourceColumn": "CourseQualificationAim",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "FundingSourceId",
+            "dataType": "string",
+            "sourceColumn": "FundingSourceId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FundingSource",
+            "dataType": "string",
+            "sourceColumn": "FundingSource",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "TeacherTrainingCourseId",
+            "dataType": "string",
+            "sourceColumn": "TeacherTrainingCourseId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TeacherTrainingCourse",
+            "dataType": "string",
+            "sourceColumn": "TeacherTrainingCourse",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XAGEA01",
+            "dataType": "string",
+            "sourceColumn": "XAGEA01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Age31AugustX",
+            "dataType": "string",
+            "sourceColumn": "Age31AugustX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "YoungMature",
+            "dataType": "string",
+            "sourceColumn": "YoungMature",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "XAGEJ01",
+            "dataType": "string",
+            "sourceColumn": "XAGEJ01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Age31JulyX",
+            "dataType": "string",
+            "sourceColumn": "Age31JulyX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XAGRP601",
+            "dataType": "string",
+            "sourceColumn": "XAGRP601",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "AgeGroupX",
+            "dataType": "string",
+            "sourceColumn": "AgeGroupX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XAGRPA01",
+            "dataType": "string",
+            "sourceColumn": "XAGRPA01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "AgeGroup6WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "AgeGroup6WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XAGRPJ01",
+            "dataType": "string",
+            "sourceColumn": "XAGRPJ01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "AgeGroup31JulyX",
+            "dataType": "string",
+            "sourceColumn": "AgeGroup31JulyX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XAPP01",
+            "dataType": "string",
+            "sourceColumn": "XAPP01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ApprenticeshipIdentifierX",
+            "dataType": "string",
+            "sourceColumn": "ApprenticeshipIdentifierX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XCLASS01",
+            "dataType": "string",
+            "sourceColumn": "XCLASS01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ClassificationOfQualificationX",
+            "dataType": "string",
+            "sourceColumn": "ClassificationOfQualificationX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XCLASSF01",
+            "dataType": "string",
+            "sourceColumn": "XCLASSF01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HighestRankedQualificationX",
+            "dataType": "string",
+            "sourceColumn": "HighestRankedQualificationX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDLEV301",
+            "dataType": "string",
+            "sourceColumn": "XDLEV301",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LevelOfQualification3WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "LevelOfQualification3WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDLEV501",
+            "dataType": "string",
+            "sourceColumn": "XDLEV501",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LevelOfQualification5WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "LevelOfQualification5WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDLEV601",
+            "dataType": "string",
+            "sourceColumn": "XDLEV601",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LevelOfQualification6WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "LevelOfQualification6WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDOM01",
+            "dataType": "string",
+            "sourceColumn": "XDOM01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DomicileCountryX",
+            "dataType": "string",
+            "sourceColumn": "DomicileCountryX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDOMGR01",
+            "dataType": "string",
+            "sourceColumn": "XDOMGR01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DomicileRegionX",
+            "dataType": "string",
+            "sourceColumn": "DomicileRegionX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDOMGR401",
+            "dataType": "string",
+            "sourceColumn": "XDOMGR401",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DomicileRegion4WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "DomicileRegion4WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDOMHM01",
+            "dataType": "string",
+            "sourceColumn": "XDOMHM01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DomicileNationX",
+            "dataType": "string",
+            "sourceColumn": "DomicileNationX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDOMREG01",
+            "dataType": "string",
+            "sourceColumn": "XDOMREG01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DomicileRegionInternationalX",
+            "dataType": "string",
+            "sourceColumn": "DomicileRegionInternationalX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XDOMUC01",
+            "dataType": "string",
+            "sourceColumn": "XDOMUC01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DomicileLocalLevelX",
+            "dataType": "string",
+            "sourceColumn": "DomicileLocalLevelX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XELSP01",
+            "dataType": "string",
+            "sourceColumn": "XELSP01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ExpectedLengthOfStudyX",
+            "dataType": "string",
+            "sourceColumn": "ExpectedLengthOfStudyX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XEPYEAR01",
+            "dataType": "string",
+            "sourceColumn": "XEPYEAR01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "XETHNIC01",
+            "dataType": "string",
+            "sourceColumn": "XETHNIC01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "EthnicityUKdomicileX",
+            "dataType": "string",
+            "sourceColumn": "EthnicityUKdomicileX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "BME",
+            "dataType": "string",
+            "sourceColumn": "BME",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "XFYEAR01",
+            "dataType": "string",
+            "sourceColumn": "XFYEAR01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "XFYRSR01",
+            "dataType": "string",
+            "sourceColumn": "XFYRSR01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "XHOOS01",
+            "dataType": "string",
+            "sourceColumn": "XHOOS01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HomeOverseasX",
+            "dataType": "string",
+            "sourceColumn": "HomeOverseasX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XINSTC01",
+            "dataType": "string",
+            "sourceColumn": "XINSTC01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HigherEducationProviderCountryX",
+            "dataType": "string",
+            "sourceColumn": "HigherEducationProviderCountryX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XINSTG01",
+            "dataType": "string",
+            "sourceColumn": "XINSTG01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HigherEducationProviderRegionX",
+            "dataType": "string",
+            "sourceColumn": "HigherEducationProviderRegionX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XINSTID01",
+            "dataType": "string",
+            "sourceColumn": "XINSTID01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HigherEducationProviderX",
+            "dataType": "string",
+            "sourceColumn": "HigherEducationProviderX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XLEV301",
+            "dataType": "string",
+            "sourceColumn": "XLEV301",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LevelOfStudy3WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "LevelOfStudy3WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XLEV501",
+            "dataType": "string",
+            "sourceColumn": "XLEV501",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LevelOfStudy5WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "LevelOfStudy5WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XLEV601",
+            "dataType": "string",
+            "sourceColumn": "XLEV601",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LevelOfStudy6WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "LevelOfStudy6WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XMODE01",
+            "dataType": "string",
+            "sourceColumn": "XMODE01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ModeOfStudyX",
+            "dataType": "string",
+            "sourceColumn": "ModeOfStudyX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XMODE301",
+            "dataType": "string",
+            "sourceColumn": "XMODE301",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudyMode3WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "StudyMode3WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XMSFUND01",
+            "dataType": "string",
+            "sourceColumn": "XMSFUND01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "MajorSourceOfFundingX",
+            "dataType": "string",
+            "sourceColumn": "MajorSourceOfFundingX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XMSTUFEE01",
+            "dataType": "string",
+            "sourceColumn": "XMSTUFEE01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "MajorSourceOfTuitionFeesX",
+            "dataType": "string",
+            "sourceColumn": "MajorSourceOfTuitionFeesX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XNATGR01",
+            "dataType": "string",
+            "sourceColumn": "XNATGR01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NationalityRegionX",
+            "dataType": "string",
+            "sourceColumn": "NationalityRegionX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XOBTND01",
+            "dataType": "string",
+            "sourceColumn": "XOBTND01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HighestDLHEQualificationObtainedX",
+            "dataType": "string",
+            "sourceColumn": "HighestDLHEQualificationObtainedX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XPDEC01",
+            "dataType": "string",
+            "sourceColumn": "XPDEC01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Population1DecemberX",
+            "dataType": "string",
+            "sourceColumn": "Population1DecemberX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XPDLHE02",
+            "dataType": "string",
+            "sourceColumn": "XPDLHE02",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DLHEpopulationX",
+            "dataType": "string",
+            "sourceColumn": "DLHEpopulationX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XPQUAL01",
+            "dataType": "string",
+            "sourceColumn": "XPQUAL01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "QualificationsObtainedPopulationX",
+            "dataType": "string",
+            "sourceColumn": "QualificationsObtainedPopulationX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XPSES01",
+            "dataType": "string",
+            "sourceColumn": "XPSES01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SessionPopulationX",
+            "dataType": "string",
+            "sourceColumn": "SessionPopulationX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XPSR01",
+            "dataType": "string",
+            "sourceColumn": "XPSR01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StandardRegistrationPopulationX",
+            "dataType": "string",
+            "sourceColumn": "StandardRegistrationPopulationX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XQLEV1003",
+            "dataType": "string",
+            "sourceColumn": "XQLEV1003",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Qualification10WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "Qualification10WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XQLEV301",
+            "dataType": "string",
+            "sourceColumn": "XQLEV301",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Qualification3WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "Qualification3WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XQLEV501",
+            "dataType": "string",
+            "sourceColumn": "XQLEV501",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Qualification5WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "Qualification5WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XQLEV601",
+            "dataType": "string",
+            "sourceColumn": "XQLEV601",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Qualification6WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "Qualification6WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XQLEV701",
+            "dataType": "string",
+            "sourceColumn": "XQLEV701",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Qualification7WaySplitX",
+            "dataType": "string",
+            "sourceColumn": "Qualification7WaySplitX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XQMODE01",
+            "dataType": "string",
+            "sourceColumn": "XQMODE01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "QualificationObtainedModeOfStudyX",
+            "dataType": "string",
+            "sourceColumn": "QualificationObtainedModeOfStudyX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XQOBTN01",
+            "dataType": "string",
+            "sourceColumn": "XQOBTN01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HighestQualificationObtainedX",
+            "dataType": "string",
+            "sourceColumn": "HighestQualificationObtainedX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XQUALENT01",
+            "dataType": "string",
+            "sourceColumn": "XQUALENT01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "HighestQualificationOnEntryX",
+            "dataType": "string",
+            "sourceColumn": "HighestQualificationOnEntryX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "XSTUDIS01",
+            "dataType": "string",
+            "sourceColumn": "XSTUDIS01",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudentDisabilityX",
+            "dataType": "string",
+            "sourceColumn": "StudentDisabilityX",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DisabledYN",
+            "dataType": "string",
+            "sourceColumn": "DisabledYN",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TariffUCASX",
+            "dataType": "string",
+            "sourceColumn": "TariffUCASX",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TariffX",
+            "dataType": "int64",
+            "sourceColumn": "TariffX",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TariffGroupX",
+            "dataType": "string",
+            "sourceColumn": "TariffGroupX",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TariffPointsX",
+            "dataType": "string",
+            "sourceColumn": "TariffPointsX",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StudentModuleYear",
+            "dataType": "string",
+            "sourceColumn": "StudentModuleYear",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "StudentModule",
+            "dataType": "string",
+            "sourceColumn": "StudentModule",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "YearHESAModuleReport",
+            "dataType": "int64",
+            "sourceColumn": "YearHESAModuleReport",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "ModuleId",
+            "dataType": "string",
+            "sourceColumn": "ModuleId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ModuleIdAIS",
+            "dataType": "string",
+            "sourceColumn": "ModuleIdAIS",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "AcademicSessionId",
+            "dataType": "string",
+            "sourceColumn": "AcademicSessionId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ModuleTitle",
+            "dataType": "string",
+            "sourceColumn": "ModuleTitle",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "IsCompletedSuccessfully",
+            "dataType": "int64",
+            "sourceColumn": "IsCompletedSuccessfully",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsValidInRetentionStats",
+            "dataType": "int64",
+            "sourceColumn": "IsValidInRetentionStats",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsModulePassed",
+            "dataType": "int64",
+            "sourceColumn": "IsModulePassed",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ModuleOutcomeId",
+            "dataType": "string",
+            "sourceColumn": "ModuleOutcomeId",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ModuleOutcome",
+            "dataType": "string",
+            "sourceColumn": "ModuleOutcome",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ModuleStatusId",
+            "dataType": "string",
+            "sourceColumn": "ModuleStatusId",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ModuleStatus",
+            "dataType": "string",
+            "sourceColumn": "ModuleStatus",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimHESA_StudentAll",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [UoH].[DimHESA_StudentAll].* FROM [UoH].[DimHESA_StudentAll] ",
+              "dataSource": "SqlServer BI-SQL-01v12 Dev_Philip_02_DataWarehouse 2"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Distinct Count of StudentId",
+            "expression": "DISTINCTCOUNT([StudentId])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [UoH].[DimHESA_StudentAll].* FROM [UoH].[DimHESA_StudentAll] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimHESA_StudentAll"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "UoH"
+          }
+        ]
+      },
+      {
+        "name": "CalculatedTable 1",
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated"
+            }
+          }
+        ]
+      }
+    ],
     "annotations": [
       {
         "name": "ClientCompatibilityLevel",

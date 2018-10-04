@@ -3,13 +3,14 @@
 
     Table: [dbo].[TableTypes]
     
-    Examples of different table types and datasets. Original information and examples supplied by Philip Dimsdale. 
+    Examples of different table types and datasets.
 
     Martin Fish
     22 June 2018
 
 */
 
+USE [TestDB]
 
  --------------------------------------------------------------------------------------------------------------------------------------------------------
 --  Regular Table
