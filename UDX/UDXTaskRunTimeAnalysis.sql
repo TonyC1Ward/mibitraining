@@ -27,34 +27,46 @@ GO
 --  2.0     04/10/2018	M.Fish   	Reworked version by M.F.
 --
 ------------------------------------------------------------------------------------------------------------------------
+DECLARE @GivenDate         AS DATE = GETDATE();
+DECLARE @DaysOffSet        AS Integer = -28;
+DECLARE @AcceptableRunTime AS Integer =  30;
 
-WITH UDXDetails AS (
+;WITH UDXDetails AS (
     SELECT
-         WFLO.[ShortName]                                                                                                                           AS WorkFlowShortName
-        ,WFTA.[ShortName]                                                                                                                           AS TaskShortName
-        ,WFTR.[StartDateTime]                                                                                                                       AS TaskRunStartDateTime
-        ,WFTR.[EndDateTime]                                                                                                                         AS TaskRunEndDateTime
-        ,DATEDIFF(s, WFTR.[StartDateTime], WFTR.[EndDateTime])                                                                                      AS TaskRunDuration
-        ,AVG(CAST(DATEDIFF(s, WFTR.[StartDateTime], WFTR.[EndDateTime]) AS float)) OVER (PARTITION BY WFLO.[ShortName], WFTA.[ShortName])           AS AverageRunTime
+         WFL.[ShortName]                                                                                                                         AS WorkFlowShortName
+        ,WFT.[ShortName]                                                                                                                         AS TaskShortName
+        ,WTR.[StartDateTime]                                                                                                                     AS TaskRunStartDateTime
+        ,WTR.[EndDateTime]                                                                                                                       AS TaskRunEndDateTime
+        ,DATEDIFF(s, WTR.[StartDateTime], WTR.[EndDateTime])                                                                                     AS TaskRunDuration      --  The difference between task run start and end time in seconds.
+        ,AVG(CAST(DATEDIFF(s, WTR.[StartDateTime], WTR.[EndDateTime])     AS float)) OVER (PARTITION BY WFL.[ShortName], WFT.[ShortName])        AS AverageRunTime       --  Partitions (groups) the data together by  task name, takes the individual task run durations for each partition and works out the partition average. Casts it as a float.
+        ,STDEV(CAST(DATEDIFF(s, WTR.[StartDateTime], WTR.[EndDateTime])   AS float)) OVER (PARTITION BY WFL.[ShortName], WFT.[ShortName])        AS StandardDeviation    --  Partitions the data by task name, takes the individual task run durations for each partition and works out the standard deviation for each partition. Casts it as a float.
+        ,AVG(CAST(DATEDIFF(s, WTR.[StartDateTime], WTR.[EndDateTime])     AS float)) OVER (PARTITION BY WFL.[ShortName], WFT.[ShortName])
+            + STDEV(CAST(DATEDIFF(s, WTR.[StartDateTime], WTR.[EndDateTime])   AS float)) OVER (PARTITION BY WFL.[ShortName], WFT.[ShortName])   AS AcceptableRunTime    --  Partitions the data by task name, adds together the average run time and the standard deviation for each partition to calculate the acceptable run time per partition. Casts it as a float. 
+        ,ROW_NUMBER()                                          OVER (PARTITION BY WFL.[ShortName], WFT.[ShortName] ORDER BY WTR.[StartDateTime]) AS RowNumber            --  Adds a row number for each partition by task name, row number resets at 1 at the start of each partition. 
 
     FROM
-       [wf].[WorkflowTaskRun]                           AS WFTR     --  UDX Workflow Task Run
+       [wf].[WorkflowTaskRun]                           AS WTR     --  UDX Workflow Task Run
         
-        INNER JOIN [wf].[WorkflowTask]                  AS WFTA     --  UDX Workflow Task
-            ON WFTR.[WorkflowTaskId] = WFTA.[Id]
-        INNER JOIN [wf].[WorkflowRun]                   AS WFRU     --  UDX Workflow Run
-            ON WFRU.[Id] = WFTR.[WorkflowRunId]
-        INNER JOIN [wf].[Workflow]                      AS WFLO     --  UDX Workflow
-            ON WFLO.[Id] = WFRU.[WorkflowId]
+        INNER JOIN [wf].[WorkflowTask]                  AS WFT     --  UDX Workflow Task
+            ON WTR.[WorkflowTaskId] = WFT.[Id]
+        INNER JOIN [wf].[WorkflowRun]                   AS WFR     --  UDX Workflow Run
+            ON WFR.[Id] = WTR.[WorkflowRunId]
+        INNER JOIN [wf].[Workflow]                      AS WFL     --  UDX Workflow
+            ON WFL.[Id] = WFR.[WorkflowId]
 
+    /*WHERE
+        CONVERT(DATE,WTR.[StartDateTime],101) BETWEEN DATEADD(d, @DaysOffSet, @GivenDate) AND @GivenDate
+    */
     GROUP BY
-         WFLO.[ShortName]
-        ,WFTA.[ShortName]
-        ,WFTR.[StartDateTime]
-        ,WFTR.[EndDateTime]
+         WFL.[ShortName]
+        ,WFT.[ShortName]
+        ,WTR.[StartDateTime]
+        ,WTR.[EndDateTime]
 )
 SELECT *
 FROM UDXDetails
+
+
 
 
 ---------------------------------------------------------------------------------------------
