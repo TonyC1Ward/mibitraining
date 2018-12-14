@@ -1,0 +1,2275 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/14/2018 10:59:43 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="D-BCEE7B71AC3A"
+  DTS:CreatorName="ADIR\377926"
+  DTS:DTSID="{688CC4C4-3B3C-44C2-AC16-1AF7695FB3CD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{653646A8-1B4B-4E12-9A2A-69D40E84689C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{5B5AAD36-8FEA-4E1E-850F-C0A7B90FAB1A}"
+      DTS:ObjectName="Dev_Martin_DataWarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BI-SQL-01v12;Initial Catalog=Dev_Martin_DataWarehouse;Integrated Security=True;Application Name=SSIS-Package-{5B5AAD36-8FEA-4E1E-850F-C0A7B90FAB1A}BI-SQL-01v12.Dev_Martin_DataWarehouse;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{EDBC9F18-60BC-4D2B-9A50-3392D1B9FCC8}"
+      DTS:ObjectName="UDxProtoAdminTestBox">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=UDX-SQL-01v11;Initial Catalog=UDxProtoAdmin;Integrated Security=True;Application Name=SSIS-Package-{EDBC9F18-60BC-4D2B-9A50-3392D1B9FCC8}UDX-SQL-01v11.UDxProtoAdmin;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{A60B6946-4B45-4239-9EC7-330D80B85A26}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{82CF25DB-78EE-437D-8CD2-82E24F864218}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Move UDXProtoAdmin Data To BI-SQL"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+                  name="WF_WorkFlow"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"wf"."Workflow"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+                      connectionManagerRefId="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ADO NET Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].Columns[Id]"
+                          cachedDataType="i4"
+                          cachedName="Id"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[Id]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[Id]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].Columns[ShortName]"
+                          cachedDataType="wstr"
+                          cachedLength="64"
+                          cachedName="ShortName"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[ShortName]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[ShortName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].Columns[LongName]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="LongName"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[LongName]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[LongName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].Columns[DocumentationLink]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="DocumentationLink"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[DocumentationLink]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[DocumentationLink]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          name="ShortName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          name="LongName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input].ExternalColumns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          name="DocumentationLink" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Outputs[ADO NET Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ADO NET Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+                  name="WF_WorkFlowRun"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"wf"."WorkflowRun"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+                      connectionManagerRefId="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ADO NET Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[Id]"
+                          cachedDataType="i4"
+                          cachedName="Id"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[Id]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[Id]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[StartDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="StartDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[StartDateTime]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[StartDateTime]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[EndDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="EndDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[EndDateTime]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[EndDateTime]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[WorkflowId]"
+                          cachedDataType="i4"
+                          cachedName="WorkflowId"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[WorkflowId]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[ShortName]"
+                          cachedDataType="wstr"
+                          cachedLength="64"
+                          cachedName="ShortName"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[ShortName]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[ShortName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[LongName]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="LongName"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[LongName]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[LongName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[DocumentationLink]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="DocumentationLink"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[DocumentationLink]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[DocumentationLink]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[StatusCode]"
+                          cachedDataType="i4"
+                          cachedName="StatusCode"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[StatusCode]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[StatusCode]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[WorkflowRunGroupId]"
+                          cachedDataType="i4"
+                          cachedName="WorkflowRunGroupId"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowRunGroupId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[WorkflowRunGroupId]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[RunNumber]"
+                          cachedDataType="i4"
+                          cachedName="RunNumber"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[RunNumber]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[RunNumber]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].Columns[JRIRunFlag]"
+                          cachedDataType="bool"
+                          cachedName="JRIRunFlag"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[JRIRunFlag]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[JRIRunFlag]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[StartDateTime]"
+                          dataType="dbTimeStamp"
+                          name="StartDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[EndDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EndDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowId]"
+                          dataType="i4"
+                          name="WorkflowId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          name="ShortName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          name="LongName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          name="DocumentationLink" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[StatusCode]"
+                          dataType="i4"
+                          name="StatusCode" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowRunGroupId]"
+                          dataType="i4"
+                          name="WorkflowRunGroupId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[RunNumber]"
+                          dataType="i4"
+                          name="RunNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input].ExternalColumns[JRIRunFlag]"
+                          dataType="bool"
+                          name="JRIRunFlag" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Outputs[ADO NET Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ADO NET Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+                  name="WF_WorkFlowTask"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"wf"."WorkflowTask"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+                      connectionManagerRefId="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ADO NET Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].Columns[Id]"
+                          cachedDataType="i4"
+                          cachedName="Id"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[Id]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[Id]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].Columns[ShortName]"
+                          cachedDataType="wstr"
+                          cachedLength="64"
+                          cachedName="ShortName"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[ShortName]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[ShortName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].Columns[LongName]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="LongName"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[LongName]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[LongName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].Columns[DocumentationLink]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="DocumentationLink"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[DocumentationLink]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[DocumentationLink]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].Columns[WorkflowId]"
+                          cachedDataType="i4"
+                          cachedName="WorkflowId"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[WorkflowId]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].Columns[WorkflowTaskTypeId]"
+                          cachedDataType="i4"
+                          cachedName="WorkflowTaskTypeId"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowTaskTypeId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[WorkflowTaskTypeId]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          name="ShortName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          name="LongName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          name="DocumentationLink" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowId]"
+                          dataType="i4"
+                          name="WorkflowId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowTaskTypeId]"
+                          dataType="i4"
+                          name="WorkflowTaskTypeId" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Outputs[ADO NET Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ADO NET Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+                  name="WF_WorkFlowTaskRun"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"wf"."WorkflowTaskRun"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+                      connectionManagerRefId="Package.ConnectionManagers[Dev_Martin_DataWarehouse]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ADO NET Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[WorkflowRunId]"
+                          cachedDataType="i4"
+                          cachedName="WorkflowRunId"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowRunId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowRunId]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[WorkflowTaskId]"
+                          cachedDataType="i4"
+                          cachedName="WorkflowTaskId"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowTaskId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowTaskId]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[ShortName]"
+                          cachedDataType="wstr"
+                          cachedLength="64"
+                          cachedName="ShortName"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[ShortName]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[ShortName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[LongName]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="LongName"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[LongName]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[LongName]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[Description]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="Description"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[Description]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[DocumentationLink]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="DocumentationLink"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[DocumentationLink]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[DocumentationLink]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[StartDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="StartDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[StartDateTime]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[StartDateTime]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[EndDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="EndDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[EndDateTime]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[EndDateTime]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[WorkflowStatusCode]"
+                          cachedDataType="i4"
+                          cachedName="WorkflowStatusCode"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowStatusCode]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowStatusCode]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[WorkflowTaskTypeId]"
+                          cachedDataType="i4"
+                          cachedName="WorkflowTaskTypeId"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowTaskTypeId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowTaskTypeId]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].Columns[RunnerAgentAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="300"
+                          cachedName="RunnerAgentAddress"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[RunnerAgentAddress]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[RunnerAgentAddress]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowRunId]"
+                          dataType="i4"
+                          name="WorkflowRunId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowTaskId]"
+                          dataType="i4"
+                          name="WorkflowTaskId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          name="ShortName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          name="LongName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          name="DocumentationLink" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[StartDateTime]"
+                          dataType="dbTimeStamp"
+                          name="StartDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[EndDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EndDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowStatusCode]"
+                          dataType="i4"
+                          name="WorkflowStatusCode" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[WorkflowTaskTypeId]"
+                          dataType="i4"
+                          name="WorkflowTaskTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input].ExternalColumns[RunnerAgentAddress]"
+                          dataType="wstr"
+                          length="300"
+                          name="RunnerAgentAddress" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Outputs[ADO NET Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ADO NET Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+                  name="WorkFlow"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Source database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"wf"."Workflow"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+                      connectionManagerRefId="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[Id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[Id]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[Id]"
+                          name="Id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[ShortName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[ShortName]"
+                          length="64"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[ShortName]"
+                          name="ShortName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[LongName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[LongName]"
+                          length="128"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[LongName]"
+                          name="LongName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[DocumentationLink]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[DocumentationLink]"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].Columns[DocumentationLink]"
+                          name="DocumentationLink"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          name="ShortName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          name="LongName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output].ExternalColumns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          name="DocumentationLink" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[Id]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[Id]"
+                          name="Id" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[ShortName]"
+                          name="ShortName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[LongName]"
+                          name="LongName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[DocumentationLink]"
+                          name="DocumentationLink" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+                  name="WorkFlowRun"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Source database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"wf"."WorkflowRun"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+                      connectionManagerRefId="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[Id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[Id]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[Id]"
+                          name="Id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[StartDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[StartDateTime]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[StartDateTime]"
+                          name="StartDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[EndDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[EndDateTime]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[EndDateTime]"
+                          name="EndDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[WorkflowId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[WorkflowId]"
+                          name="WorkflowId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[ShortName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[ShortName]"
+                          length="64"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[ShortName]"
+                          name="ShortName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[LongName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[LongName]"
+                          length="128"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[LongName]"
+                          name="LongName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[DocumentationLink]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[DocumentationLink]"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[DocumentationLink]"
+                          name="DocumentationLink"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[StatusCode]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[StatusCode]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[StatusCode]"
+                          name="StatusCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[WorkflowRunGroupId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowRunGroupId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[WorkflowRunGroupId]"
+                          name="WorkflowRunGroupId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[RunNumber]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[RunNumber]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[RunNumber]"
+                          name="RunNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[JRIRunFlag]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[JRIRunFlag]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].Columns[JRIRunFlag]"
+                          name="JRIRunFlag"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[StartDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="StartDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[EndDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="EndDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowId]"
+                          dataType="i4"
+                          name="WorkflowId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          name="ShortName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          name="LongName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          name="DocumentationLink" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[StatusCode]"
+                          dataType="i4"
+                          name="StatusCode" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowRunGroupId]"
+                          dataType="i4"
+                          name="WorkflowRunGroupId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[RunNumber]"
+                          dataType="i4"
+                          name="RunNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output].ExternalColumns[JRIRunFlag]"
+                          dataType="bool"
+                          name="JRIRunFlag" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[Id]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[Id]"
+                          name="Id" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[StartDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[StartDateTime]"
+                          name="StartDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[EndDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[EndDateTime]"
+                          name="EndDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[WorkflowId]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[WorkflowId]"
+                          name="WorkflowId" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[ShortName]"
+                          name="ShortName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[LongName]"
+                          name="LongName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[DocumentationLink]"
+                          name="DocumentationLink" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[StatusCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[StatusCode]"
+                          name="StatusCode" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[WorkflowRunGroupId]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[WorkflowRunGroupId]"
+                          name="WorkflowRunGroupId" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[RunNumber]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[RunNumber]"
+                          name="RunNumber" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[JRIRunFlag]"
+                          dataType="bool"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[JRIRunFlag]"
+                          name="JRIRunFlag" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+                  name="WorkFlowTask"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Source database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"wf"."WorkflowTask"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+                      connectionManagerRefId="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[Id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[Id]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[Id]"
+                          name="Id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[ShortName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[ShortName]"
+                          length="64"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[ShortName]"
+                          name="ShortName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[LongName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[LongName]"
+                          length="128"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[LongName]"
+                          name="LongName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[DocumentationLink]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[DocumentationLink]"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[DocumentationLink]"
+                          name="DocumentationLink"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[WorkflowId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[WorkflowId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[WorkflowId]"
+                          name="WorkflowId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[WorkflowTaskTypeId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[WorkflowTaskTypeId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].Columns[WorkflowTaskTypeId]"
+                          name="WorkflowTaskTypeId"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          name="ShortName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          name="LongName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          name="DocumentationLink" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[WorkflowId]"
+                          dataType="i4"
+                          name="WorkflowId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output].ExternalColumns[WorkflowTaskTypeId]"
+                          dataType="i4"
+                          name="WorkflowTaskTypeId" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[Id]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[Id]"
+                          name="Id" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[ShortName]"
+                          name="ShortName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[LongName]"
+                          name="LongName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[DocumentationLink]"
+                          name="DocumentationLink" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[WorkflowId]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[WorkflowId]"
+                          name="WorkflowId" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[WorkflowTaskTypeId]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[WorkflowTaskTypeId]"
+                          name="WorkflowTaskTypeId" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+                  name="WorkFlowTaskRun"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Source database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"wf"."WorkflowTaskRun"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+                      connectionManagerRefId="Package.ConnectionManagers[UDxProtoAdminTestBox]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowRunId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowRunId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowRunId]"
+                          name="WorkflowRunId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowTaskId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowTaskId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowTaskId]"
+                          name="WorkflowTaskId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[ShortName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[ShortName]"
+                          length="64"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[ShortName]"
+                          name="ShortName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[LongName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[LongName]"
+                          length="128"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[LongName]"
+                          name="LongName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[Description]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[Description]"
+                          name="Description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[DocumentationLink]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[DocumentationLink]"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[DocumentationLink]"
+                          name="DocumentationLink"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[StartDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[StartDateTime]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[StartDateTime]"
+                          name="StartDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[EndDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[EndDateTime]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[EndDateTime]"
+                          name="EndDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowStatusCode]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowStatusCode]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowStatusCode]"
+                          name="WorkflowStatusCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowTaskTypeId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowTaskTypeId]"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[WorkflowTaskTypeId]"
+                          name="WorkflowTaskTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[RunnerAgentAddress]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[RunnerAgentAddress]"
+                          length="300"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].Columns[RunnerAgentAddress]"
+                          name="RunnerAgentAddress"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowRunId]"
+                          dataType="i4"
+                          name="WorkflowRunId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowTaskId]"
+                          dataType="i4"
+                          name="WorkflowTaskId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          name="ShortName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          name="LongName" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          name="DocumentationLink" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[StartDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="StartDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[EndDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="EndDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowStatusCode]"
+                          dataType="i4"
+                          name="WorkflowStatusCode" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[WorkflowTaskTypeId]"
+                          dataType="i4"
+                          name="WorkflowTaskTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output].ExternalColumns[RunnerAgentAddress]"
+                          dataType="wstr"
+                          length="300"
+                          name="RunnerAgentAddress" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[WorkflowRunId]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[WorkflowRunId]"
+                          name="WorkflowRunId" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[WorkflowTaskId]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[WorkflowTaskId]"
+                          name="WorkflowTaskId" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[ShortName]"
+                          dataType="wstr"
+                          length="64"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[ShortName]"
+                          name="ShortName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[LongName]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[LongName]"
+                          name="LongName" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[Description]"
+                          name="Description" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[DocumentationLink]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[DocumentationLink]"
+                          name="DocumentationLink" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[StartDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[StartDateTime]"
+                          name="StartDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[EndDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[EndDateTime]"
+                          name="EndDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[WorkflowStatusCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[WorkflowStatusCode]"
+                          name="WorkflowStatusCode" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[WorkflowTaskTypeId]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[WorkflowTaskTypeId]"
+                          name="WorkflowTaskTypeId" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[RunnerAgentAddress]"
+                          dataType="wstr"
+                          length="300"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[RunnerAgentAddress]"
+                          name="RunnerAgentAddress" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL.Paths[ADO NET Source Output]"
+                  endId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow.Inputs[ADO NET Destination Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL.Paths[ADO NET Source Output1]"
+                  endId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun.Inputs[ADO NET Destination Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL.Paths[ADO NET Source Output2]"
+                  endId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask.Inputs[ADO NET Destination Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL.Paths[ADO NET Source Output3]"
+                  endId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun.Inputs[ADO NET Destination Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun.Outputs[ADO NET Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Truncate Target WorkFlow"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{52A5AEBD-AF77-45CF-A3D8-A99A536799F1}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Target WorkFlow"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5B5AAD36-8FEA-4E1E-850F-C0A7B90FAB1A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE WF.WorkFlow;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Truncate Target WorkFlowRun"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{19cfd823-45d2-4b23-97b2-17cf45679acd}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Target WorkFlowRun"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5B5AAD36-8FEA-4E1E-850F-C0A7B90FAB1A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE WF.WorkFlowRun;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Truncate Target WorkFlowTask"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7301540f-1b90-482b-a39c-92a082a2949a}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Target WorkFlowTask"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5B5AAD36-8FEA-4E1E-850F-C0A7B90FAB1A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE WF.WorkFlowTask;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Truncate Target WorkFlowTaskRun"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{05cc56de-e2d7-42d9-b66f-e597259bf0ad}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Target WorkFlowTaskRun"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5B5AAD36-8FEA-4E1E-850F-C0A7B90FAB1A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE WF.WorkFlowTaskRun;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{95E524A2-6321-4FB0-BAEE-31DF8C0A65D5}"
+          DTS:From="Package\Sequence Container\Truncate Target WorkFlow"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Truncate Target WorkFlowRun" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{C64CD4C6-2DE4-4BFE-9301-AB0D297CF524}"
+          DTS:From="Package\Sequence Container\Truncate Target WorkFlowRun"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sequence Container\Truncate Target WorkFlowTask" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{2AD9D929-0BF5-4F61-B51C-2DC8141C6BBE}"
+          DTS:From="Package\Sequence Container\Truncate Target WorkFlowTask"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Sequence Container\Truncate Target WorkFlowTaskRun" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{1EAE4F91-3D54-498E-AB50-B89776D612F0}"
+          DTS:From="Package\Sequence Container\Truncate Target WorkFlowTaskRun"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="260,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL"
+          TopLeft="227.542863497442,288.000008459652" />
+        <NodeLayout
+          Size="205.6,41.6"
+          Id="Package\Sequence Container\Truncate Target WorkFlow"
+          TopLeft="26.7428600233429,18.4470627959625" />
+        <NodeLayout
+          Size="224,41.6"
+          Id="Package\Sequence Container\Truncate Target WorkFlowRun"
+          TopLeft="116.914289966895,100.847062941819" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="129.542860023343,60.0470627959625">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="99.3714299435519,40.800000145856"
+              Start="0,0"
+              End="99.3714299435519,33.300000145856">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.400000072928" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.400000072928"
+                    Point2="0,20.400000072928"
+                    Point3="4,20.400000072928" />
+                  <mssgle:LineSegment
+                    End="95.3714299435519,20.400000072928" />
+                  <mssgle:CubicBezierSegment
+                    Point1="95.3714299435519,20.400000072928"
+                    Point2="99.3714299435519,20.400000072928"
+                    Point3="99.3714299435519,24.400000072928" />
+                  <mssgle:LineSegment
+                    End="99.3714299435519,33.300000145856" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="227.2,41.6"
+          Id="Package\Sequence Container\Truncate Target WorkFlowTask"
+          TopLeft="228.914291874243,185.270593537591" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="228.914289966895,142.447062941819">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="113.600001907348,42.8235305957724"
+              Start="0,0"
+              End="113.600001907348,35.3235305957724">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.4117652978862" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.4117652978862"
+                    Point2="0,21.4117652978862"
+                    Point3="4,21.4117652978862" />
+                  <mssgle:LineSegment
+                    End="109.600001907348,21.4117652978862" />
+                  <mssgle:CubicBezierSegment
+                    Point1="109.600001907348,21.4117652978862"
+                    Point2="113.600001907348,21.4117652978862"
+                    Point3="113.600001907348,25.4117652978862" />
+                  <mssgle:LineSegment
+                    End="113.600001907348,35.3235305957724" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="245.6,41.6"
+          Id="Package\Sequence Container\Truncate Target WorkFlowTaskRun"
+          TopLeft="471.771438867219,222.588241119781" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="456.114291874243,200.088241119781">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="138.457146992975,22.5"
+              Start="0,0"
+              End="138.457146992975,15">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="134.457146992975,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="134.457146992975,0"
+                    Point2="138.457146992975,0"
+                    Point3="138.457146992975,4" />
+                  <mssgle:LineSegment
+                    End="138.457146992975,15" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="594.571438867219,264.188241119781">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-237.028575369777,23.8117673398712"
+              Start="0,0"
+              End="-237.028575369777,16.3117673398712">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.90588366993558" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.90588366993558"
+                    Point2="0,11.9058836699356"
+                    Point3="-4,11.9058836699356" />
+                  <mssgle:LineSegment
+                    End="-233.028575369777,11.9058836699356" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-233.028575369777,11.9058836699356"
+                    Point2="-237.028575369777,11.9058836699356"
+                    Point3="-237.028575369777,15.9058836699356" />
+                  <mssgle:LineSegment
+                    End="-237.028575369777,16.3117673398712" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="749.6,390.4"
+          Size="749.6,433.6"
+          Id="Package\Sequence Container"
+          TopLeft="133.142859410267,149.270590328758" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow"
+          TopLeft="225.142860977017,144.376472613061" />
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun"
+          TopLeft="395.42857816268,321.788239807076" />
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun"
+          TopLeft="404.571435461239,148.047060899834" />
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow"
+          TopLeft="211.428575029179,321.176475092614" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL.Paths[ADO NET Source Output1]"
+          TopLeft="477.600006811959,189.647060899834">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,132.141178907243"
+              Start="0,0"
+              End="0,124.641178907243">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,124.641178907243" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL.Paths[ADO NET Source Output]"
+          TopLeft="286.685718003098,185.976472613061">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,135.200002479553"
+              Start="0,0"
+              End="0,127.700002479553">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,127.700002479553" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask"
+          TopLeft="601.14286738026,145.647059441273" />
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask"
+          TopLeft="593.14286724402,319.341180949228" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL.Paths[ADO NET Source Output2]"
+          TopLeft="676.34286731214,187.247059441273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,132.094121507955"
+              Start="0,0"
+              End="0,124.594121507955">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,124.594121507955" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun"
+          TopLeft="785.714299094921,145.035294726811" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun"
+          TopLeft="782.285727607961,319.95294566369" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL.Paths[ADO NET Source Output3]"
+          TopLeft="872.600013351441,186.635294726811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,133.317650936879"
+              Start="0,0"
+              End="0,125.817650936879">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,125.817650936879" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlow">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowRun">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowRun">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlow">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTask">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTask">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WorkFlowTaskRun">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Move UDXProtoAdmin Data To BI-SQL\WF_WorkFlowTaskRun">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
