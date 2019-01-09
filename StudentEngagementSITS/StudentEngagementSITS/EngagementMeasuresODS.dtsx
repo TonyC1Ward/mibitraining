@@ -1,0 +1,2197 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/9/2019 10:24:21 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="D-BCEE7B71AC3A"
+  DTS:CreatorName="ADIR\377926"
+  DTS:DTSID="{60783F32-235D-4EB0-8596-786948FAE078}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="EngagementMeasuresODS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{D31F0E1E-A60A-402E-8D9D-73E7324C895E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DACE5F4C-28BF-4771-B263-C74B57BF814B}"
+      DTS:ObjectName="BI-SQL-01v12.Dev_Tony_DataWarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BI-SQL-01v12;Initial Catalog=Dev_Tony_DataWarehouse;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{60A57FFB-A6CD-463C-84B2-6A35EF1E16AC}"
+      DTS:ObjectName="UDX-SQL-01v10.UDxLiveODS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=UDX-SQL-01v10;Initial Catalog=UDxLiveODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get ODS data"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{79F46823-844B-4C1D-8684-C8C55C15A09D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get ODS data">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Get ODS data\Get ODS Data from UDX 10"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{AD86D52C-781A-4172-868C-211C25DFF550}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get ODS Data from UDX 10"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="EventType"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Type].[EventType]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+                      connectionManagerRefId="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].Columns[EventTypeId]"
+                          cachedDataType="i4"
+                          cachedName="EventTypeId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventTypeId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].Columns[EventTypeName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EventTypeName"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeName]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventTypeName]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].Columns[EventDescription]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="EventDescription"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].ExternalColumns[EventDescription]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventDescription]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeId]"
+                          dataType="i4"
+                          name="EventTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeName]"
+                          dataType="wstr"
+                          length="50"
+                          name="EventTypeName" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input].ExternalColumns[EventDescription]"
+                          dataType="wstr"
+                          length="200"
+                          name="EventDescription" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="ODS Activity Physical Resource"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Student].[Activity_PhysicalResource]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+                      connectionManagerRefId="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[StudentId]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[StudentId]"
+                          length="30"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[StudentId]"
+                          name="StudentId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ResourceName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ResourceName]"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ResourceName]"
+                          name="ResourceName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityStartDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivityStartDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityStartDateTime]"
+                          name="ActivityStartDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityEndDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivityEndDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityEndDateTime]"
+                          name="ActivityEndDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[EventTypeId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[EventTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[EventTypeId]"
+                          name="EventTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[EventSubTypeId]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[EventSubTypeId]"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[EventSubTypeId]"
+                          name="EventSubTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivitySpecificValue]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivitySpecificValue]"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivitySpecificValue]"
+                          name="ActivitySpecificValue"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityResourceDescription]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivityResourceDescription]"
+                          length="1000"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityResourceDescription]"
+                          name="ActivityResourceDescription"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivitySequenceNum]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivitySequenceNum]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivitySequenceNum]"
+                          name="ActivitySequenceNum"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ODSImportDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]"
+                          name="ODSImportDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[StudentId]"
+                          dataType="wstr"
+                          length="30"
+                          name="StudentId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ResourceName]"
+                          dataType="wstr"
+                          length="255"
+                          name="ResourceName" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivityStartDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ActivityStartDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivityEndDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ActivityEndDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[EventTypeId]"
+                          dataType="i4"
+                          name="EventTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[EventSubTypeId]"
+                          dataType="wstr"
+                          length="255"
+                          name="EventSubTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivitySpecificValue]"
+                          dataType="wstr"
+                          length="255"
+                          name="ActivitySpecificValue" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivityResourceDescription]"
+                          dataType="wstr"
+                          length="1000"
+                          name="ActivityResourceDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ActivitySequenceNum]"
+                          dataType="i4"
+                          name="ActivitySequenceNum" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].ExternalColumns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[StudentId]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[StudentId]"
+                          name="StudentId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ResourceName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ResourceName]"
+                          name="ResourceName" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivityStartDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivityStartDateTime]"
+                          name="ActivityStartDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivityEndDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivityEndDateTime]"
+                          name="ActivityEndDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[EventTypeId]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[EventTypeId]"
+                          name="EventTypeId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[EventSubTypeId]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[EventSubTypeId]"
+                          name="EventSubTypeId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivitySpecificValue]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivitySpecificValue]"
+                          name="ActivitySpecificValue" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivityResourceDescription]"
+                          dataType="wstr"
+                          length="1000"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivityResourceDescription]"
+                          name="ActivityResourceDescription" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivitySequenceNum]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ActivitySequenceNum]"
+                          name="ActivitySequenceNum" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ODSImportDateTime]"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="ODS Activity Submission"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Student].[Activity_Submission]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+                      connectionManagerRefId="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[StudentId]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[StudentId]"
+                          length="16"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[StudentId]"
+                          name="StudentId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[SubmissionDate]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[SubmissionDate]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[SubmissionDate]"
+                          name="SubmissionDate"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[SubmissionId]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[SubmissionId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[SubmissionId]"
+                          name="SubmissionId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[EventTypeId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[EventTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[EventTypeId]"
+                          name="EventTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[Submission_Type]"
+                          length="200"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Type]"
+                          name="Submission_Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[Submission_Code]"
+                          length="50"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Code]"
+                          name="Submission_Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Title]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[Submission_Title]"
+                          length="200"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Title]"
+                          name="Submission_Title"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Score]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[Score]"
+                          length="50"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Score]"
+                          name="Score"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[ODSImportDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]"
+                          name="ODSImportDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[StudentId]"
+                          dataType="wstr"
+                          length="16"
+                          name="StudentId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[SubmissionDate]"
+                          dataType="dbTimeStamp2"
+                          name="SubmissionDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[SubmissionId]"
+                          dataType="i8"
+                          name="SubmissionId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[EventTypeId]"
+                          dataType="i4"
+                          name="EventTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[Submission_Type]"
+                          dataType="wstr"
+                          length="200"
+                          name="Submission_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[Submission_Code]"
+                          dataType="wstr"
+                          length="50"
+                          name="Submission_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[Submission_Title]"
+                          dataType="wstr"
+                          length="200"
+                          name="Submission_Title" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[Score]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Score" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].ExternalColumns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[StudentId]"
+                          dataType="wstr"
+                          length="16"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[StudentId]"
+                          name="StudentId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[SubmissionDate]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[SubmissionDate]"
+                          name="SubmissionDate"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[SubmissionId]"
+                          dataType="i8"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[SubmissionId]"
+                          name="SubmissionId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[EventTypeId]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[EventTypeId]"
+                          name="EventTypeId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[Submission_Type]"
+                          dataType="wstr"
+                          length="200"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[Submission_Type]"
+                          name="Submission_Type" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[Submission_Code]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[Submission_Code]"
+                          name="Submission_Code" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[Submission_Title]"
+                          dataType="wstr"
+                          length="200"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[Submission_Title]"
+                          name="Submission_Title" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[Score]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[Score]"
+                          name="Score" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[ODSImportDateTime]"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="ODS Activity WebResource"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Student].[Activity_WebResource]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+                      connectionManagerRefId="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[StudentId]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[StudentId]"
+                          length="16"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[StudentId]"
+                          name="StudentId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ResourceName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ResourceName]"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ResourceName]"
+                          name="ResourceName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityStartDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivityStartDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityStartDateTime]"
+                          name="ActivityStartDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityEndDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivityEndDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityEndDateTime]"
+                          name="ActivityEndDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[EventTypeId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[EventTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[EventTypeId]"
+                          name="EventTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[EventSubTypeId]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[EventSubTypeId]"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[EventSubTypeId]"
+                          name="EventSubTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivitySpecificValue]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivitySpecificValue]"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivitySpecificValue]"
+                          name="ActivitySpecificValue"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityResourceDescription]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivityResourceDescription]"
+                          length="1000"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityResourceDescription]"
+                          name="ActivityResourceDescription"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivitySequenceNum]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivitySequenceNum]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivitySequenceNum]"
+                          name="ActivitySequenceNum"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ODSImportDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]"
+                          name="ODSImportDateTime"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[StudentId]"
+                          dataType="wstr"
+                          length="16"
+                          name="StudentId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ResourceName]"
+                          dataType="wstr"
+                          length="255"
+                          name="ResourceName" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivityStartDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ActivityStartDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivityEndDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ActivityEndDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[EventTypeId]"
+                          dataType="i4"
+                          name="EventTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[EventSubTypeId]"
+                          dataType="wstr"
+                          length="255"
+                          name="EventSubTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivitySpecificValue]"
+                          dataType="wstr"
+                          length="255"
+                          name="ActivitySpecificValue" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivityResourceDescription]"
+                          dataType="wstr"
+                          length="1000"
+                          name="ActivityResourceDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ActivitySequenceNum]"
+                          dataType="i4"
+                          name="ActivitySequenceNum" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].ExternalColumns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[StudentId]"
+                          dataType="wstr"
+                          length="16"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[StudentId]"
+                          name="StudentId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ResourceName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ResourceName]"
+                          name="ResourceName" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivityStartDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivityStartDateTime]"
+                          name="ActivityStartDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivityEndDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivityEndDateTime]"
+                          name="ActivityEndDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[EventTypeId]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[EventTypeId]"
+                          name="EventTypeId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[EventSubTypeId]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[EventSubTypeId]"
+                          name="EventSubTypeId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivitySpecificValue]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivitySpecificValue]"
+                          name="ActivitySpecificValue" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivityResourceDescription]"
+                          dataType="wstr"
+                          length="1000"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivityResourceDescription]"
+                          name="ActivityResourceDescription" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivitySequenceNum]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ActivitySequenceNum]"
+                          name="ActivitySequenceNum" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ODSImportDateTime]"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="ODS Type EventType"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Type].[EventType]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+                      connectionManagerRefId="Package.ConnectionManagers[UDX-SQL-01v10.UDxLiveODS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventTypeId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].ExternalColumns[EventTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventTypeId]"
+                          name="EventTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventTypeName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].ExternalColumns[EventTypeName]"
+                          length="50"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventTypeName]"
+                          name="EventTypeName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventDescription]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].ExternalColumns[EventDescription]"
+                          length="200"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].Columns[EventDescription]"
+                          name="EventDescription"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].ExternalColumns[EventTypeId]"
+                          dataType="i4"
+                          name="EventTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].ExternalColumns[EventTypeName]"
+                          dataType="wstr"
+                          length="50"
+                          name="EventTypeName" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output].ExternalColumns[EventDescription]"
+                          dataType="wstr"
+                          length="200"
+                          name="EventDescription" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[EventTypeId]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[EventTypeId]"
+                          name="EventTypeId" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[EventTypeName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[EventTypeName]"
+                          name="EventTypeName" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[EventDescription]"
+                          dataType="wstr"
+                          length="200"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[EventDescription]"
+                          name="EventDescription" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Physical Resouce"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Student].[Activity_PhysicalResource]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+                      connectionManagerRefId="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[StudentId]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="StudentId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[StudentId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[StudentId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[ResourceName]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ResourceName"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ResourceName]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ResourceName]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[ActivityStartDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="ActivityStartDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivityStartDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityStartDateTime]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[ActivityEndDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="ActivityEndDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivityEndDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityEndDateTime]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[EventTypeId]"
+                          cachedDataType="i4"
+                          cachedName="EventTypeId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[EventTypeId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[EventSubTypeId]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="EventSubTypeId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[EventSubTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[EventSubTypeId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[ActivitySpecificValue]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ActivitySpecificValue"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivitySpecificValue]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivitySpecificValue]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[ActivityResourceDescription]"
+                          cachedDataType="wstr"
+                          cachedLength="1000"
+                          cachedName="ActivityResourceDescription"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivityResourceDescription]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivityResourceDescription]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[ActivitySequenceNum]"
+                          cachedDataType="i4"
+                          cachedName="ActivitySequenceNum"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivitySequenceNum]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ActivitySequenceNum]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].Columns[ODSImportDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="ODSImportDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ODSImportDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[StudentId]"
+                          dataType="wstr"
+                          length="30"
+                          name="StudentId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ResourceName]"
+                          dataType="wstr"
+                          length="255"
+                          name="ResourceName" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivityStartDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ActivityStartDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivityEndDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ActivityEndDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeId]"
+                          dataType="i4"
+                          name="EventTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[EventSubTypeId]"
+                          dataType="wstr"
+                          length="255"
+                          name="EventSubTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivitySpecificValue]"
+                          dataType="wstr"
+                          length="255"
+                          name="ActivitySpecificValue" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivityResourceDescription]"
+                          dataType="wstr"
+                          length="1000"
+                          name="ActivityResourceDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ActivitySequenceNum]"
+                          dataType="i4"
+                          name="ActivitySequenceNum" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input].ExternalColumns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Submission"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Student].[Activity_Submission]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+                      connectionManagerRefId="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[StudentId]"
+                          cachedDataType="wstr"
+                          cachedLength="16"
+                          cachedName="StudentId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[StudentId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[StudentId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[SubmissionDate]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="SubmissionDate"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[SubmissionDate]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[SubmissionDate]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[SubmissionId]"
+                          cachedDataType="i8"
+                          cachedName="SubmissionId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[SubmissionId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[SubmissionId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[EventTypeId]"
+                          cachedDataType="i4"
+                          cachedName="EventTypeId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[EventTypeId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[Submission_Type]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="Submission_Type"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[Submission_Type]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Type]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[Submission_Code]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Submission_Code"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[Submission_Code]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Code]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[Submission_Title]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="Submission_Title"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[Submission_Title]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Submission_Title]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[Score]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Score"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[Score]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[Score]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].Columns[ODSImportDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="ODSImportDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[ODSImportDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[StudentId]"
+                          dataType="wstr"
+                          length="16"
+                          name="StudentId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[SubmissionDate]"
+                          dataType="dbTimeStamp2"
+                          name="SubmissionDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[SubmissionId]"
+                          dataType="i8"
+                          name="SubmissionId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeId]"
+                          dataType="i4"
+                          name="EventTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[Submission_Type]"
+                          dataType="wstr"
+                          length="200"
+                          name="Submission_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[Submission_Code]"
+                          dataType="wstr"
+                          length="50"
+                          name="Submission_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[Submission_Title]"
+                          dataType="wstr"
+                          length="200"
+                          name="Submission_Title" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[Score]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Score" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input].ExternalColumns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="WebResource"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Student].[Activity_WebResource]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+                      connectionManagerRefId="Package.ConnectionManagers[BI-SQL-01v12.Dev_Tony_DataWarehouse]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[StudentId]"
+                          cachedDataType="wstr"
+                          cachedLength="16"
+                          cachedName="StudentId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[StudentId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[StudentId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[ResourceName]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ResourceName"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ResourceName]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ResourceName]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[ActivityStartDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="ActivityStartDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivityStartDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityStartDateTime]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[ActivityEndDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="ActivityEndDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivityEndDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityEndDateTime]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[EventTypeId]"
+                          cachedDataType="i4"
+                          cachedName="EventTypeId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[EventTypeId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[EventSubTypeId]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="EventSubTypeId"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[EventSubTypeId]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[EventSubTypeId]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[ActivitySpecificValue]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ActivitySpecificValue"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivitySpecificValue]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivitySpecificValue]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[ActivityResourceDescription]"
+                          cachedDataType="wstr"
+                          cachedLength="1000"
+                          cachedName="ActivityResourceDescription"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivityResourceDescription]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivityResourceDescription]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[ActivitySequenceNum]"
+                          cachedDataType="i4"
+                          cachedName="ActivitySequenceNum"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivitySequenceNum]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ActivitySequenceNum]" />
+                        <inputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].Columns[ODSImportDateTime]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="ODSImportDateTime"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ODSImportDateTime]"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output].Columns[ODSImportDateTime]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[StudentId]"
+                          dataType="wstr"
+                          length="16"
+                          name="StudentId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ResourceName]"
+                          dataType="wstr"
+                          length="255"
+                          name="ResourceName" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivityStartDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ActivityStartDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivityEndDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ActivityEndDateTime"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[EventTypeId]"
+                          dataType="i4"
+                          name="EventTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[EventSubTypeId]"
+                          dataType="wstr"
+                          length="255"
+                          name="EventSubTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivitySpecificValue]"
+                          dataType="wstr"
+                          length="255"
+                          name="ActivitySpecificValue" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivityResourceDescription]"
+                          dataType="wstr"
+                          length="1000"
+                          name="ActivityResourceDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ActivitySequenceNum]"
+                          dataType="i4"
+                          name="ActivitySequenceNum" />
+                        <externalMetadataColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input].ExternalColumns[ODSImportDateTime]"
+                          dataType="dbTimeStamp2"
+                          name="ODSImportDateTime"
+                          scale="7" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10.Paths[OLE DB Source Output]"
+                  endId="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10.Paths[OLE DB Source Output1]"
+                  endId="Package\Get ODS data\Get ODS Data from UDX 10\Submission.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10.Paths[OLE DB Source Output2]"
+                  endId="Package\Get ODS data\Get ODS Data from UDX 10\WebResource.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Get ODS data\Get ODS Data from UDX 10.Paths[OLE DB Source Output3]"
+                  endId="Package\Get ODS data\Get ODS Data from UDX 10\EventType.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Get ODS data\Truncate Target ODS Tables"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5B4D61FC-224A-4287-89C4-2AC30972EDF8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Target ODS Tables"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{DACE5F4C-28BF-4771-B263-C74B57BF814B}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE Student.Activity_PhysicalResource;&#xA;TRUNCATE TABLE Student.Activity_Submission;&#xA;TRUNCATE TABLE Student.Activity_WebResource;&#xA;TRUNCATE TABLE Type.EventType;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Get ODS data.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{EEDBAE19-02CB-4E1B-BC38-7FA115614CA6}"
+          DTS:From="Package\Get ODS data\Truncate Target ODS Tables"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Get ODS data\Get ODS Data from UDX 10" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="209.6,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10"
+          TopLeft="40.4571454262248,173.223532783614" />
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\Get ODS data\Truncate Target ODS Tables"
+          TopLeft="33.6000024523054,28.235295456091" />
+        <EdgeLayout
+          Id="Package\Get ODS data.PrecedenceConstraints[Constraint]"
+          TopLeft="144.028573939265,69.835295456091">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,103.388237327523"
+              Start="0,0"
+              End="0,95.888237327523">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,95.888237327523" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="259.2,344.8"
+          Size="259.2,388"
+          Id="Package\Get ODS data"
+          TopLeft="110.285716163869,29.976471008644" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource"
+          TopLeft="36.5714291942363,95.435295456091" />
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce"
+          TopLeft="62.2857153464336,275.294121507955" />
+        <EdgeLayout
+          Id="Package\Get ODS data\Get ODS Data from UDX 10.Paths[OLE DB Source Output]"
+          TopLeft="145.628572270335,137.035295456091">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,138.258826051864"
+              Start="0,0"
+              End="0,130.758826051864">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,130.758826051864" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="194.4,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission"
+          TopLeft="273.714290375612,97.6000010209925" />
+        <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10\Submission"
+          TopLeft="311.428576732169,264.611768069152" />
+        <EdgeLayout
+          Id="Package\Get ODS data\Get ODS Data from UDX 10.Paths[OLE DB Source Output1]"
+          TopLeft="374.37143355389,139.200001020993">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,125.411767048159"
+              Start="0,0"
+              End="0,117.911767048159">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,117.911767048159" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="205.6,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource"
+          TopLeft="478.285722430872,98.4941190284016" />
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10\WebResource"
+          TopLeft="503.428580001909,266.729415505485" />
+        <EdgeLayout
+          Id="Package\Get ODS data\Get ODS Data from UDX 10.Paths[OLE DB Source Output2]"
+          TopLeft="578.257151216391,140.094119028402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,126.635296477084"
+              Start="0,0"
+              End="0,119.135296477084">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,119.135296477084" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType"
+          TopLeft="718.285726518047,94.2117660271668" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Get ODS data\Get ODS Data from UDX 10\EventType"
+          TopLeft="748.571441319524,260.000003646402" />
+        <EdgeLayout
+          Id="Package\Get ODS data\Get ODS Data from UDX 10.Paths[OLE DB Source Output3]"
+          TopLeft="810.828583918786,135.811766027167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,124.188237619235"
+              Start="0,0"
+              End="0,116.688237619235">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,116.688237619235" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\Submission">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\WebResource">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Type EventType">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\EventType">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
