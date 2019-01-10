@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="SEATSAttendanceData"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{6D5052A3-EE03-4390-B893-EFE2D643E7EB}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{3C21FF2E-181E-44BE-9AE6-A0C2ED09BA80}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -79,28 +79,33 @@
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\populate final fact table"
-      DTS:CreationName="STOCK:SEQUENCE"
-      DTS:Description="Sequence Container"
-      DTS:Disabled="True"
-      DTS:DTSID="{FD451F14-27C0-4C88-B3F1-08FA7DDC9EAA}"
-      DTS:ExecutableType="STOCK:SEQUENCE"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="populate final fact table">
-      <DTS:Variables />
-      <DTS:Executables />
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\run transforms to build data we want"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{91EC5517-2E29-4D69-AF9E-373D8925C6D0}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="run transforms to build data we want">
       <DTS:Variables />
-      <DTS:Executables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\run transforms to build data we want\Build SEAtS_FactStudentEngage"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{005DBCD0-54F8-4FFB-AAD9-F7DA46712FF4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Build SEAtS_FactStudentEngage"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{090DBB68-E47A-498A-9EA9-27A8DA7740B0}"
+              SQLTask:SqlStatementSource="USE Dev_Tony_DataWarehouse&#xA;GO&#xA;&#xA;TRUNCATE TABLE [Dev_Tony_DataWarehouse].[UoH].[SEAtS_FACTStudentEngage];&#xA;&#xA;USE Dev_Brian_DataWarehouse&#xA;GO&#xA;&#xA;with AttendanceStats as &#xA;(&#xA;   SELECT &#xA;      dayDate, &#xA;      studentNumber, &#xA;      plannedAttendance = SUM([Absent] + [Attended] + [Late] + [Authorised Absent]),&#xA;      [Absent], &#xA;      [Attended], &#xA;      [Late], &#xA;      [Attended other Lecture], &#xA;      [Unexpected], &#xA;      [Cancelled], &#xA;      [Authorised Absent]&#xA;   FROM&#xA;      (select distinct   &#xA;   &#x9;&#x9;studentNumber, &#xA;   &#x9;&#x9;convert(date, startTime) as dayDate,&#xA;   &#x9;&#x9;eventId,&#xA;   &#x9;&#x9;CASE attendanceStatusDescription  &#xA;   &#x9;&#x9;&#x9;WHEN 'Marked as Absent' then 'Absent'  &#xA;   &#x9;&#x9;&#x9;WHEN 'Marked as Attended' THEN 'Attended' &#xA;   &#x9;&#x9;&#x9;WHEN 'Marked as Late' THEN 'Late'&#xA;   &#x9;&#x9;&#x9;ELSE attendanceStatusDescription&#xA;   &#x9;&#x9;END   &#xA;   &#x9;&#x9;attendanceStatusDescription&#xA;   &#x9;&#x9;from [Dev_Brian_DataWarehouse].[SEAtS].[vw_TimetableStudentAttendance]&#xA;   &#x9;) AS SourceTable&#xA;   PIVOT&#xA;      (&#xA;       Count(eventId)&#xA;       FOR AttendanceStatusDescription IN ([Absent], [Attended], [Late], [Unexpected], [Attended other Lecture], [Cancelled], [Authorised Absent])&#xA;      ) AS PivotTable &#xA;      Group By daydate, studentNumber, [Absent], [Attended], [Late], [Unexpected], [Attended other Lecture], [Cancelled],[Authorised Absent]&#xA;)&#xA;INSERT INTO [Dev_Tony_DataWarehouse].[UoH].[SEAtS_FACTStudentEngage]&#xA;SELECT&#x9;&#xA;&#x9;&#x9;dayDate, &#xA;&#x9;&#x9;StudentNumber, &#xA;&#x9;&#x9;plannedAttendance,&#xA;&#x9;&#x9;Absent, &#xA;&#x9;&#x9;Attended, &#xA;&#x9;&#x9;Late, &#xA;&#x9;&#x9;Unexpected, &#xA;&#x9;&#x9;[Attended other Lecture] ,&#xA;&#x9;&#x9;[Cancelled],&#xA;&#x9;&#x9;[Authorised Absent]&#xA;&#x9;&#x9;--INTO [Dev_Tony_DataWarehouse].[UoH].[SEAtS_FACTStudentEngage]&#xA;FROM AttendanceStats&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\set dates we want and clean up any old json files"
@@ -214,14 +219,6 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\run transforms to build data we want" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{9068AC48-3A8A-4339-8E21-5AC7BDB699BD}"
-      DTS:From="Package\run transforms to build data we want"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 2"
-      DTS:To="Package\populate final fact table" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -261,20 +258,32 @@
           Size="324.8,214.4"
           Id="Package\get data from SEATS"
           TopLeft="151.428574007385,568.188242578342" />
+        <NodeLayout
+          Size="231.2,41.6"
+          Id="Package\run transforms to build data we want\Build SEAtS_FactStudentEngage"
+          TopLeft="32.0000104222979,57.3176547291371" />
+        <AnnotationLayout
+          Text="Take data from dev_brian_datawarehouse&#xD;&#xA;and move it into new shape in dev_tony_datawarehouse"
+          ParentId="Package\run transforms to build data we want"
+          Size="305.6,60"
+          Id="f5c9d448-714f-41df-8606-da4f7b7f3003"
+          TopLeft="19.1428682658139,3.7176541457128">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="215.2,55.2"
-          Size="215.2,98.4"
-          Id="Package\populate final fact table"
-          TopLeft="800.114297800648,114.070588724341" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="279.2,55.2"
-          Size="279.2,98.4"
+          PanelSize="384,118.4"
+          Size="384,161.6"
           Id="Package\run transforms to build data we want"
-          TopLeft="671.085725564374,286.447062212538" />
+          TopLeft="579.657152578783,511.576477134599" />
         <NodeLayout
           Size="164,41.6"
           Id="Package\set dates we want and clean up any old json files\Set dates for data"
@@ -385,64 +394,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="366.628574007385,568.188242578342">
+          TopLeft="476.228574007385,675.388242578342">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="444.057151556989,-183.341180365803"
+              EndConnector="103.428578571398,-83.0117654437428"
               Start="0,0"
-              End="444.057151556989,-175.841180365803">
+              End="95.928578571398,-83.0117654437428">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-69.8757109121032" />
+                    End="47.714289285699,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-69.8757109121032"
-                    Point2="0,-73.8757109121032"
-                    Point3="4,-73.8757109121032" />
+                    Point1="47.714289285699,0"
+                    Point2="51.714289285699,0"
+                    Point3="51.714289285699,-4" />
                   <mssgle:LineSegment
-                    End="440.057151556989,-73.8757109121032" />
+                    End="51.714289285699,-79.0117654437428" />
                   <mssgle:CubicBezierSegment
-                    Point1="440.057151556989,-73.8757109121032"
-                    Point2="444.057151556989,-73.8757109121032"
-                    Point3="444.057151556989,-77.8757109121032" />
+                    Point1="51.714289285699,-79.0117654437428"
+                    Point2="51.714289285699,-83.0117654437428"
+                    Point3="55.714289285699,-83.0117654437428" />
                   <mssgle:LineSegment
-                    End="444.057151556989,-175.841180365803" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="810.685725564374,286.447062212538">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="97.0285722362747,-73.9764734881973"
-              Start="0,0"
-              End="97.0285722362747,-66.4764734881973">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-32.9882367440986" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-32.9882367440986"
-                    Point2="0,-36.9882367440986"
-                    Point3="4,-36.9882367440986" />
-                  <mssgle:LineSegment
-                    End="93.0285722362747,-36.9882367440986" />
-                  <mssgle:CubicBezierSegment
-                    Point1="93.0285722362747,-36.9882367440986"
-                    Point2="97.0285722362747,-36.9882367440986"
-                    Point3="97.0285722362747,-40.9882367440986" />
-                  <mssgle:LineSegment
-                    End="97.0285722362747,-66.4764734881973" />
+                    End="95.928578571398,-83.0117654437428" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
