@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="EngagementMeasuresODS"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{D31F0E1E-A60A-402E-8D9D-73E7324C895E}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{38F7CFC3-D091-4637-8F24-79D32A96956E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1954,8 +1954,8 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="259.2,344.8"
-          Size="259.2,388"
+          PanelSize="288,344.8"
+          Size="288,388"
           Id="Package\Get ODS data"
           TopLeft="110.285716163869,29.976471008644" />
       </GraphLayout>
@@ -2090,33 +2090,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission">
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\WebResource">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2142,6 +2116,32 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\EventType">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\Physical Resouce">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity WebResource">
     <Properties>
       <Property>
@@ -2155,7 +2155,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\WebResource">
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Physical Resource">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2181,7 +2181,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\EventType">
+    design-time-name="Package\Get ODS data\Get ODS Data from UDX 10\ODS Activity Submission">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
