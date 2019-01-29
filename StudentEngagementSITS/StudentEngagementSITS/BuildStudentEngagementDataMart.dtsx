@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="BuildStudentEngagementDataMart"
   DTS:PackageType="5"
-  DTS:VersionBuild="43"
-  DTS:VersionGUID="{AEFC2344-B41B-47AE-BB7E-647987CB589C}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{8A5A6B05-82E4-4DA0-8D24-AF8FC43C4544}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -114,7 +114,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{039C4F4A-D48A-4073-9E4D-2188D9852D0E}"
-              SQLTask:SqlStatementSource="INSERT INTO [UoH].[DimStudentOnModule]&#xA;(&#xA; [ModuleCode]&#xA;,[StudentId]&#xA;,[sce_scjc]&#xA;,[moduleShortName]&#xA;,[moduleName]&#xA;,[moduleCredit]&#xA;,[smo_levc]&#xA;,[dpt_code]&#xA;,[mav_occur]&#xA;,[ayr_code]&#xA;,[psl_code]&#xA;,[ses_code]&#xA;,[scj_stuc]&#xA;)&#xA;SELECT &#xA;    [IMOD].[mod_code]&#x9;   &#xA;   ,[SMO].[spr_code]&#xA;   ,[SCE].[sce_scjc]&#xA;   ,[IMOD].[mod_snam]&#xA;   ,[IMOD].[mod_name]&#xA;   ,[IMOD].[mod_crdt]&#xA;   ,[SMO].[smo_levc]&#xA;   ,[IMOD].[dpt_code]&#xA;   ,[SMO].[mav_occur]&#xA;   ,[SMO].[ayr_code]&#xA;   ,[SMO].[psl_code]&#xA;   ,[SMO].[ses_code]&#xA;   ,[SCJ].[scj_stuc]&#xA;FROM &#xA;     [SITSReporting].[ins_mod] AS IMOD&#xA;     INNER JOIN [SITSReporting].[cam_smo] AS SMO ON SMO.mod_code = IMOD.mod_code&#xA;     INNER JOIN [SITSReporting].[srs_scj] AS SCJ ON SCJ.SCJ_SPRC = SMO.SPR_CODE &#xA;     INNER JOIN [SITSReporting].[srs_sce] AS SCE ON SCE.SCE_SCJC = SCJ.SCJ_CODE AND SCE.SCE_AYRC = SMO.AYR_CODE&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO [UoH].[DimStudentOnModule]&#xA;(&#xA; [ModuleCode]&#xA;,[StudentId]&#xA;,[sce_scjc]&#xA;,[moduleShortName]&#xA;,[moduleName]&#xA;,[moduleCredit]&#xA;,[smo_levc]&#xA;,[dpt_code]&#xA;,[mav_occur]&#xA;,[ayr_code]&#xA;,[psl_code]&#xA;,[ses_code]&#xA;,[scj_stuc]&#xA;)&#xA;SELECT &#xA;    [IMOD].[mod_code]&#x9;   &#xA;   ,[SMO].[spr_code]&#xA;   ,[SCE].[sce_scjc]&#xA;   ,[IMOD].[mod_snam]&#xA;   ,[IMOD].[mod_name]&#xA;   ,[IMOD].[mod_crdt]&#xA;   ,[SMO].[smo_levc]&#xA;   ,[IMOD].[dpt_code]&#xA;   ,[SMO].[mav_occur]&#xA;   ,[SMO].[ayr_code]&#xA;   ,[SMO].[psl_code]&#xA;   ,[SMO].[ses_code]&#xA;   ,[SCJ].[scj_stuc]&#xA;FROM &#xA;     [SITSReporting].[ins_mod] AS IMOD&#xA;     INNER JOIN [SITSReporting].[cam_smo] AS SMO ON SMO.mod_code = IMOD.mod_code&#xA;     INNER JOIN [SITSReporting].[srs_scj] AS SCJ ON SCJ.SCJ_SPRC = SMO.SPR_CODE &#xA;     INNER JOIN [SITSReporting].[srs_sce] AS SCE ON SCE.SCE_SCJC = SCJ.SCJ_CODE AND SCE.SCE_AYRC = SMO.AYR_CODE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -234,6 +234,10 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\Build Student Dimension (DimStudent)\DimModule"
+          TopLeft="358.400009468624,181.788239807076" />
+        <NodeLayout
           Size="135.2,41.6"
           Id="Package\Build Student Dimension (DimStudent)\DimStudent"
           TopLeft="152.914290239373,77.9294149220609" />
@@ -241,6 +245,10 @@
           Size="166.4,41.6"
           Id="Package\Build Student Dimension (DimStudent)\DimStudentEvents"
           TopLeft="250.057149036563,129.317650936879" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Build Student Dimension (DimStudent)\DimStudentOnModule"
+          TopLeft="438.057151625108,237.458828823129" />
         <NodeLayout
           Size="195.2,41.6"
           Id="Package\Build Student Dimension (DimStudent)\FactStudentEngagement"
@@ -310,32 +318,6 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 3]"
-          TopLeft="128.342859546506,416.847066150652">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,26.9176480197589"
-              Start="0,0"
-              End="0,19.4176480197589">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.4176480197589" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="132.8,41.6"
-          Id="Package\Build Student Dimension (DimStudent)\DimModule"
-          TopLeft="358.400009468624,181.788239807076" />
-        <EdgeLayout
           Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 2]"
           TopLeft="416.457149036563,150.117650936879">
           <EdgeLayout.Curve>
@@ -363,10 +345,28 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="182.4,41.6"
-          Id="Package\Build Student Dimension (DimStudent)\DimStudentOnModule"
-          TopLeft="438.057151625108,237.458828823129" />
+        <EdgeLayout
+          Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 3]"
+          TopLeft="128.342859546506,416.847066150652">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.9176480197589"
+              Start="0,0"
+              End="0,19.4176480197589">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.4176480197589" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 4]"
           TopLeft="491.200009468624,202.588239807076">
