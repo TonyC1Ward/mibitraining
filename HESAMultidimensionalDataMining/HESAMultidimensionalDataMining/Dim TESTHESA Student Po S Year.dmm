@@ -1,0 +1,448 @@
+﻿<MiningStructure xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="e2e64b8e-c558-4caa-8304-1f3f55cf50bb" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim TESTHESA Student Po S Year</ID>
+  <Name>Dim TESTHESA Student Po S Year</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CaseTableName</Name>
+      <Value>UoH_DimTESTHESAStudentPoSYear</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-19083" scrolltop="-11099" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="43053" y="27199" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimTESTHESAStudentPoSYear" left="20" top="0" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="4847" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000c0000ef12000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="UoH_DimTESTHESAStudentPoSYear" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-19083</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-11099</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="96634536-95ee-4229-9f00-7e40380ecbe8">
+    <DataSourceViewID>Dev Hull Data Ware House</DataSourceViewID>
+  </Source>
+  <Columns>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="c665d861-fa97-442d-a54a-bff113a1cc1a">
+      <ID>Course Qualification Aim</ID>
+      <Name>Course Qualification Aim</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1829e74b-5bcb-4ecb-a64d-c5a79b43f45f">
+          <DataType>WChar</DataType>
+          <DataSize>250</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f6fef72b-ad05-43a5-b310-958f5d579acc">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>CourseQualificationAim</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="93aabeca-9d8a-4ae4-a14d-dd0e86986964">
+      <ID>Disability</ID>
+      <Name>Disability</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b5d05a35-5cb7-448a-b9a6-e9b1471ac605">
+          <DataType>WChar</DataType>
+          <DataSize>175</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="994cb810-5228-460b-8fe8-d010aef77777">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>Disability</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="3518ca8b-7a34-4971-a4be-23bdb92c96ce">
+      <ID>Ethnicity</ID>
+      <Name>Ethnicity</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8b37c5b2-7558-4461-9e54-bfdaa949d1d1">
+          <DataType>WChar</DataType>
+          <DataSize>175</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="892101de-688e-486e-b37d-e34b9b184e47">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>Ethnicity</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="98199073-5f38-4220-bf96-03d4a9bf207e">
+      <ID>Funding Source</ID>
+      <Name>Funding Source</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="99e745d1-a78e-4f9a-b12e-3139fd2d93a3">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="86233a63-f714-4238-8444-7d60f2348374">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>FundingSource</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="7e0c01a7-15a1-45f4-ae36-d7e2c4ccf18d">
+      <ID>HESA Instance Key</ID>
+      <Name>HESA Instance Key</Name>
+      <IsKey>true</IsKey>
+      <Type>Text</Type>
+      <Content>Key</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c3ac649c-c751-4596-9e47-23794d353412">
+          <DataType>WChar</DataType>
+          <DataSize>13</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e768f423-c54c-4be1-a138-661f671b3939">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>HESAInstanceKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="cece05c2-db9b-4746-9509-6652986b3521">
+      <ID>Highest Qualification On Entry</ID>
+      <Name>Highest Qualification On Entry</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7975cbf4-cfcf-4d79-a114-366965f17274">
+          <DataType>WChar</DataType>
+          <DataSize>175</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2227da01-44a1-4a7a-8b73-a9fcfd4df57b">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>HighestQualificationOnEntry</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="724f7a59-f600-47f0-b484-826d23b5722b">
+      <ID>Home Distance Miles Band</ID>
+      <Name>Home Distance Miles Band</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6ccdd015-ba85-48ed-9624-e6a528f586a1">
+          <DataType>WChar</DataType>
+          <DataSize>21</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3232b55a-8db2-486c-bfd4-79523f5e8f2f">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>HomeDistanceMilesBand</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="94a04205-b62f-4b42-ab02-640ae1412dcb">
+      <ID>Home Polar4</ID>
+      <Name>Home Polar4</Name>
+      <Type>Long</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="927be2a1-7778-4080-9824-bbe254664729">
+          <DataType>SmallInt</DataType>
+          <DataSize>-1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ff4aabeb-2e7c-4642-b4bd-14d5a2f0dd26">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>HomePolar4</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="fc794c58-d077-453d-b094-329b0fa4ada0">
+      <ID>Is Non Con Uo Hset01</ID>
+      <Name>Is Non Con Uo Hset01</Name>
+      <Type>Long</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3a576e7f-8acf-4a1e-8a20-aee9092110cc">
+          <DataType>Integer</DataType>
+          <DataSize>-1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="fce2ad55-8d06-4960-ad6f-90711ccfba78">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>IsNonConUoHset01</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="194284b4-1ef8-4037-9844-93fee4fe3969">
+      <ID>Nationality</ID>
+      <Name>Nationality</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2878118c-704f-402c-b5ae-1a4d017f26f4">
+          <DataType>WChar</DataType>
+          <DataSize>175</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e913d4f1-fd16-4f2b-88e4-ce07f78cf796">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>Nationality</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="5712d1fb-ca03-4448-9c29-ed81a4d5ec85">
+      <ID>School Short Name</ID>
+      <Name>School Short Name</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8c8e1d37-65b0-4ef6-a9ac-a7797f762f0a">
+          <DataType>WChar</DataType>
+          <DataSize>5</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="23ef9fd2-03aa-42a3-a0ed-18f3c81ff71a">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>SchoolShortName</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="d1675c5d-ffed-43f8-b7c3-7d1587f16507">
+      <ID>Socio Economic Classification</ID>
+      <Name>Socio Economic Classification</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bfa76496-895e-4419-996f-6f33389b690b">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="72ca73ff-0804-47f0-9f9a-cdc9e3ed9193">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>SocioEconomicClassification</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="217faebc-17e5-4ee4-9c70-e5f43b67bbd4">
+      <ID>Subject Group Area</ID>
+      <Name>Subject Group Area</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="11ec5cb9-0d53-4fe5-bea3-13806c543e05">
+          <DataType>WChar</DataType>
+          <DataSize>80</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="83d6d73f-74bb-4978-b964-1cf532a3f77c">
+            <TableID>UoH_DimTESTHESAStudentPoSYear</TableID>
+            <ColumnID>SubjectGroupArea</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+  </Columns>
+  <MiningModels>
+    <MiningModel dwd:design-time-name="56a6b546-eabc-4c62-9e5a-b077bd6ac5bb">
+      <ID>Dim TESTHESA Student Po S Year</ID>
+      <Name>Dim TESTHESA Student Po S Year</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Algorithm>Microsoft_Logistic_Regression</Algorithm>
+      <Columns>
+        <Column dwd:design-time-name="0ce00345-e6e4-4b39-86b4-69fdf0a89f87">
+          <ID>Course Qualification Aim</ID>
+          <Name>Course Qualification Aim</Name>
+          <SourceColumnID>Course Qualification Aim</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="5ecb7224-c528-4c2c-b712-605797ac5e55">
+          <ID>Disability</ID>
+          <Name>Disability</Name>
+          <SourceColumnID>Disability</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="424edcea-5aeb-43e2-bde2-8a372adf7645">
+          <ID>Ethnicity</ID>
+          <Name>Ethnicity</Name>
+          <SourceColumnID>Ethnicity</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="f8ec9a0e-f3f4-4908-99b7-4703b86ec681">
+          <ID>Funding Source</ID>
+          <Name>Funding Source</Name>
+          <SourceColumnID>Funding Source</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="ccd0a2f5-85c2-4813-8b9d-49095c6562b4">
+          <ID>HESA Instance Key</ID>
+          <Name>HESA Instance Key</Name>
+          <SourceColumnID>HESA Instance Key</SourceColumnID>
+          <Usage>Key</Usage>
+        </Column>
+        <Column dwd:design-time-name="31ea41e9-ac45-4d40-98b3-73f9aca76bcc">
+          <ID>Highest Qualification On Entry</ID>
+          <Name>Highest Qualification On Entry</Name>
+          <SourceColumnID>Highest Qualification On Entry</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="f8c33dd0-64f1-4eb1-b76b-eccdf876e85b">
+          <ID>Home Distance Miles Band</ID>
+          <Name>Home Distance Miles Band</Name>
+          <SourceColumnID>Home Distance Miles Band</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="8c457e49-e16c-45e6-ada3-28a38f9ecf8e">
+          <ID>Home Polar4</ID>
+          <Name>Home Polar4</Name>
+          <SourceColumnID>Home Polar4</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="5b4b2941-f50a-4b90-b26a-bd89ddfb2403">
+          <ID>Is Non Con Uo Hset01</ID>
+          <Name>Is Non Con Uo Hset01</Name>
+          <SourceColumnID>Is Non Con Uo Hset01</SourceColumnID>
+          <Usage>PredictOnly</Usage>
+        </Column>
+        <Column dwd:design-time-name="9f49ecda-5705-4ae8-9309-6525c5461c4c">
+          <ID>Nationality</ID>
+          <Name>Nationality</Name>
+          <SourceColumnID>Nationality</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="c7b0c600-23f8-4128-add4-cd743ee5af5e">
+          <ID>School Short Name</ID>
+          <Name>School Short Name</Name>
+          <SourceColumnID>School Short Name</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="1fd20db5-f8ed-4c12-b436-8e8da27da087">
+          <ID>Socio Economic Classification</ID>
+          <Name>Socio Economic Classification</Name>
+          <SourceColumnID>Socio Economic Classification</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="0908c271-3aed-4941-a954-5822741c12ad">
+          <ID>Subject Group Area</ID>
+          <Name>Subject Group Area</Name>
+          <SourceColumnID>Subject Group Area</SourceColumnID>
+        </Column>
+      </Columns>
+    </MiningModel>
+    <MiningModel dwd:design-time-name="c5bdc189-69fc-4c95-8cde-4b216b4370fc">
+      <ID>NN</ID>
+      <Name>NN</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Algorithm>Microsoft_Neural_Network</Algorithm>
+      <Columns>
+        <Column dwd:design-time-name="19b2d849-375b-42c7-b5c5-696343d45575">
+          <ID>Course Qualification Aim</ID>
+          <Name>Course Qualification Aim</Name>
+          <SourceColumnID>Course Qualification Aim</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="0babd818-8e35-4db8-a42d-1bfdadfcab32">
+          <ID>Disability</ID>
+          <Name>Disability</Name>
+          <SourceColumnID>Disability</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="41a691a7-c04b-4e63-8467-9970fa29786d">
+          <ID>Ethnicity</ID>
+          <Name>Ethnicity</Name>
+          <SourceColumnID>Ethnicity</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="9b23d9bf-34d6-499d-be3f-738868fddc23">
+          <ID>Funding Source</ID>
+          <Name>Funding Source</Name>
+          <SourceColumnID>Funding Source</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="661c258e-4471-4205-85bf-c9a2d16687e2">
+          <ID>HESA Instance Key</ID>
+          <Name>HESA Instance Key</Name>
+          <SourceColumnID>HESA Instance Key</SourceColumnID>
+          <Usage>Key</Usage>
+        </Column>
+        <Column dwd:design-time-name="35872084-e31a-44d4-8fd6-494882a2d1ec">
+          <ID>Highest Qualification On Entry</ID>
+          <Name>Highest Qualification On Entry</Name>
+          <SourceColumnID>Highest Qualification On Entry</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="4cc8794e-841e-46f4-bacd-b4baa8dbc023">
+          <ID>Home Distance Miles Band</ID>
+          <Name>Home Distance Miles Band</Name>
+          <SourceColumnID>Home Distance Miles Band</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="b962ee4b-3fd1-4406-a23f-a00ec74d557b">
+          <ID>Home Polar4</ID>
+          <Name>Home Polar4</Name>
+          <SourceColumnID>Home Polar4</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="34ce59ad-3f71-443c-acbd-5d08c4005871">
+          <ID>Is Non Con Uo Hset01</ID>
+          <Name>Is Non Con Uo Hset01</Name>
+          <SourceColumnID>Is Non Con Uo Hset01</SourceColumnID>
+          <Usage>PredictOnly</Usage>
+        </Column>
+        <Column dwd:design-time-name="97c87a54-2a20-4c9d-b1c7-a2c183a0d695">
+          <ID>Nationality</ID>
+          <Name>Nationality</Name>
+          <SourceColumnID>Nationality</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="a9ac727b-19f2-4c1c-807e-df5eb0745855">
+          <ID>School Short Name</ID>
+          <Name>School Short Name</Name>
+          <SourceColumnID>School Short Name</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="06cbd4e6-824d-43dc-b3e9-bed898ea0d8e">
+          <ID>Socio Economic Classification</ID>
+          <Name>Socio Economic Classification</Name>
+          <SourceColumnID>Socio Economic Classification</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="395af910-170f-426b-be53-cdeca4c59e70">
+          <ID>Subject Group Area</ID>
+          <Name>Subject Group Area</Name>
+          <SourceColumnID>Subject Group Area</SourceColumnID>
+        </Column>
+      </Columns>
+    </MiningModel>
+  </MiningModels>
+  <ddl100_100:HoldoutMaxPercent>20</ddl100_100:HoldoutMaxPercent>
+</MiningStructure>
