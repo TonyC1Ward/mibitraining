@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="SEATSAttendanceData"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{A2D517DA-8E38-489A-8320-99B32C1B9D7D}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{CE538C4B-7714-4F61-948D-EE79A99A71AA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -73,7 +73,7 @@
           <DTS:ObjectData>
             <ExecuteProcessData
               Executable="C:\Work\UoHMIBITraining\mibitraining\SEATSDataExtract\SeatsExecutable\SEAtSdevicesData.exe"
-              Arguments="timetableEventStudent" />
+              Arguments="bi-sql-01V12 dev_Brian_DataWarehouse timetableEventStudent" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -313,33 +313,33 @@
         <NodeLayout
           Size="164,41.6"
           Id="Package\set dates we want and clean up any old json files\Set dates for data"
-          TopLeft="27.7714295348343,14.9176484573258" />
+          TopLeft="28.9142866971542,15.5294131717879" />
         <EdgeLayout
           Id="Package\set dates we want and clean up any old json files.PrecedenceConstraints[Constraint]"
-          TopLeft="109.771429534834,56.5176484573258">
+          TopLeft="110.914286697154,57.1294131717879">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="93.6000005449568,56.8941190284017"
+              EndConnector="92.457143382637,56.2823543139401"
               Start="0,0"
-              End="93.6000005449568,49.3941190284017">
+              End="92.457143382637,48.7823543139401">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.4470595142009" />
+                    End="0,24.1411771569701" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.4470595142009"
-                    Point2="0,28.4470595142009"
-                    Point3="4,28.4470595142009" />
+                    Point1="0,24.1411771569701"
+                    Point2="0,28.1411771569701"
+                    Point3="4,28.1411771569701" />
                   <mssgle:LineSegment
-                    End="89.6000005449568,28.4470595142009" />
+                    End="88.457143382637,28.1411771569701" />
                   <mssgle:CubicBezierSegment
-                    Point1="89.6000005449568,28.4470595142009"
-                    Point2="93.6000005449568,28.4470595142009"
-                    Point3="93.6000005449568,32.4470595142009" />
+                    Point1="88.457143382637,28.1411771569701"
+                    Point2="92.457143382637,28.1411771569701"
+                    Point3="92.457143382637,32.1411771569701" />
                   <mssgle:LineSegment
-                    End="93.6000005449568,49.3941190284017" />
+                    End="92.457143382637,48.7823543139401" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -372,18 +372,30 @@
           TopLeft="29.1428576391571,41.5058825760152" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="257.885715823271,503.905882576015">
+          TopLeft="254.742857639157,503.905882576015">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,64.2823600023265"
+              EndConnector="59.0857163682279,64.2823600023269"
               Start="0,0"
-              End="0,56.7823600023265">
+              End="59.0857163682279,56.7823600023269">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,56.7823600023265" />
+                    End="0,28.1411800011634" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.1411800011634"
+                    Point2="0,32.1411800011634"
+                    Point3="4,32.1411800011634" />
+                  <mssgle:LineSegment
+                    End="55.0857163682279,32.1411800011634" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.0857163682279,32.1411800011634"
+                    Point2="59.0857163682279,32.1411800011634"
+                    Point3="59.0857163682279,36.1411800011634" />
+                  <mssgle:LineSegment
+                    End="59.0857163682279,56.7823600023269" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
