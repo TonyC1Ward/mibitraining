@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="SEATSAttendanceData"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{3C21FF2E-181E-44BE-9AE6-A0C2ED09BA80}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{A2D517DA-8E38-489A-8320-99B32C1B9D7D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -186,7 +186,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{090DBB68-E47A-498A-9EA9-27A8DA7740B0}"
-              SQLTask:SqlStatementSource="DECLARE @FromDate nvarchar(15);&#xA;DECLARE @ToDate nvarchar(15);&#xA;&#xA;SET @FromDate = '01/09/2018'&#xA;SET @ToDate      = '31/12/2018'&#xA;&#xA;--PRINT 'The start date is &gt; ' + @FromDate&#xA;--PRINT 'The End date is &gt; ' + @ToDate&#xA;&#xA;&#xA;UPDATE [Dev_Brian_DataWarehouse].[SEAtS].[dataExportApiControls]&#xA;SET theString = @FromDate&#xA;WHERE Type = 'TimetableEventsDownloadFrom';&#xA;&#xA;UPDATE [Dev_Brian_DataWarehouse].[SEAtS].[dataExportApiControls]&#xA;SET theString = @ToDate&#xA;WHERE Type = 'TimetableEventsDownloadTo';&#xA;&#xA;UPDATE [Dev_Brian_DataWarehouse].[SEAtS].[dataExportApiControls]&#xA;SET theString = 'c:\Temp\'&#xA;WHERE Type = 'TimetableEventsJsonFilePath';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DECLARE @FromDate nvarchar(15);&#xA;DECLARE @ToDate nvarchar(15);&#xA;&#xA;SET @FromDate = '01/01/2019'&#xA;SET @ToDate      = '30/01/2019'&#xA;&#xA;--PRINT 'The start date is &gt; ' + @FromDate&#xA;--PRINT 'The End date is &gt; ' + @ToDate&#xA;&#xA;&#xA;UPDATE [Dev_Brian_DataWarehouse].[SEAtS].[dataExportApiControls]&#xA;SET theString = @FromDate&#xA;WHERE Type = 'TimetableEventsDownloadFrom';&#xA;&#xA;UPDATE [Dev_Brian_DataWarehouse].[SEAtS].[dataExportApiControls]&#xA;SET theString = @ToDate&#xA;WHERE Type = 'TimetableEventsDownloadTo';&#xA;&#xA;UPDATE [Dev_Brian_DataWarehouse].[SEAtS].[dataExportApiControls]&#xA;SET theString = 'c:\Temp\'&#xA;WHERE Type = 'TimetableEventsJsonFilePath';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -237,9 +237,9 @@
           Id="Package\get data from SEATS\Pull down SEATS data"
           TopLeft="56.4571455624638,52.0941197576819" />
         <AnnotationLayout
-          Text="This puts the data in &#xD;&#xA;dev_Brian_DataWarehouse"
+          Text="This puts the data in &#xA;dev_Brian_DataWarehouse"
           ParentId="Package\get data from SEATS"
-          Size="161.6,60"
+          Size="161.6,52"
           Id="f0df5ffa-0033-4553-b90a-a54bccbec891"
           TopLeft="78.1714340988472,105.764714607978">
           <AnnotationLayout.FontInfo>
@@ -263,9 +263,9 @@
           Id="Package\run transforms to build data we want\Build SEAtS_FactStudentEngage"
           TopLeft="32.0000104222979,57.3176547291371" />
         <AnnotationLayout
-          Text="Take data from dev_brian_datawarehouse&#xD;&#xA;and move it into new shape in dev_tony_datawarehouse"
+          Text="Take data from dev_brian_datawarehouse&#xA;and move it into new shape in dev_tony_datawarehouse"
           ParentId="Package\run transforms to build data we want"
-          Size="305.6,60"
+          Size="305.6,52"
           Id="f5c9d448-714f-41df-8606-da4f7b7f3003"
           TopLeft="19.1428682658139,3.7176541457128">
           <AnnotationLayout.FontInfo>
@@ -285,17 +285,13 @@
           Id="Package\run transforms to build data we want"
           TopLeft="579.657152578783,511.576477134599" />
         <NodeLayout
-          Size="164,41.6"
-          Id="Package\set dates we want and clean up any old json files\Set dates for data"
-          TopLeft="27.7714295348343,14.9176484573258" />
-        <NodeLayout
           Size="224,41.6"
           Id="Package\set dates we want and clean up any old json files\Foreach Loop Container\Remove json files from c temp"
           TopLeft="19.2000022479466,29.0823563559246" />
         <AnnotationLayout
           Text="This tidies up any old json files held in c:\Temp"
           ParentId="Package\set dates we want and clean up any old json files\Foreach Loop Container"
-          Size="260,60"
+          Size="260,39.2"
           Id="3df751a0-05a5-4a4b-a2db-042cc53dc373"
           TopLeft="26.6285738030259,76.1882389319397">
           <AnnotationLayout.FontInfo>
@@ -314,6 +310,10 @@
           Size="287.2,234.4"
           Id="Package\set dates we want and clean up any old json files\Foreach Loop Container"
           TopLeft="59.7714300797912,113.411767485728" />
+        <NodeLayout
+          Size="164,41.6"
+          Id="Package\set dates we want and clean up any old json files\Set dates for data"
+          TopLeft="27.7714295348343,14.9176484573258" />
         <EdgeLayout
           Id="Package\set dates we want and clean up any old json files.PrecedenceConstraints[Constraint]"
           TopLeft="109.771429534834,56.5176484573258">
@@ -349,7 +349,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
-          Text="Make sure C:\Temp exists&#xD;&#xA;in file system.  &#xD;&#xA;Then set the to and from DATES&#xD;&#xA;you wish to pull data for"
+          Text="Make sure C:\Temp exists&#xA;in file system.  &#xA;Then set the to and from DATES&#xA;you wish to pull data for"
           ParentId="Package\set dates we want and clean up any old json files"
           Size="188.8,78.4"
           Id="647bd6a7-ac2b-4d60-b53a-ce50f023bdf3"
