@@ -1,0 +1,185 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="87197ce9-5e3f-4192-a94c-12ccf54e3b1e" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dev Hull Data Ware House</ID>
+  <Name>Dev Hull Data Ware House</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout />
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>0</DiagramViewPortLeft>
+            <DiagramViewPortTop>0</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>Dev Hull Data Ware House</DataSourceID>
+  <Schema>
+    <xs:schema id="Dev_x0020_Hull_x0020_Data_x0020_Ware_x0020_House" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Dev_x0020_Hull_x0020_Data_x0020_Ware_x0020_House" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="697d07a5-55c6-4b3e-8a2c-9f466461b7cc">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="UoH_DimTESTHESAStudentPoSYear" msprop:design-time-name="2f695167-f3e0-4385-8734-3802cb4fae24" msprop:DbTableName="DimTESTHESAStudentPoSYear" msprop:FriendlyName="DimTESTHESAStudentPoSYear" msprop:DbSchemaName="UoH" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="HESAInstanceKey" msprop:design-time-name="cc6920b4-71e4-4e14-8a0e-41ddc8768601" msprop:DbColumnName="HESAInstanceKey" msprop:FriendlyName="HESAInstanceKey">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="13" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="StudentId" msprop:design-time-name="31744cbe-bf9f-4260-b631-74b1181990bf" msprop:DbColumnName="StudentId" msprop:FriendlyName="StudentId" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="IsNonConUoHset01" msprop:design-time-name="037b3368-1dad-47f7-8cfa-bdf10766a42e" msprop:DbColumnName="IsNonConUoHset01" msprop:FriendlyName="IsNonConUoHset01" type="xs:int" />
+                  <xs:element name="FacultyShortName" msprop:design-time-name="aafc3354-52c7-4e81-b7cb-dddc9c06f027" msprop:DbColumnName="FacultyShortName" msprop:FriendlyName="FacultyShortName">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="5" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="SchoolShortName" msprop:design-time-name="033b1187-3d93-460b-8675-f27eeeb93a13" msprop:DbColumnName="SchoolShortName" msprop:FriendlyName="SchoolShortName">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="5" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="SubjectGroupArea" msprop:design-time-name="f7374ecf-1387-49fc-bd86-a2fe218b2be0" msprop:DbColumnName="SubjectGroupArea" msprop:FriendlyName="SubjectGroupArea">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="80" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="PoSTitle" msprop:design-time-name="904d56d5-2120-4b96-baf1-2e12d8c4af33" msprop:DbColumnName="PoSTitle" msprop:FriendlyName="PoSTitle">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="GenderId" msprop:design-time-name="48b0eafe-93d2-4f22-8c83-ddf45ad420a1" msprop:DbColumnName="GenderId" msprop:FriendlyName="GenderId">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Disability" msprop:design-time-name="ba0b24af-862e-4439-b5a7-50ceddb4f67d" msprop:DbColumnName="Disability" msprop:FriendlyName="Disability">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="175" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Ethnicity" msprop:design-time-name="ab24a0be-be5a-4695-8c07-5c3292fa8f4a" msprop:DbColumnName="Ethnicity" msprop:FriendlyName="Ethnicity">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="175" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Nationality" msprop:design-time-name="046408a6-df1a-4fa3-b4f3-ced2c730a071" msprop:DbColumnName="Nationality" msprop:FriendlyName="Nationality">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="175" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="HomePostcode" msprop:design-time-name="26dc6374-8da9-44aa-a1a2-e2e4b3efe593" msprop:DbColumnName="HomePostcode" msprop:FriendlyName="HomePostcode">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="8" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="HomePolar4" msprop:design-time-name="8b3ca4bd-96ac-4fee-82b9-42253ca7b8f0" msprop:DbColumnName="HomePolar4" msprop:FriendlyName="HomePolar4" type="xs:short" />
+                  <xs:element name="HomeDistanceMilesBand" msprop:design-time-name="11a43e44-2d5d-4d66-8f00-784f0cdce046" msprop:DbColumnName="HomeDistanceMilesBand" msprop:FriendlyName="HomeDistanceMilesBand">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="21" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="HighestQualificationOnEntry" msprop:design-time-name="a11050c4-4849-4a2e-91fe-5c61acb2b2ce" msprop:DbColumnName="HighestQualificationOnEntry" msprop:FriendlyName="HighestQualificationOnEntry">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="175" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="SocioEconomicClassification" msprop:design-time-name="c32ef019-438c-41f1-a09e-4d50d01a0c96" msprop:DbColumnName="SocioEconomicClassification" msprop:FriendlyName="SocioEconomicClassification">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="StudyMode" msprop:design-time-name="81f1c724-12a9-402b-b919-8b189f7f3c24" msprop:DbColumnName="StudyMode" msprop:FriendlyName="StudyMode">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="CourseQualificationAim" msprop:design-time-name="d625bf3e-ecc0-4de6-8873-8cd3b491d765" msprop:DbColumnName="CourseQualificationAim" msprop:FriendlyName="CourseQualificationAim">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="FundingSource" msprop:design-time-name="fb3bf1bb-5b51-45f6-b6e8-cef36524d5f8" msprop:DbColumnName="FundingSource" msprop:FriendlyName="FundingSource">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//UoH_DimTESTHESAStudentPoSYear" />
+          <xs:field xpath="HESAInstanceKey" />
+        </xs:unique>
+      </xs:element>
+    </xs:schema>
+    <Dev_x0020_Hull_x0020_Data_x0020_Ware_x0020_House xmlns="" />
+  </Schema>
+</DataSourceView>

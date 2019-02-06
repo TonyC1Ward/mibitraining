@@ -8,31 +8,44 @@
   </Database>
   <DataSources>
     <ProjectItem>
-      <Name>Dev Tony Data Warehouse.ds</Name>
-      <FullPath>Dev Tony Data Warehouse.ds</FullPath>
+      <Name>Dev Hull Data Ware House.ds</Name>
+      <FullPath>Dev Hull Data Ware House.ds</FullPath>
     </ProjectItem>
   </DataSources>
   <DataSourceViews>
     <ProjectItem>
-      <Name>SITSMartPilot.dsv</Name>
-      <FullPath>SITSMartPilot.dsv</FullPath>
+      <Name>Dev Hull Data Ware House.dsv</Name>
+      <FullPath>Dev Hull Data Ware House.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
+  <MiningModels>
+    <ProjectItem>
+      <Name>Dim TESTHESA Student Po S Year.dmm</Name>
+      <FullPath>Dim TESTHESA Student Po S Year.dmm</FullPath>
+    </ProjectItem>
+  </MiningModels>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
       <Options>
         <ConnectionMappings>
           <ConfigurationSetting>
-            <Id>Dev Tony Data Warehouse</Id>
-            <Name>Dev Tony Data Warehouse</Name>
-            <Value xsi:type="xsd:string">Provider=SQLNCLI11.1;Data Source=BI-SQL-01v12;Integrated Security=SSPI;Initial Catalog=Dev_Tony_DataWarehouse</Value>
+            <Id>Dev Hull Data Ware House</Id>
+            <Name>Dev Hull Data Ware House</Name>
+            <Value xsi:type="xsd:string">Data Source=BI-SQL-01v12;Initial Catalog=DevHullDataWareHouse;Integrated Security=True</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
+        <ConnectionProviderMappings>
+          <ConfigurationSetting>
+            <Id>Dev Hull Data Ware House</Id>
+            <Name>Dev Hull Data Ware House</Name>
+            <Value xsi:type="xsd:string">System.Data.SqlClient</Value>
+          </ConfigurationSetting>
+        </ConnectionProviderMappings>
         <ConnectionSecurityMappings>
           <ConfigurationSetting>
-            <Id>Dev Tony Data Warehouse</Id>
-            <Name>Dev Tony Data Warehouse</Name>
+            <Id>Dev Hull Data Ware House</Id>
+            <Name>Dev Hull Data Ware House</Name>
             <Value xsi:type="xsd:int">0</Value>
           </ConfigurationSetting>
         </ConnectionSecurityMappings>

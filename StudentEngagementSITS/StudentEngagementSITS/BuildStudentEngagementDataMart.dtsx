@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="BuildStudentEngagementDataMart"
   DTS:PackageType="5"
-  DTS:VersionBuild="63"
-  DTS:VersionGUID="{78576824-E356-4534-8850-96531B9893C2}">
+  DTS:VersionBuild="68"
+  DTS:VersionGUID="{3FF8328A-4DFC-4F60-AEF8-3158C807181B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -135,6 +135,23 @@
             <SQLTask:SqlTaskData
               SQLTask:Connection="{039C4F4A-D48A-4073-9E4D-2188D9852D0E}"
               SQLTask:SqlStatementSource="INSERT INTO [UoH].[DimStudentOnModule]&#xA;(&#xA; [ModuleCode]&#xA;,[StudentId]&#xA;,[sce_scjc]&#xA;,[moduleShortName]&#xA;,[moduleName]&#xA;,[moduleCredit]&#xA;,[smo_levc]&#xA;,[dpt_code]&#xA;,[mav_occur]&#xA;,[ayr_code]&#xA;,[psl_code]&#xA;,[ses_code]&#xA;,[scj_stuc]&#xA;)&#xA;SELECT &#xA;    [IMOD].[mod_code]&#x9;   &#xA;   ,[SMO].[spr_code]&#xA;   ,[SCE].[sce_scjc]&#xA;   ,[IMOD].[mod_snam]&#xA;   ,[IMOD].[mod_name]&#xA;   ,[IMOD].[mod_crdt]&#xA;   ,[SMO].[smo_levc]&#xA;   ,[IMOD].[dpt_code]&#xA;   ,[SMO].[mav_occur]&#xA;   ,[SMO].[ayr_code]&#xA;   ,[SMO].[psl_code]&#xA;   ,[SMO].[ses_code]&#xA;   ,[SCJ].[scj_stuc]&#xA;FROM &#xA;     [SITSReporting].[ins_mod] AS IMOD&#xA;     INNER JOIN [SITSReporting].[cam_smo] AS SMO ON SMO.mod_code = IMOD.mod_code&#xA;     INNER JOIN [SITSReporting].[srs_scj] AS SCJ ON SCJ.SCJ_SPRC = SMO.SPR_CODE &#xA;     INNER JOIN [SITSReporting].[srs_sce] AS SCE ON SCE.SCE_SCJC = SCJ.SCJ_CODE AND SCE.SCE_AYRC = SMO.AYR_CODE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Build Student Dimension (DimStudent)\FactModuleFinance"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7333F850-3032-42CF-A38D-19FF6664BBB4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="FactModuleFinance"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{039C4F4A-D48A-4073-9E4D-2188D9852D0E}"
+              SQLTask:SqlStatementSource=";WITH CTE_FEE&#xA;AS&#xA;(&#xA;SELECT&#xA;    SCJ.scj_stuc  AS StudentId&#xA;   ,SCJ.SCJ_CODE  AS StudentOnCourseId&#xA;   ,SCE.SCE_SEQ2&#xA;   ,SCE.sce_ayrc&#xA;   ,smo.ayr_code  AS YearOfModule&#xA;   ,SCJ.scj_crsc&#xA;   ,SCE.sce_fstc&#xA;   ,SCE.sce_Moac&#xA;   ,CRS.crs_name&#xA;   ,CRS.crs_dptc  AS CourseDept&#xA;   ,FPE.fpe_fptc&#xA;   ,SMO.mod_code  AS ModuleCode&#xA;   ,MAV.dpt_code  AS ModuleDept&#xA;   ,SMO.smo_mcrd  AS ModuleCredits&#xA;   ,FPE.fpe_accc&#xA;   ,FPE.fpe_amnt&#xA;   ,FPE.fpe_fstc&#xA;   ,DPT.dpt_dpt1  AS CourseSchool&#xA;   ,DPT.dpt_facc  AS CourseFaculty&#xA;   ,DPT2.dpt_dpt1 AS ModuleSchool&#xA;   ,DPT2.dpt_facc AS ModuleFaculty&#xA;FROM&#xA;   SITSReporting.srs_scj AS SCJ INNER JOIN SITSReporting.srs_sce AS SCE ON SCJ.scj_code = SCE.sce_scjc --AND SCE.sce_ayrc = @ayrcode&#xA;   inner join SITSReporting.srs_crs AS CRS ON SCJ.scj_crsc = CRS.crs_code  &#xA;   INNER JOIN SITSReporting.srs_cbk AS CBK ON SCe.sce_crsc = CBK.cbk_crsc AND SCE.sce_blok = CBK.cbk_blok&#xA;   INNER JOIN SITSReporting.cam_smo AS SMO ON SCJ.scj_code = SMO.spr_code AND SCE.sce_ayrc = SMO.ayr_code&#xA;   INNER JOIN SITSReporting.cam_mav AS MAV ON SMO.mod_code = MAV.mod_code&#xA;   AND SMO.mav_occur = MAV.mav_occur&#xA;   AND SMO.ayr_code =  MAV.ayr_code&#xA;   AND SMO.psl_code =  MAV.psl_code&#xA;   INNER JOIN SITSReporting.ins_fpt AS FPT ON CBK.cbk_fptc = FPT.fpt_code&#xA;   INNER JOIN SITSReporting.ins_fpe AS FPE ON FPT.fpt_code = FPE.fpe_fptc &#xA;   AND FPE.fpe_prf1 = scj.scj_ayrc -- [fpe_prf1 = cap_ayrc] so we've assumed scj_ayrc will suffice and avoid having to get CAP involved&#xA;   --and FPE.fpe_ayrc = @ayrcode&#xA;   and FPE.fpe_prf2 = SCE.sce_freg --[fpe_prf2 = cap_udfh] is the fee regime and this found on sce_freg also &#xA;   AND SCE.sce_fstc = FPE.fpe_fstc&#xA;   AND SCE.sce_moac = FPE.fpe_moac&#xA;   INNER JOIN SITSReporting.ins_dpt AS DPT ON CRS.crs_dptc  = DPT.dpt_code&#xA;   INNER JOIN SITSReporting.ins_dpt AS DPT2 ON MAV.dpt_code = DPT2.dpt_code&#xA;   WHERE &#xA;       --DPT.dpt_facc &lt;&gt; DPT2.dpt_facc&#xA;&#x9;  --scj_stuc = '201760252'&#xA;&#x9;  --and  sce_ayrc = @ayrcode&#xA;&#x9;  --and &#xA;&#x9;  scj_stac = 'ENR' ---Only Get currently enrolled students/SCJ&#xA;      --part time full time&#xA;&#x9;  --sequence number&#xA;&#x9;  --??&#xA;) &#xA;INSERT INTO UoH.FactModuleFinance (&#xA; [StudentId]&#xA;,[StudentOnCourseId]&#xA;,[YearOfModule]&#xA;,[ModuleCode]&#xA;,[CourseFaculty]&#xA;,[ModuleFaculty]&#xA;,[CourseDept]&#xA;,[ModuleDept]&#xA;,[FeeAmount]&#xA;,[TotalCourseModules]&#xA;,[TotalCourseCredits]&#xA;,[NumModulesInDept]&#xA;,[ModuleCredits]&#xA;)&#xA;SELECT &#xA; cf.StudentId&#xA;,cf.StudentOnCourseId&#xA;,cf.YearOfModule&#xA;,cf.ModuleCode&#xA;,cf.CourseFaculty&#xA;,cf.ModuleFaculty&#xA;,cf.CourseDept&#xA;,cf.ModuleDept&#xA;,cf.fpe_amnt AS FeeAmount&#xA;,cf2.TotalCourseModules&#xA;,cf2.TotalCourseCredits&#xA;,COUNT(*) as NumModulesInDept&#xA;,SUM(ModuleCredits) as ModuleCredits&#xA;--INTO UoH.FactModuleFinance&#xA; FROM CTE_FEE AS cf&#xA; INNER JOIN &#xA; (SELECT StudentId, count(*) as TotalCourseModules, sum(ModuleCredits) as TotalCourseCredits From CTE_FEE GROUP BY StudentId) AS cf2&#xA; ON cf.StudentId = cf2.StudentId&#xA; GROUP BY &#xA;  cf.StudentId&#xA;,cf.StudentOnCourseId&#xA;,cf.YearOfModule&#xA;,cf.ModuleCode&#xA;,cf.CourseFaculty&#xA;,cf.ModuleFaculty&#xA;,cf.CourseDept&#xA;,cf.ModuleDept&#xA;,cf.fpe_amnt&#xA;,cf2.TotalCourseModules&#xA;,cf2.TotalCourseCredits&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -3457,7 +3474,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{039C4F4A-D48A-4073-9E4D-2188D9852D0E}"
-              SQLTask:SqlStatementSource="USE [Dev_Tony_DataWarehouse]&#xA;GO&#xA;&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;/****** Object:  Table [UoH].[FactStudentEngagement]    Script Date: 03/01/2019 12:55:43 ******/&#xA;IF OBJECT_ID('UoH.FactStudentEngagement', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[FactStudentEngagement];&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.FactStudentAssessment', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[FactStudentAssessment]&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.DimCalendar', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimCalendar];&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.DimOrganisationalStructure', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimOrganisationalStructure]&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.DimStudentOnModule', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimStudentOnModule]&#xA;GO&#xA;--&#xA;--/****** Object:  Table [UoH].[FactStudentEngagement]    Script Date: 03/01/2019 12:55:43 ******/&#xA;IF OBJECT_ID('UoH.DimStudent', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimStudent]&#xA;GO&#xA;--&#xA;----DROP INDEX IF EXISTS IDX_DimStudentEvents001 ON [UoH].[DimStudentEvents]&#xA;--&#xA;IF OBJECT_ID('UoH.DimStudentEvents', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimStudentEvents]&#xA;GO&#xA;--&#xA;IF OBJECT_ID('UoH.DimModule', 'U') IS NOT NULL&#xA;   DROP TABLE UoH.DimModule&#xA;GO&#xA;--&#xA;--&#xA;&#xA;------------==================================================--&#xA;&#xA;CREATE TABLE [UoH].[DimOrganisationalStructure](&#xA;&#x9;[Level4ReferenceNumber] [nvarchar](80) NOT NULL,&#xA;&#x9;[Level4Name] [nvarchar](80) NOT NULL,&#xA;&#x9;[Level0ReferenceNumber] [nvarchar](80) NULL,&#xA;&#x9;[Level0Name] [nvarchar](80) NULL,&#xA;&#x9;[Level1ReferenceNumber] [nvarchar](80) NULL,&#xA;&#x9;[Level1Name] [nvarchar](80) NULL,&#xA;&#x9;[Level2ReferenceNumber] [nvarchar](80) NULL,&#xA;&#x9;[Level2Name] [nvarchar](80) NULL,&#xA;&#x9;[Level3ReferenceNumber] [nvarchar](80) NULL,&#xA;&#x9;[Level3Name] [nvarchar](80) NULL,&#xA;&#x9;[Id] [int] NOT NULL,&#xA;&#x9;[VersionNumber] [int] NOT NULL,&#xA;&#x9;[VersionDateTime] [datetime2](7) NOT NULL,&#xA;&#x9;[WorkflowRunId] [int] NOT NULL,&#xA;&#x9;[SourceId] [int] NOT NULL,&#xA;&#x9;[IsDeleted] [bit] NOT NULL,&#xA;&#x9;[SupersededDateTime] [datetime2](7) NOT NULL,&#xA;&#x9;[IsHighestVersion] [bit] NOT NULL,&#xA; CONSTRAINT [pk_DimOrganisationalStructure] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[Level4ReferenceNumber] ASC,&#xA;&#x9;[VersionNumber] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[DimOrganisationalStructure] ADD  DEFAULT ('9999/12/31 23:59:59') FOR [SupersededDateTime]&#xA;GO&#xA;&#xA;---==================================================================---&#xA;&#xA;CREATE TABLE [UoH].[DimCalendar](&#xA;&#x9;[DateId] [int] NOT NULL,&#xA;&#x9;[Date] [datetime2](7) NOT NULL,&#xA;&#x9;[NextDayDate] [datetime2](7) NOT NULL,&#xA;&#x9;[DaySuffix] [varchar](4) NOT NULL,&#xA;&#x9;[Year] [smallint] NOT NULL,&#xA;&#x9;[YearQuarter] [varchar](7) NOT NULL,&#xA;&#x9;[YearMonth] [varchar](7) NOT NULL,&#xA;&#x9;[YearDayOfYear] [int] NOT NULL,&#xA;&#x9;[Quarter] [tinyint] NOT NULL,&#xA;&#x9;[Month] [tinyint] NOT NULL,&#xA;&#x9;[DayOfYear] [smallint] NOT NULL,&#xA;&#x9;[DayOfMonth] [smallint] NOT NULL,&#xA;&#x9;[DayOfWeek] [tinyint] NOT NULL,&#xA;&#x9;[YearName] [varchar](4) NOT NULL,&#xA;&#x9;[YearQuarterName] [varchar](7) NOT NULL,&#xA;&#x9;[YearMonthName] [varchar](8) NOT NULL,&#xA;&#x9;[YearMonthNameLong] [varchar](14) NOT NULL,&#xA;&#x9;[QuarterName] [varchar](2) NOT NULL,&#xA;&#x9;[MonthName] [varchar](3) NOT NULL,&#xA;&#x9;[MonthNameLong] [varchar](9) NOT NULL,&#xA;&#x9;[WeekdayName] [varchar](3) NOT NULL,&#xA;&#x9;[WeekdayNameLong] [varchar](9) NOT NULL,&#xA;&#x9;[StartOfYearDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfYearDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfQuarterDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfQuarterDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfMonthDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfMonthDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingSunDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingSunDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingMonDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingMonDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingTueDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingTueDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingWedDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingWedDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingThuDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingThuDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingFriDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingFriDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingSatDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingSatDate] [datetime2](7) NOT NULL,&#xA;&#x9;[QuarterSequenceNumber] [int] NOT NULL,&#xA;&#x9;[MonthSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingSunSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingMonSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingTueSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingWedSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingThuSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingFriSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingSatSequenceNumber] [int] NOT NULL,&#xA;&#x9;[JulianDate] [int] NOT NULL,&#xA;&#x9;[ModifiedJulianDate] [int] NOT NULL,&#xA;&#x9;[ISODate] [varchar](10) NOT NULL,&#xA;&#x9;[ISOYearWeekNumber] [int] NOT NULL,&#xA;&#x9;[ISOWeekNumber] [smallint] NOT NULL,&#xA;&#x9;[ISODayOfWeek] [tinyint] NOT NULL,&#xA;&#x9;[ISOYearWeekName] [varchar](8) NOT NULL,&#xA;&#x9;[ISOYearWeekDayOfWeekName] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatYYYYMMDD] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatYYYYMD] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatMMDDYYYY] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatMDYYYY] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatMMMDYYYY] [varchar](12) NOT NULL,&#xA;&#x9;[DateFormatMMMMMMMMMDYYYY] [varchar](18) NOT NULL,&#xA;&#x9;[DateFormatMMDDYY] [varchar](8) NOT NULL,&#xA;&#x9;[DateFormatMDYY] [varchar](8) NOT NULL,&#xA; CONSTRAINT [PrimaryKey_DimCalander] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[DateId] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;CREATE TABLE [UoH].[DimStudent](&#xA;    [DimStudentID]           [INT] Identity (1,1) NOT NULL,    &#xA;&#x9;[StudentID]              [nvarchar](12)       NOT NULL,&#xA;&#x9;[TUTOR_STAFF_ID]         [nvarchar](50)           NULL,&#xA;&#x9;[ULN]                    [nvarchar](100)          NULL,&#xA;&#x9;[DOB]                    [nvarchar](10)           NULL,&#xA;&#x9;[ETHNICITY]              [int]                    NULL,&#xA;&#x9;[ETHNICITY_ETHC]         [nvarchar](6)            NULL,&#xA;&#x9;[EthnicityName]          [nvarchar](250)          NULL,&#xA;&#x9;[SEXID]                  [int]                    NULL,&#xA;&#x9;[Gender]                 [nvarchar](1)            NULL,&#xA;&#x9;[DomicileCode]           [nvarchar](6)            NULL,&#xA;&#x9;[DomicileName]           [nvarchar](50)           NULL,&#xA;&#x9;[PARENTS_ED]             [nvarchar](1)            NULL,&#xA;&#x9;[SOCIO_EC]               [nvarchar](5)            NULL,&#xA;&#x9;[SocioEconomicName]      [nvarchar](50)           NULL,&#xA;&#x9;[LastName]               [nvarchar](40)           NULL,&#xA;&#x9;[FirstName]              [nvarchar](30)           NULL,&#xA;&#x9;[PreferredFirstName]     [nvarchar](30)           NULL,&#xA;&#x9;[DisplayName]            [nvarchar](72)           NULL,&#xA;&#x9;[MaritalStatus]          [nvarchar](3)            NULL,&#xA;&#x9;[NumberOfDependancies]   [numeric](2, 0)          NULL,&#xA;&#x9;[TypeOfDependancy]       [nvarchar](2)            NULL,&#xA;&#x9;[TypeOfDependancyDescription] [varchar](52)   NULL,&#xA;&#x9;[ADDRESS_LINE_1]         [nvarchar](50)           NULL,&#xA;&#x9;[ADDRESS_LINE_2]         [nvarchar](50)           NULL,&#xA;&#x9;[ADDRESS_LINE_3]         [nvarchar](50)           NULL,&#xA;&#x9;[ADDRESS_LINE_4]         [nvarchar](50)           NULL,&#xA;&#x9;[ADDRESS_LINE_5]         [nvarchar](50)           NULL,&#xA;&#x9;[POSTCODE]               [nvarchar](12)           NULL,&#xA;&#x9;[DistanceFromHullUniversityInKm] [float]          NULL,&#xA;&#x9;[DistanceFromHullUniversityInMiles] [float]       NULL,&#xA;&#x9;[POLAR3Quintile] [int]                            NULL,&#xA;&#x9;[POLAR4Quintile] [smallint]                       NULL,&#xA;&#x9;[PRIMARY_EMAIL_ADDRESS]  [nvarchar](255)          NULL,&#xA;&#x9;[HOME_PHONE]             [nvarchar](35)           NULL,&#xA;&#x9;[MOBILE_PHONE]           [nvarchar](35)           NULL,&#xA;&#x9;[PHOTO_URL]              [nvarchar](100)          NULL,&#xA;&#x9;[LEACode]                [nvarchar](6)            NULL,&#xA;&#x9;[LEAName]                [nvarchar](250)          NULL,&#xA;&#x9;[LastSchoolCode]         [nvarchar](12)           NULL,&#xA;&#x9;[LastSchoolName]         [nvarchar](100)          NULL,&#xA;&#x9;[HighestQualCode]        [nvarchar](6)            NULL,&#xA;&#x9;[HighestQualName]        [nvarchar](50)           NULL,&#xA;&#x9;[NationalityCode]        [nvarchar](6)            NULL,&#xA;&#x9;[NationalityName]        [nvarchar](250)          NULL,&#xA;    [AgeOnEntry]             [numeric](4, 0)          NULL,&#xA;&#x9;[SPOKEN_LANGUAGE]        [nvarchar](12)           NULL,&#xA;&#x9;[DepartmentCode]         [nvarchar](12)           NULL,&#xA;&#x9;[DepartmentName]         [nvarchar](250)          NULL,&#xA;    [CourseCode]             [nvarchar](15)           NULL,&#xA;&#x9;[CourseName]             [nvarchar](50)           NULL,&#xA;&#x9;[CourseTitle]            [nvarchar](120)          NULL,&#xA;    [CourseLevel]            [nvarchar](15)           NULL,&#xA;&#x9;[YearOfProgramme]        [INT]                    NULL,&#xA;&#x9;[YearOfStudy]            [numeric](18, 0)         NULL,&#xA;&#x9;[ModeOfStudyCode]        [nvarchar](6)            NULL,&#xA;&#x9;[ModeOfStudyDescription] [nvarchar](50)           NULL,&#xA;&#x9;[FeeStatusCode]          [nvarchar](6)            NULL,&#xA;&#x9;[FeeStatusName]          [nvarchar](50)           NULL,&#xA;    [StatusCode]             [nvarchar](6)            NULL,&#xA;    [StatusName]             [nvarchar](50)           NULL&#xA;) ON [PRIMARY]&#xA;&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[DimStudent]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_DimStudent] PRIMARY KEY CLUSTERED ([StudentID])  &#xA;--&#xA;-------------------------------------------------------------------------------------------&#xA;&#xA;CREATE TABLE [UoH].[DimStudentEvents](&#xA;    [DimStudentEventsId] [INT] Identity (1,1) NOT NULL,    --Claire this is the primary key (PK) [aka in data warehousing as a surragate key]&#xA;&#x9;[StudentId]          [nvarchar](12)       NOT NULL,    --Claire this is part of a composite business key with date and EventCode&#xA;&#x9;[CalendarDateId]     [INT]                NOT NULL,&#xA;    [EventCode]          [nvarchar](50)       NOT NULL,    &#xA;&#x9;[type]               [nvarchar](50)       NOT NULL,&#xA;&#x9;[startTime]          [nvarchar](50)       NOT NULL,&#xA;&#x9;[CourseCode]         [nvarchar](50)       NOT NULL, &#xA;&#x9;[ModuleId]           [nvarchar](50)           NULL,&#xA;&#x9;[EventDate]          [nvarchar](50)       NOT NULL,     &#xA;&#x9;[StandardDate]       [date]               NOT NULL,&#xA;&#x9;[lecturer]           [nvarchar](300)          NULL,&#xA;&#x9;[roomName]           [nvarchar](150)      NOT NULL,&#xA;&#x9;[swipeIn]            [nvarchar](50)           NULL,&#xA;&#x9;[endTime]            [nvarchar](50)           NULL,&#xA;&#x9;[swipeTime]          [nvarchar](50)           NULL,&#xA;&#x9;[percentageAttended] [nvarchar](10)           NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;--&#xA;--ALTER TABLE [UoH].[DimStudentEvents]  WITH NOCHECK                   &#xA;--ADD CONSTRAINT [PrimaryKey_DimStudentEvents] PRIMARY KEY CLUSTERED ([StudentId],[CalendarDateId],[EventCode],[type],[startTime],[roomName])&#xA;--&#xA;----CREATE UNIQUE INDEX IDX_DimStudentEvents001 ON [UoH].[DimStudentEvents] ([StudentId],[CalendarDateId],[startTime])&#xA;--------------------------------------------------------------------------------&#xA;--&#xA;&#xA;CREATE TABLE [UoH].[DimModule](&#xA;    DimModuleID int Identity (1,1),&#xA;&#x9;[ModuleCode] [nvarchar](12) NOT NULL,&#xA;&#x9;[ModuleShortName] [nvarchar](15) NULL,&#xA;&#x9;[ModuleName] [nvarchar](120) NULL,&#xA;&#x9;[ModuleCredit] [numeric](7, 2) NULL,&#xA;&#x9;[lev_code] [nvarchar](6) NULL,&#xA;&#x9;[mot_code] [nvarchar](6) NULL,&#xA;&#x9;[mot_name] [nvarchar](50) NULL,&#xA;&#x9;[mot_hours] [numeric](6, 2) NULL,&#xA;&#x9;[mot_csiz] [numeric](4, 0) NULL,&#xA;&#x9;[mod_facc] [nvarchar](6) NULL,&#xA;&#x9;[DepartmentCode] [nvarchar](12) NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[DimModule]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_DimModule] PRIMARY KEY CLUSTERED (ModuleCode)&#xA;--&#xA;--------------------------------------------------------------------------------&#xA;--&#xA;CREATE TABLE [UoH].[DimStudentOnModule](&#xA;    [DimStudentOnModuleId] int Identity (1,1),&#xA;&#x9;[ModuleCode] [nvarchar](12) NOT NULL,&#xA;&#x9;[StudentId] [nvarchar](15) NOT NULL,&#xA;&#x9;[sce_scjc] [nvarchar](15) NULL,&#xA;&#x9;[moduleShortName] [nvarchar](15) NULL,&#xA;&#x9;[moduleName] [nvarchar](120) NULL,&#xA;&#x9;[moduleCredit] [numeric](7, 2) NULL,&#xA;&#x9;[smo_levc] [nvarchar](6) NULL,&#xA;&#x9;[dpt_code] [nvarchar](12) NULL,&#xA;&#x9;[mav_occur] [nvarchar](6) NOT NULL,&#xA;&#x9;[ayr_code] [nvarchar](12) NOT NULL,&#xA;&#x9;[psl_code] [nvarchar](6) NOT NULL,&#xA;&#x9;[ses_code] [nvarchar](6) NULL,&#xA;&#x9;[scj_stuc] [nvarchar](12) NULL&#xA;) ON [PRIMARY]&#xA;&#xA;ALTER TABLE [UoH].[DimStudentOnModule]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_DimStudentOnModule] PRIMARY KEY CLUSTERED (ModuleCode,StudentId)&#xA;&#xA;ALTER TABLE [UoH].[DimStudentOnModule]    &#xA;ADD CONSTRAINT FK_DSOM_Module FOREIGN KEY (ModuleCode)     &#xA;    REFERENCES [UoH].[DimModule] (ModuleCode);&#xA;--&#xA;------------------------------------------------------------------------&#xA;--&#xA;CREATE TABLE [UoH].[FactStudentEngagement](&#xA;    [FSEID]                   [INT] IDENTITY (1,1) NOT NULL,&#xA;    [StudentID]               [nvarchar](12)       NOT NULL,&#xA;&#x9;[DateID]                  [int]                NOT NULL,&#xA;&#x9;[SHARED_PC]               [int]                    NULL,&#xA;&#x9;[WIFI_LOGIN]              [int]                    NULL,&#xA;&#x9;[PING]                    [int]                    NULL,&#xA;&#x9;[CANVAS_ASSIGNMENT]       [int]                    NULL,&#xA;&#x9;[PRINT]                   [int]                    NULL,&#xA;&#x9;[COPY]                    [int]                    NULL,&#xA;&#x9;[SCAN]                    [int]                    NULL,&#xA;&#x9;[LOGIN]                   [int]                    NULL,&#xA;&#x9;[DOOR_ACCESS]             [int]                    NULL,&#xA;&#x9;[TELEPEN_ACCESS]          [int]                    NULL,&#xA;&#x9;[PlannedAttendance]       [int]                    NULL,&#xA;&#x9;[Absent]                  [int]                    NULL,&#xA;&#x9;[Attended]                [int]                    NULL,&#xA;&#x9;[Late]                    [int]                    NULL,&#xA;&#x9;[Unexpected]              [int]                    NULL,&#xA;&#x9;[AttendedOtherLecture]    [int]                    NULL,&#xA;&#x9;[Cancelled]               [int]                    NULL,&#xA;&#x9;[AuthorisedAbsent]        [int]                    NULL,&#xA;&#x9;[TotalWeightedEngagement] [int]                    NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[FactStudentEngagement]  WITH NOCHECK &#xA;ADD CONSTRAINT [PrimaryKey_FactStudentEngagement] PRIMARY KEY CLUSTERED ([StudentID],[DateId])&#xA;&#xA;ALTER TABLE UoH.FactStudentEngagement     &#xA;ADD CONSTRAINT FK_FSE_StudentId FOREIGN KEY (StudentID)     &#xA;    REFERENCES UoH.DimStudent (StudentID);&#xA;&#xA;--ALTER TABLE UoH.FactStudentEngagement     &#xA;--ADD CONSTRAINT FK_FSE_StudentEventsId FOREIGN KEY (StudentId,DateId)     &#xA;--    REFERENCES UoH.DimStudentEvents (StudentId,CalendarDateId);&#xA;&#xA;ALTER TABLE UoH.FactStudentEngagement     &#xA;ADD CONSTRAINT FK_FSE_dateId FOREIGN KEY (DateId)     &#xA;    REFERENCES [UoH].[DimCalendar] (DateId);&#xA;&#xA;------------------------------------------------------------------------&#xA;--&#xA;CREATE TABLE [UoH].[FactStudentAssessment](&#xA;    [FSAId] [INT] Identity (1,1) NOT NULL,&#xA;&#x9;[StudentId] [nvarchar](12) NOT NULL,&#xA;&#x9;[ModuleCode] [nvarchar](12) NOT NULL,&#xA;&#x9;[ModuleName] [nvarchar](120) NULL,&#xA;&#x9;[ModuleCreditValue] [numeric](7, 2) NULL,&#xA;&#x9;[ModuleUnmoderatedMark] [numeric](8, 0) NULL,&#xA;&#x9;[ModuleModeratedMark] [numeric](8, 0) NULL,&#xA;&#x9;[ModuleGrade] [nvarchar](2) NULL,&#xA;&#x9;[ModuleGradeType] [varchar](6) NULL,&#xA;&#x9;[ModuleAttempt] [numeric](1, 0) NULL,&#xA;&#x9;[ModuleResult] [nvarchar](1) NULL,&#xA;&#x9;[AssessmentNonModeratedMark] [numeric](8, 0) NULL,&#xA;&#x9;[AssessmentModeratedMark] [numeric](8, 0) NULL,&#xA;&#x9;[AssessmentModeratedGrade] [nvarchar](2) NULL,&#xA;&#x9;[AssessmentAttempt] [numeric](1, 0) NULL,&#xA;&#x9;[AssessmentCategoryWeightedNonModeratedMark] [numeric](38, 25) NULL,&#xA;&#x9;[AssessmentCategoryWeightedModeratedMark] [numeric](38, 25) NULL,&#xA;&#x9;[AssessmentWeightedNonModeratedMark] [numeric](19, 6) NULL,&#xA;&#x9;[AssessmentWeightedModeratedMark] [numeric](19, 6) NULL,&#xA;&#x9;[AssignmentName] [nvarchar](120) NOT NULL,&#xA;&#x9;[AssignmentWeight] [numeric](4, 0) NULL,&#xA;&#x9;[AssignmentSequence] [nvarchar](3) NULL,&#xA;&#x9;[AssignmentCategory] [nvarchar](6) NOT NULL,&#xA;&#x9;[IsPFOAssignment] [int] NOT NULL,&#xA;&#x9;[IsQMarkAssignment] [int] NOT NULL,&#xA;&#x9;[AssignmentType] [nvarchar](6) NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[FactStudentAssessment]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_FactStudentAssessment] PRIMARY KEY CLUSTERED (ModuleCode,StudentId,AssignmentName)&#xA;&#xA;ALTER TABLE [UoH].[FactStudentAssessment]   &#xA;ADD CONSTRAINT FK_FPA_FactStudentAssessmentModule FOREIGN KEY (ModuleCode)     &#xA;    REFERENCES [UoH].[DimModule] (ModuleCode);&#xA;&#xA;ALTER TABLE [UoH].[FactStudentAssessment]   &#xA;ADD CONSTRAINT FK_FPA_FactStudentAssessmentStudent FOREIGN KEY (StudentId)     &#xA;    REFERENCES [UoH].[DimStudent] (StudentId);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="USE [Dev_Tony_DataWarehouse]&#xA;GO&#xA;&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;/****** Object:  Table [UoH].[FactStudentEngagement]    Script Date: 03/01/2019 12:55:43 ******/&#xA;IF OBJECT_ID('UoH.FactStudentEngagement', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[FactStudentEngagement];&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.FactStudentAssessment', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[FactStudentAssessment]&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.FactModuleFinance', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[FactModuleFinance]&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.DimCalendar', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimCalendar];&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.DimOrganisationalStructure', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimOrganisationalStructure]&#xA;GO&#xA;&#xA;IF OBJECT_ID('UoH.DimStudentOnModule', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimStudentOnModule]&#xA;GO&#xA;--&#xA;--/****** Object:  Table [UoH].[FactStudentEngagement]    Script Date: 03/01/2019 12:55:43 ******/&#xA;IF OBJECT_ID('UoH.DimStudent', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimStudent]&#xA;GO&#xA;--&#xA;----DROP INDEX IF EXISTS IDX_DimStudentEvents001 ON [UoH].[DimStudentEvents]&#xA;--&#xA;IF OBJECT_ID('UoH.DimStudentEvents', 'U') IS NOT NULL&#xA;   DROP TABLE [UoH].[DimStudentEvents]&#xA;GO&#xA;--&#xA;IF OBJECT_ID('UoH.DimModule', 'U') IS NOT NULL&#xA;   DROP TABLE UoH.DimModule&#xA;GO&#xA;&#xA;------------==================================================--&#xA;&#xA;CREATE TABLE [UoH].[DimOrganisationalStructure](&#xA;&#x9;[Level4ReferenceNumber] [nvarchar](80) NOT NULL,&#xA;&#x9;[Level4Name] [nvarchar](80) NOT NULL,&#xA;&#x9;[Level0ReferenceNumber] [nvarchar](80) NULL,&#xA;&#x9;[Level0Name] [nvarchar](80) NULL,&#xA;&#x9;[Level1ReferenceNumber] [nvarchar](80) NULL,&#xA;&#x9;[Level1Name] [nvarchar](80) NULL,&#xA;&#x9;[Level2ReferenceNumber] [nvarchar](80) NULL,&#xA;&#x9;[Level2Name] [nvarchar](80) NULL,&#xA;&#x9;[Level3ReferenceNumber] [nvarchar](80) NULL,&#xA;&#x9;[Level3Name] [nvarchar](80) NULL,&#xA;&#x9;[Id] [int] NOT NULL,&#xA;&#x9;[VersionNumber] [int] NOT NULL,&#xA;&#x9;[VersionDateTime] [datetime2](7) NOT NULL,&#xA;&#x9;[WorkflowRunId] [int] NOT NULL,&#xA;&#x9;[SourceId] [int] NOT NULL,&#xA;&#x9;[IsDeleted] [bit] NOT NULL,&#xA;&#x9;[SupersededDateTime] [datetime2](7) NOT NULL,&#xA;&#x9;[IsHighestVersion] [bit] NOT NULL,&#xA; CONSTRAINT [pk_DimOrganisationalStructure] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[Level4ReferenceNumber] ASC,&#xA;&#x9;[VersionNumber] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[DimOrganisationalStructure] ADD  DEFAULT ('9999/12/31 23:59:59') FOR [SupersededDateTime]&#xA;GO&#xA;&#xA;---==================================================================---&#xA;&#xA;CREATE TABLE [UoH].[DimCalendar](&#xA;&#x9;[DateId] [int] NOT NULL,&#xA;&#x9;[Date] [datetime2](7) NOT NULL,&#xA;&#x9;[NextDayDate] [datetime2](7) NOT NULL,&#xA;&#x9;[DaySuffix] [varchar](4) NOT NULL,&#xA;&#x9;[Year] [smallint] NOT NULL,&#xA;&#x9;[YearQuarter] [varchar](7) NOT NULL,&#xA;&#x9;[YearMonth] [varchar](7) NOT NULL,&#xA;&#x9;[YearDayOfYear] [int] NOT NULL,&#xA;&#x9;[Quarter] [tinyint] NOT NULL,&#xA;&#x9;[Month] [tinyint] NOT NULL,&#xA;&#x9;[DayOfYear] [smallint] NOT NULL,&#xA;&#x9;[DayOfMonth] [smallint] NOT NULL,&#xA;&#x9;[DayOfWeek] [tinyint] NOT NULL,&#xA;&#x9;[YearName] [varchar](4) NOT NULL,&#xA;&#x9;[YearQuarterName] [varchar](7) NOT NULL,&#xA;&#x9;[YearMonthName] [varchar](8) NOT NULL,&#xA;&#x9;[YearMonthNameLong] [varchar](14) NOT NULL,&#xA;&#x9;[QuarterName] [varchar](2) NOT NULL,&#xA;&#x9;[MonthName] [varchar](3) NOT NULL,&#xA;&#x9;[MonthNameLong] [varchar](9) NOT NULL,&#xA;&#x9;[WeekdayName] [varchar](3) NOT NULL,&#xA;&#x9;[WeekdayNameLong] [varchar](9) NOT NULL,&#xA;&#x9;[StartOfYearDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfYearDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfQuarterDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfQuarterDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfMonthDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfMonthDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingSunDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingSunDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingMonDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingMonDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingTueDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingTueDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingWedDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingWedDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingThuDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingThuDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingFriDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingFriDate] [datetime2](7) NOT NULL,&#xA;&#x9;[StartOfWeekStartingSatDate] [datetime2](7) NOT NULL,&#xA;&#x9;[EndOfWeekStartingSatDate] [datetime2](7) NOT NULL,&#xA;&#x9;[QuarterSequenceNumber] [int] NOT NULL,&#xA;&#x9;[MonthSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingSunSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingMonSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingTueSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingWedSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingThuSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingFriSequenceNumber] [int] NOT NULL,&#xA;&#x9;[WeekStartingSatSequenceNumber] [int] NOT NULL,&#xA;&#x9;[JulianDate] [int] NOT NULL,&#xA;&#x9;[ModifiedJulianDate] [int] NOT NULL,&#xA;&#x9;[ISODate] [varchar](10) NOT NULL,&#xA;&#x9;[ISOYearWeekNumber] [int] NOT NULL,&#xA;&#x9;[ISOWeekNumber] [smallint] NOT NULL,&#xA;&#x9;[ISODayOfWeek] [tinyint] NOT NULL,&#xA;&#x9;[ISOYearWeekName] [varchar](8) NOT NULL,&#xA;&#x9;[ISOYearWeekDayOfWeekName] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatYYYYMMDD] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatYYYYMD] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatMMDDYYYY] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatMDYYYY] [varchar](10) NOT NULL,&#xA;&#x9;[DateFormatMMMDYYYY] [varchar](12) NOT NULL,&#xA;&#x9;[DateFormatMMMMMMMMMDYYYY] [varchar](18) NOT NULL,&#xA;&#x9;[DateFormatMMDDYY] [varchar](8) NOT NULL,&#xA;&#x9;[DateFormatMDYY] [varchar](8) NOT NULL,&#xA; CONSTRAINT [PrimaryKey_DimCalander] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[DateId] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;CREATE TABLE [UoH].[DimStudent](&#xA;    [DimStudentID]           [INT] Identity (1,1) NOT NULL,    &#xA;&#x9;[StudentID]              [nvarchar](12)       NOT NULL,&#xA;&#x9;[TutorStaffID]         [nvarchar](50)           NULL,&#xA;&#x9;[ULN]                    [nvarchar](100)          NULL,&#xA;&#x9;[DOB]                    [nvarchar](10)           NULL,&#xA;&#x9;[ETHNICITY]              [int]                    NULL,&#xA;&#x9;[ETHNICITY_ETHC]         [nvarchar](6)            NULL,&#xA;&#x9;[EthnicityName]          [nvarchar](250)          NULL,&#xA;&#x9;[SEXID]                  [int]                    NULL,&#xA;&#x9;[Gender]                 [nvarchar](1)            NULL,&#xA;&#x9;[DomicileCode]           [nvarchar](6)            NULL,&#xA;&#x9;[DomicileName]           [nvarchar](50)           NULL,&#xA;&#x9;[PARENTS_ED]             [nvarchar](1)            NULL,&#xA;&#x9;[SOCIO_EC]               [nvarchar](5)            NULL,&#xA;&#x9;[SocioEconomicName]      [nvarchar](50)           NULL,&#xA;&#x9;[LastName]               [nvarchar](40)           NULL,&#xA;&#x9;[FirstName]              [nvarchar](30)           NULL,&#xA;&#x9;[PreferredFirstName]     [nvarchar](30)           NULL,&#xA;&#x9;[DisplayName]            [nvarchar](72)           NULL,&#xA;&#x9;[MaritalStatus]          [nvarchar](3)            NULL,&#xA;&#x9;[NumberOfDependancies]   [numeric](2, 0)          NULL,&#xA;&#x9;[TypeOfDependancy]       [nvarchar](2)            NULL,&#xA;&#x9;[TypeOfDependancyDescription] [varchar](52)   NULL,&#xA;&#x9;[ADDRESS_LINE_1]         [nvarchar](50)           NULL,&#xA;&#x9;[ADDRESS_LINE_2]         [nvarchar](50)           NULL,&#xA;&#x9;[ADDRESS_LINE_3]         [nvarchar](50)           NULL,&#xA;&#x9;[ADDRESS_LINE_4]         [nvarchar](50)           NULL,&#xA;&#x9;[ADDRESS_LINE_5]         [nvarchar](50)           NULL,&#xA;&#x9;[POSTCODE]               [nvarchar](12)           NULL,&#xA;&#x9;[DistanceFromHullUniversityInKm] [float]          NULL,&#xA;&#x9;[DistanceFromHullUniversityInMiles] [float]       NULL,&#xA;&#x9;[POLAR3Quintile] [int]                            NULL,&#xA;&#x9;[POLAR4Quintile] [smallint]                       NULL,&#xA;&#x9;[PRIMARY_EMAIL_ADDRESS]  [nvarchar](255)          NULL,&#xA;&#x9;[HOME_PHONE]             [nvarchar](35)           NULL,&#xA;&#x9;[MOBILE_PHONE]           [nvarchar](35)           NULL,&#xA;&#x9;[PHOTO_URL]              [nvarchar](100)          NULL,&#xA;&#x9;[LEACode]                [nvarchar](6)            NULL,&#xA;&#x9;[LEAName]                [nvarchar](250)          NULL,&#xA;&#x9;[LastSchoolCode]         [nvarchar](12)           NULL,&#xA;&#x9;[LastSchoolName]         [nvarchar](100)          NULL,&#xA;&#x9;[HighestQualCode]        [nvarchar](6)            NULL,&#xA;&#x9;[HighestQualName]        [nvarchar](50)           NULL,&#xA;&#x9;[NationalityCode]        [nvarchar](6)            NULL,&#xA;&#x9;[NationalityName]        [nvarchar](250)          NULL,&#xA;    [AgeOnEntry]             [numeric](4, 0)          NULL,&#xA;&#x9;[SPOKEN_LANGUAGE]        [nvarchar](12)           NULL,&#xA;&#x9;[DepartmentCode]         [nvarchar](12)           NULL,&#xA;&#x9;[DepartmentName]         [nvarchar](250)          NULL,&#xA;    [CourseCode]             [nvarchar](15)           NULL,&#xA;&#x9;[CourseName]             [nvarchar](50)           NULL,&#xA;&#x9;[CourseTitle]            [nvarchar](120)          NULL,&#xA;    [CourseLevel]            [nvarchar](15)           NULL,&#xA;&#x9;[YearOfProgramme]        [INT]                    NULL,&#xA;&#x9;[YearOfStudy]            [numeric](18, 0)         NULL,&#xA;&#x9;[ModeOfStudyCode]        [nvarchar](6)            NULL,&#xA;&#x9;[ModeOfStudyDescription] [nvarchar](50)           NULL,&#xA;&#x9;[FeeStatusCode]          [nvarchar](6)            NULL,&#xA;&#x9;[FeeStatusName]          [nvarchar](50)           NULL,&#xA;    [StatusCode]             [nvarchar](6)            NULL,&#xA;    [StatusName]             [nvarchar](50)           NULL&#xA;) ON [PRIMARY]&#xA;&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[DimStudent]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_DimStudent] PRIMARY KEY CLUSTERED ([StudentID])  &#xA;&#xA;EXEC sp_addextendedproperty @name = N'MS_Description',&#xA;    @value = N'Surrogate key using Identity (1,1)',&#xA;    @level0type = N'SCHEMA',&#xA;    @level0name = N'UoH',&#xA;    @level1type = N'TABLE',&#xA;    @level1name = N'DimStudent',&#xA;    @level2type = N'COLUMN',&#xA;    @level2name = N'DimStudentID'&#xA;GO&#xA;&#xA;EXEC sp_addextendedproperty @name = N'MS_Description',&#xA;    @value = N'[SITS] ins_stu.stu_code Main student identifier ',&#xA;    @level0type = N'SCHEMA',&#xA;    @level0name = N'UoH',&#xA;    @level1type = N'TABLE',&#xA;    @level1name = N'DimStudent',&#xA;    @level2type = N'COLUMN',&#xA;    @level2name = N'StudentID'&#xA;GO&#xA;&#xA;EXEC sp_addextendedproperty @name = N'MS_Description',&#xA;    @value = N'[SITS] ins_spr.PRS_CODE lecturer identifier ',&#xA;    @level0type = N'SCHEMA',&#xA;    @level0name = N'UoH',&#xA;    @level1type = N'TABLE',&#xA;    @level1name = N'DimStudent',&#xA;    @level2type = N'COLUMN',&#xA;    @level2name = N'TutorStaffId'&#xA;GO&#xA;&#xA;EXEC sp_addextendedproperty @name = N'MS_Description',&#xA;    @value = N'[SITS] ins_stu.stu_dob (Date standard ISO8601) ',&#xA;    @level0type = N'SCHEMA',&#xA;    @level0name = N'UoH',&#xA;    @level1type = N'TABLE',&#xA;    @level1name = N'DimStudent',&#xA;    @level2type = N'COLUMN',&#xA;    @level2name = N'DoB'&#xA;GO&#xA;&#xA;EXEC sp_addextendedproperty @name = N'MS_Description',&#xA;    @value = N'[SITS] srs_eth.eth_name the join is ins_stu.eth_code on srs_eth.eth_code',&#xA;    @level0type = N'SCHEMA',&#xA;    @level0name = N'UoH',&#xA;    @level1type = N'TABLE',&#xA;    @level1name = N'DimStudent',&#xA;    @level2type = N'COLUMN',&#xA;    @level2name = N'EthnicityName'&#xA;GO&#xA;&#xA;EXEC sp_addextendedproperty @name = N'MS_Description',&#xA;    @value = N'[SITS] ins_stu.stu_gend the students gender',&#xA;    @level0type = N'SCHEMA',&#xA;    @level0name = N'UoH',&#xA;    @level1type = N'TABLE',&#xA;    @level1name = N'DimStudent',&#xA;    @level2type = N'COLUMN',&#xA;    @level2name = N'Gender'&#xA;GO&#xA;&#xA;-------------------------------------------------------------------------------------------&#xA;&#xA;CREATE TABLE [UoH].[DimStudentEvents](&#xA;    [DimStudentEventsId] [INT] Identity (1,1) NOT NULL,    --Claire this is the primary key (PK) [aka in data warehousing as a surragate key]&#xA;&#x9;[StudentId]          [nvarchar](12)       NOT NULL,    --Claire this is part of a composite business key with date and EventCode&#xA;&#x9;[CalendarDateId]     [INT]                NOT NULL,&#xA;    [EventCode]          [nvarchar](50)       NOT NULL,    &#xA;&#x9;[type]               [nvarchar](50)       NOT NULL,&#xA;&#x9;[startTime]          [nvarchar](50)       NOT NULL,&#xA;&#x9;[CourseCode]         [nvarchar](50)       NOT NULL, &#xA;&#x9;[ModuleId]           [nvarchar](50)           NULL,&#xA;&#x9;[EventDate]          [nvarchar](50)       NOT NULL,     &#xA;&#x9;[StandardDate]       [date]               NOT NULL,&#xA;&#x9;[lecturer]           [nvarchar](300)          NULL,&#xA;&#x9;[roomName]           [nvarchar](150)      NOT NULL,&#xA;&#x9;[swipeIn]            [nvarchar](50)           NULL,&#xA;&#x9;[endTime]            [nvarchar](50)           NULL,&#xA;&#x9;[swipeTime]          [nvarchar](50)           NULL,&#xA;&#x9;[percentageAttended] [nvarchar](10)           NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;--&#xA;--ALTER TABLE [UoH].[DimStudentEvents]  WITH NOCHECK                   &#xA;--ADD CONSTRAINT [PrimaryKey_DimStudentEvents] PRIMARY KEY CLUSTERED ([StudentId],[CalendarDateId],[EventCode],[type],[startTime],[roomName])&#xA;--&#xA;----CREATE UNIQUE INDEX IDX_DimStudentEvents001 ON [UoH].[DimStudentEvents] ([StudentId],[CalendarDateId],[startTime])&#xA;--------------------------------------------------------------------------------&#xA;--&#xA;&#xA;CREATE TABLE [UoH].[DimModule](&#xA;    DimModuleID int Identity (1,1),&#xA;&#x9;[ModuleCode] [nvarchar](12) NOT NULL,&#xA;&#x9;[ModuleShortName] [nvarchar](15) NULL,&#xA;&#x9;[ModuleName] [nvarchar](120) NULL,&#xA;&#x9;[ModuleCredit] [numeric](7, 2) NULL,&#xA;&#x9;[lev_code] [nvarchar](6) NULL,&#xA;&#x9;[mot_code] [nvarchar](6) NULL,&#xA;&#x9;[mot_name] [nvarchar](50) NULL,&#xA;&#x9;[mot_hours] [numeric](6, 2) NULL,&#xA;&#x9;[mot_csiz] [numeric](4, 0) NULL,&#xA;&#x9;[mod_facc] [nvarchar](6) NULL,&#xA;&#x9;[DepartmentCode] [nvarchar](12) NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[DimModule]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_DimModule] PRIMARY KEY CLUSTERED (ModuleCode)&#xA;--&#xA;--------------------------------------------------------------------------------&#xA;--&#xA;CREATE TABLE [UoH].[DimStudentOnModule](&#xA;    [DimStudentOnModuleId] int Identity (1,1),&#xA;&#x9;[ModuleCode] [nvarchar](12) NOT NULL,&#xA;&#x9;[StudentId] [nvarchar](15) NOT NULL,&#xA;&#x9;[sce_scjc] [nvarchar](15) NULL,&#xA;&#x9;[moduleShortName] [nvarchar](15) NULL,&#xA;&#x9;[moduleName] [nvarchar](120) NULL,&#xA;&#x9;[moduleCredit] [numeric](7, 2) NULL,&#xA;&#x9;[smo_levc] [nvarchar](6) NULL,&#xA;&#x9;[dpt_code] [nvarchar](12) NULL,&#xA;&#x9;[mav_occur] [nvarchar](6) NOT NULL,&#xA;&#x9;[ayr_code] [nvarchar](12) NOT NULL,&#xA;&#x9;[psl_code] [nvarchar](6) NOT NULL,&#xA;&#x9;[ses_code] [nvarchar](6) NULL,&#xA;&#x9;[scj_stuc] [nvarchar](12) NULL&#xA;) ON [PRIMARY]&#xA;&#xA;ALTER TABLE [UoH].[DimStudentOnModule]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_DimStudentOnModule] PRIMARY KEY CLUSTERED (ModuleCode,StudentId)&#xA;&#xA;ALTER TABLE [UoH].[DimStudentOnModule]    &#xA;ADD CONSTRAINT FK_DSOM_Module FOREIGN KEY (ModuleCode)     &#xA;    REFERENCES [UoH].[DimModule] (ModuleCode);&#xA;--&#xA;------------------------------------------------------------------------&#xA;--&#xA;CREATE TABLE [UoH].[FactStudentEngagement](&#xA;    [FSEID]                   [INT] IDENTITY (1,1) NOT NULL,&#xA;    [StudentID]               [nvarchar](12)       NOT NULL,&#xA;&#x9;[DateID]                  [int]                NOT NULL,&#xA;&#x9;[SHARED_PC]               [int]                    NULL,&#xA;&#x9;[WIFI_LOGIN]              [int]                    NULL,&#xA;&#x9;[PING]                    [int]                    NULL,&#xA;&#x9;[CANVAS_ASSIGNMENT]       [int]                    NULL,&#xA;&#x9;[PRINT]                   [int]                    NULL,&#xA;&#x9;[COPY]                    [int]                    NULL,&#xA;&#x9;[SCAN]                    [int]                    NULL,&#xA;&#x9;[LOGIN]                   [int]                    NULL,&#xA;&#x9;[DOOR_ACCESS]             [int]                    NULL,&#xA;&#x9;[TELEPEN_ACCESS]          [int]                    NULL,&#xA;&#x9;[PlannedAttendance]       [int]                    NULL,&#xA;&#x9;[Absent]                  [int]                    NULL,&#xA;&#x9;[Attended]                [int]                    NULL,&#xA;&#x9;[Late]                    [int]                    NULL,&#xA;&#x9;[Unexpected]              [int]                    NULL,&#xA;&#x9;[AttendedOtherLecture]    [int]                    NULL,&#xA;&#x9;[Cancelled]               [int]                    NULL,&#xA;&#x9;[AuthorisedAbsent]        [int]                    NULL,&#xA;&#x9;[TotalWeightedEngagement] [int]                    NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[FactStudentEngagement]  WITH NOCHECK &#xA;ADD CONSTRAINT [PrimaryKey_FactStudentEngagement] PRIMARY KEY CLUSTERED ([StudentID],[DateId])&#xA;&#xA;ALTER TABLE UoH.FactStudentEngagement     &#xA;ADD CONSTRAINT FK_FSE_StudentId FOREIGN KEY (StudentID)     &#xA;    REFERENCES UoH.DimStudent (StudentID);&#xA;&#xA;--ALTER TABLE UoH.FactStudentEngagement     &#xA;--ADD CONSTRAINT FK_FSE_StudentEventsId FOREIGN KEY (StudentId,DateId)     &#xA;--    REFERENCES UoH.DimStudentEvents (StudentId,CalendarDateId);&#xA;&#xA;ALTER TABLE UoH.FactStudentEngagement     &#xA;ADD CONSTRAINT FK_FSE_dateId FOREIGN KEY (DateId)     &#xA;    REFERENCES [UoH].[DimCalendar] (DateId);&#xA;&#xA;------------------------------------------------------------------------&#xA;--&#xA;CREATE TABLE [UoH].[FactStudentAssessment](&#xA;    [FSAId] [INT] Identity (1,1) NOT NULL,&#xA;&#x9;[StudentId] [nvarchar](12) NOT NULL,&#xA;&#x9;[ModuleCode] [nvarchar](12) NOT NULL,&#xA;&#x9;[ModuleName] [nvarchar](120) NULL,&#xA;&#x9;[ModuleCreditValue] [numeric](7, 2) NULL,&#xA;&#x9;[ModuleUnmoderatedMark] [numeric](8, 0) NULL,&#xA;&#x9;[ModuleModeratedMark] [numeric](8, 0) NULL,&#xA;&#x9;[ModuleGrade] [nvarchar](2) NULL,&#xA;&#x9;[ModuleGradeType] [varchar](6) NULL,&#xA;&#x9;[ModuleAttempt] [numeric](1, 0) NULL,&#xA;&#x9;[ModuleResult] [nvarchar](1) NULL,&#xA;&#x9;[AssessmentNonModeratedMark] [numeric](8, 0) NULL,&#xA;&#x9;[AssessmentModeratedMark] [numeric](8, 0) NULL,&#xA;&#x9;[AssessmentModeratedGrade] [nvarchar](2) NULL,&#xA;&#x9;[AssessmentAttempt] [numeric](1, 0) NULL,&#xA;&#x9;[AssessmentCategoryWeightedNonModeratedMark] [numeric](38, 25) NULL,&#xA;&#x9;[AssessmentCategoryWeightedModeratedMark] [numeric](38, 25) NULL,&#xA;&#x9;[AssessmentWeightedNonModeratedMark] [numeric](19, 6) NULL,&#xA;&#x9;[AssessmentWeightedModeratedMark] [numeric](19, 6) NULL,&#xA;&#x9;[AssignmentName] [nvarchar](120) NOT NULL,&#xA;&#x9;[AssignmentWeight] [numeric](4, 0) NULL,&#xA;&#x9;[AssignmentSequence] [nvarchar](3) NULL,&#xA;&#x9;[AssignmentCategory] [nvarchar](6) NOT NULL,&#xA;&#x9;[IsPFOAssignment] [int] NOT NULL,&#xA;&#x9;[IsQMarkAssignment] [int] NOT NULL,&#xA;&#x9;[AssignmentType] [nvarchar](6) NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[FactStudentAssessment]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_FactStudentAssessment] PRIMARY KEY CLUSTERED (ModuleCode,StudentId,AssignmentName)&#xA;&#xA;ALTER TABLE [UoH].[FactStudentAssessment]   &#xA;ADD CONSTRAINT FK_FPA_FactStudentAssessmentModule FOREIGN KEY (ModuleCode)     &#xA;    REFERENCES [UoH].[DimModule] (ModuleCode);&#xA;&#xA;ALTER TABLE [UoH].[FactStudentAssessment]   &#xA;ADD CONSTRAINT FK_FPA_FactStudentAssessmentStudent FOREIGN KEY (StudentId)     &#xA;    REFERENCES [UoH].[DimStudent] (StudentId);&#xA;&#xA;--------------------------------------------------------------------------------&#xA;&#xA;CREATE TABLE [UoH].[FactModuleFinance](&#xA;&#x9;[StudentId] [nvarchar](12) NULL,&#xA;&#x9;[StudentOnCourseId] [nvarchar](15) NULL,&#xA;&#x9;[YearOfModule] [nvarchar](12) NOT NULL,&#xA;&#x9;[ModuleCode] [nvarchar](12) NOT NULL,&#xA;&#x9;[CourseFaculty] [nvarchar](6) NULL,&#xA;&#x9;[ModuleFaculty] [nvarchar](6) NULL,&#xA;&#x9;[CourseDept] [nvarchar](12) NULL,&#xA;&#x9;[ModuleDept] [nvarchar](12) NULL,&#xA;&#x9;[FeeAmount] [numeric](17, 2) NULL,&#xA;&#x9;[TotalCourseModules] [int] NULL,&#xA;&#x9;[TotalCourseCredits] [numeric](38, 0) NULL,&#xA;&#x9;[NumModulesInDept] [int] NULL,&#xA;&#x9;[ModuleCredits] [numeric](38, 0) NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;&#xA;ALTER TABLE [UoH].[FactModuleFinance]  WITH NOCHECK                   &#xA;ADD CONSTRAINT [PrimaryKey_FactModuleFinance] PRIMARY KEY CLUSTERED (StudentId,ModuleCode)&#xA;&#xA;ALTER TABLE [UoH].[FactModuleFinance]   &#xA;ADD CONSTRAINT FK_FMC_FactModuleFinance FOREIGN KEY (StudentId)     &#xA;    REFERENCES [UoH].[DimStudent] (StudentId);&#xA;&#xA;ALTER TABLE [UoH].[FactModuleFinance]   &#xA;ADD CONSTRAINT FK_FMC_FactModuleFinance FOREIGN KEY (ModuleCode)     &#xA;    REFERENCES [UoH].[DimModule] (ModuleCode);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -3512,6 +3529,14 @@
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
           DTS:To="Package\Build Student Dimension (DimStudent)\DimStudentEvents" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 10]"
+          DTS:CreationName=""
+          DTS:DTSID="{A1C415D2-F197-4F17-8CD9-543E010DD65F}"
+          DTS:From="Package\Build Student Dimension (DimStudent)\FactStudentAssessment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 10"
+          DTS:To="Package\Build Student Dimension (DimStudent)\FactModuleFinance" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
@@ -3598,7 +3623,7 @@
         <NodeLayout
           Size="135.2,41.6"
           Id="Package\Build Student Dimension (DimStudent)\DimStudent"
-          TopLeft="407.771437436707,175.200004521538" />
+          TopLeft="407.200008855547,175.811769236" />
         <NodeLayout
           Size="166.4,41.6"
           Id="Package\Build Student Dimension (DimStudent)\DimStudentEvents"
@@ -3616,6 +3641,14 @@
           Id="Package\Build Student Dimension (DimStudent)\FactStudentEngagement"
           TopLeft="58.0571457668224,389.317654583282" />
         <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Build Student Dimension (DimStudent)\rebuild DimCalendar"
+          TopLeft="106.514287991426,75.2000026254094" />
+        <NodeLayout
+          Size="236.8,41.6"
+          Id="Package\Build Student Dimension (DimStudent)\rebuild DimOrganisationStructure"
+          TopLeft="206.514289694416,127.20000335469" />
+        <NodeLayout
           Size="147.2,41.6"
           Id="Package\Build Student Dimension (DimStudent)\Rebuild mart"
           TopLeft="38.0571454262247,25.9294141927805" />
@@ -3623,26 +3656,58 @@
           Size="204.8,41.6"
           Id="Package\Build Student Dimension (DimStudent)\SEAtS_FactStudentEngage"
           TopLeft="50.6285742117444,321.411771277985" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Build Student Dimension (DimStudent)\Test data Hack"
+          TopLeft="716.34287065,9.88235504321992" />
         <EdgeLayout
-          Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 1]"
-          TopLeft="542.971437436707,196.000004521538">
+          Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint]"
+          TopLeft="185.257145426225,46.7294141927805">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="33.7142871739911,25.0823535846588"
+              EndConnector="8.85714256520149,28.470588432629"
               Start="0,0"
-              End="33.7142871739911,17.5823535846588">
+              End="8.85714256520149,20.970588432629">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="29.7142871739911,0" />
+                    End="4.85714256520149,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="29.7142871739911,0"
-                    Point2="33.7142871739911,0"
-                    Point3="33.7142871739911,4" />
+                    Point1="4.85714256520149,0"
+                    Point2="8.85714256520149,0"
+                    Point3="8.85714256520149,4" />
                   <mssgle:LineSegment
-                    End="33.7142871739911,17.5823535846588" />
+                    End="8.85714256520149,20.970588432629" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 1]"
+          TopLeft="542.400008855547,196.611769236">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.285715755151,24.4705888701968"
+              Start="0,0"
+              End="34.285715755151,16.9705888701968">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="30.285715755151,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.285715755151,0"
+                    Point2="34.285715755151,0"
+                    Point3="34.285715755151,4" />
+                  <mssgle:LineSegment
+                    End="34.285715755151,16.9705888701968" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3773,36 +3838,32 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Build Student Dimension (DimStudent)\Test data Hack"
-          TopLeft="716.34287065,9.88235504321992" />
         <EdgeLayout
           Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 7]"
-          TopLeft="496.571437436707,175.200004521538">
+          TopLeft="496.000008855547,175.811769236">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="294.971433213293,-123.717649478319"
+              EndConnector="295.542861794453,-124.32941419278"
               Start="0,0"
-              End="294.971433213293,-116.217649478319">
+              End="295.542861794453,-116.82941419278">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-46.3552538227543" />
+                    End="0,-46.6042527942545" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-46.3552538227543"
-                    Point2="0,-50.3552538227543"
-                    Point3="4,-50.3552538227543" />
+                    Point1="0,-46.6042527942545"
+                    Point2="0,-50.6042527942545"
+                    Point3="4,-50.6042527942545" />
                   <mssgle:LineSegment
-                    End="290.971433213293,-50.3552538227543" />
+                    End="291.542861794453,-50.6042527942545" />
                   <mssgle:CubicBezierSegment
-                    Point1="290.971433213293,-50.3552538227543"
-                    Point2="294.971433213293,-50.3552538227543"
-                    Point3="294.971433213293,-54.3552538227543" />
+                    Point1="291.542861794453,-50.6042527942545"
+                    Point2="295.542861794453,-50.6042527942545"
+                    Point3="295.542861794453,-54.6042527942545" />
                   <mssgle:LineSegment
-                    End="294.971433213293,-116.217649478319" />
+                    End="295.542861794453,-116.82941419278" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3811,42 +3872,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="175.2,41.6"
-          Id="Package\Build Student Dimension (DimStudent)\rebuild DimCalendar"
-          TopLeft="106.514287991426,75.2000026254094" />
-        <EdgeLayout
-          Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint]"
-          TopLeft="185.257145426225,46.7294141927805">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="8.85714256520149,28.470588432629"
-              Start="0,0"
-              End="8.85714256520149,20.970588432629">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="4.85714256520149,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="4.85714256520149,0"
-                    Point2="8.85714256520149,0"
-                    Point3="8.85714256520149,4" />
-                  <mssgle:LineSegment
-                    End="8.85714256520149,20.970588432629" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="236.8,41.6"
-          Id="Package\Build Student Dimension (DimStudent)\rebuild DimOrganisationStructure"
-          TopLeft="206.514289694416,127.20000335469" />
         <EdgeLayout
           Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 8]"
           TopLeft="281.714287991426,96.0000026254094">
@@ -3881,20 +3906,46 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="10.8571477422909,27.2000011668487"
+              EndConnector="10.2857191611311,27.8117658813101"
               Start="0,0"
-              End="10.8571477422909,19.7000011668487">
+              End="10.2857191611311,20.3117658813101">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="6.85714774229086,0" />
+                    End="6.28571916113106,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="6.85714774229086,0"
-                    Point2="10.8571477422909,0"
-                    Point3="10.8571477422909,4" />
+                    Point1="6.28571916113106,0"
+                    Point2="10.2857191611311,0"
+                    Point3="10.2857191611311,4" />
                   <mssgle:LineSegment
-                    End="10.8571477422909,19.7000011668487" />
+                    End="10.2857191611311,20.3117658813101" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Build Student Dimension (DimStudent)\FactModuleFinance"
+          TopLeft="71.6571445406699,522.211773611683" />
+        <EdgeLayout
+          Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 10]"
+          TopLeft="159.914287787067,495.623537742721">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.5882358689616"
+              Start="0,0"
+              End="0,19.0882358689616">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.0882358689616" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3906,8 +3957,8 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="900,550.4"
-          Size="900,593.6"
+          PanelSize="900,619.2"
+          Size="900,662.4"
           Id="Package\Build Student Dimension (DimStudent)"
           TopLeft="27.4285718956777,69.7411774486822" />
       </GraphLayout>
@@ -3917,15 +3968,15 @@
     design-time-name="Package\Build Student Dimension (DimStudent)\rebuild DimCalendar">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="158.4,41.6"
-          Id="Package\Build Student Dimension (DimStudent)\rebuild DimCalendar\get DimCalendar"
-          TopLeft="129.714287923307,109.50588388872" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="163.2,41.6"
           Id="Package\Build Student Dimension (DimStudent)\rebuild DimCalendar\UoH DimCalendar"
           TopLeft="123.428573530548,248.988238786084" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\Build Student Dimension (DimStudent)\rebuild DimCalendar\get DimCalendar"
+          TopLeft="129.714287923307,109.50588388872" />
         <EdgeLayout
           Id="Package\Build Student Dimension (DimStudent)\rebuild DimCalendar.Paths[OLE DB Source Output]"
           TopLeft="206.971430726927,151.10588388872">
@@ -3945,7 +3996,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3981,7 +4034,7 @@
     design-time-name="Package\Build Student Dimension (DimStudent)\rebuild DimOrganisationStructure">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="172.8,41.6"
           Id="Package\Build Student Dimension (DimStudent)\rebuild DimOrganisationStructure\move DimOrgStruct"
@@ -4009,7 +4062,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
