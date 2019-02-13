@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="BuildStudentEngagementDataMart"
   DTS:PackageType="5"
-  DTS:VersionBuild="87"
-  DTS:VersionGUID="{0D38C420-7BA3-4B52-AF65-D4623A3450C7}">
+  DTS:VersionBuild="89"
+  DTS:VersionGUID="{DAF9C5B0-EFC7-4ED5-AC58-3F7199BF563B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -78,7 +78,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimModule"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -112,7 +112,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="DimStudentEvents"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -151,7 +151,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{039C4F4A-D48A-4073-9E4D-2188D9852D0E}"
-              SQLTask:SqlStatementSource=";WITH CTE_FEE&#xA;AS&#xA;(&#xA;SELECT&#xA;    SCJ.scj_stuc  AS StudentId&#xA;   ,SCJ.SCJ_CODE  AS StudentOnCourseId&#xA;   ,SCE.SCE_SEQ2&#xA;   ,SCE.sce_ayrc&#xA;   ,smo.ayr_code  AS YearOfModule&#xA;   ,SCJ.scj_crsc&#xA;   ,SCE.sce_fstc&#xA;   ,SCE.sce_Moac&#xA;   ,CRS.crs_name&#xA;   ,CRS.crs_dptc  AS CourseDept&#xA;   ,FPE.fpe_fptc&#xA;   ,SMO.mod_code  AS ModuleCode&#xA;   ,MAV.dpt_code  AS ModuleDept&#xA;   ,SMO.smo_mcrd  AS ModuleCredits&#xA;   ,FPE.fpe_accc&#xA;   ,FPE.fpe_amnt&#xA;   ,FPE.fpe_fstc&#xA;   ,DPT.dpt_dpt1  AS CourseSchool&#xA;   ,DPT.dpt_facc  AS CourseFaculty&#xA;   ,DPT2.dpt_dpt1 AS ModuleSchool&#xA;   ,DPT2.dpt_facc AS ModuleFaculty&#xA;FROM&#xA;   SITSReporting.srs_scj AS SCJ INNER JOIN SITSReporting.srs_sce AS SCE ON SCJ.scj_code = SCE.sce_scjc --AND SCE.sce_ayrc = @ayrcode&#xA;   inner join SITSReporting.srs_crs AS CRS ON SCJ.scj_crsc = CRS.crs_code  &#xA;   INNER JOIN SITSReporting.srs_cbk AS CBK ON SCe.sce_crsc = CBK.cbk_crsc AND SCE.sce_blok = CBK.cbk_blok&#xA;   INNER JOIN SITSReporting.cam_smo AS SMO ON SCJ.scj_code = SMO.spr_code AND SCE.sce_ayrc = SMO.ayr_code&#xA;   INNER JOIN SITSReporting.cam_mav AS MAV ON SMO.mod_code = MAV.mod_code&#xA;   AND SMO.mav_occur = MAV.mav_occur&#xA;   AND SMO.ayr_code =  MAV.ayr_code&#xA;   AND SMO.psl_code =  MAV.psl_code&#xA;   INNER JOIN SITSReporting.ins_fpt AS FPT ON CBK.cbk_fptc = FPT.fpt_code&#xA;   INNER JOIN SITSReporting.ins_fpe AS FPE ON FPT.fpt_code = FPE.fpe_fptc &#xA;   AND FPE.fpe_prf1 = scj.scj_ayrc -- [fpe_prf1 = cap_ayrc] so we've assumed scj_ayrc will suffice and avoid having to get CAP involved&#xA;   --and FPE.fpe_ayrc = @ayrcode&#xA;   and FPE.fpe_prf2 = SCE.sce_freg --[fpe_prf2 = cap_udfh] is the fee regime and this found on sce_freg also &#xA;   AND SCE.sce_fstc = FPE.fpe_fstc&#xA;   AND SCE.sce_moac = FPE.fpe_moac&#xA;   INNER JOIN SITSReporting.ins_dpt AS DPT ON CRS.crs_dptc  = DPT.dpt_code&#xA;   INNER JOIN SITSReporting.ins_dpt AS DPT2 ON MAV.dpt_code = DPT2.dpt_code&#xA;   WHERE &#xA;       --DPT.dpt_facc &lt;&gt; DPT2.dpt_facc&#xA;&#x9;  --scj_stuc = '201760252'&#xA;&#x9;  --and  sce_ayrc = @ayrcode&#xA;&#x9;  --and &#xA;&#x9;  scj_stac = 'ENR' ---Only Get currently enrolled students/SCJ&#xA;      --part time full time&#xA;&#x9;  --sequence number&#xA;&#x9;  --??&#xA;) &#xA;INSERT INTO UoH.FactModuleFinance (&#xA; [StudentId]&#xA;,[StudentOnCourseId]&#xA;,[YearOfModule]&#xA;,[ModuleCode]&#xA;,[CourseFaculty]&#xA;,[ModuleFaculty]&#xA;,[CourseDept]&#xA;,[ModuleDept]&#xA;,[FeeAmount]&#xA;,[TotalCourseModules]&#xA;,[TotalCourseCredits]&#xA;,[NumModulesInDept]&#xA;,[ModuleCredits]&#xA;)&#xA;SELECT &#xA; cf.StudentId&#xA;,cf.StudentOnCourseId&#xA;,cf.YearOfModule&#xA;,cf.ModuleCode&#xA;,cf.CourseFaculty&#xA;,cf.ModuleFaculty&#xA;,cf.CourseDept&#xA;,cf.ModuleDept&#xA;,cf.fpe_amnt AS FeeAmount&#xA;,cf2.TotalCourseModules&#xA;,cf2.TotalCourseCredits&#xA;,COUNT(*) as NumModulesInDept&#xA;,SUM(ModuleCredits) as ModuleCredits&#xA;--INTO UoH.FactModuleFinance&#xA; FROM CTE_FEE AS cf&#xA; INNER JOIN &#xA; (SELECT StudentId, count(*) as TotalCourseModules, sum(ModuleCredits) as TotalCourseCredits From CTE_FEE GROUP BY StudentId) AS cf2&#xA; ON cf.StudentId = cf2.StudentId&#xA; GROUP BY &#xA;  cf.StudentId&#xA;,cf.StudentOnCourseId&#xA;,cf.YearOfModule&#xA;,cf.ModuleCode&#xA;,cf.CourseFaculty&#xA;,cf.ModuleFaculty&#xA;,cf.CourseDept&#xA;,cf.ModuleDept&#xA;,cf.fpe_amnt&#xA;,cf2.TotalCourseModules&#xA;,cf2.TotalCourseCredits&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource=";WITH CTE_FEE&#xA;AS&#xA;(&#xA;SELECT&#xA;    SCJ.scj_stuc  AS StudentId&#xA;   ,SCJ.SCJ_CODE  AS StudentOnCourseId&#xA;   ,SCE.SCE_SEQ2&#xA;   ,SCE.sce_ayrc&#xA;   ,smo.ayr_code  AS YearOfModule&#xA;   ,SCJ.scj_crsc&#xA;   ,SCE.sce_fstc&#xA;   ,SCE.sce_Moac&#xA;   ,CRS.crs_name&#xA;   ,CRS.crs_dptc  AS CourseDept&#xA;   ,FPE.fpe_fptc&#xA;   ,SMO.mod_code  AS ModuleCode&#xA;   ,MAV.dpt_code  AS ModuleDept&#xA;   ,SMO.smo_mcrd  AS ModuleCredits&#xA;   ,FPE.fpe_accc&#xA;   ,FPE.fpe_amnt&#xA;   ,FPE.fpe_fstc&#xA;   ,DPT.dpt_dpt1  AS CourseSchool&#xA;   ,DPT.dpt_facc  AS CourseFaculty&#xA;   ,DPT2.dpt_dpt1 AS ModuleSchool&#xA;   ,DPT2.dpt_facc AS ModuleFaculty&#xA;FROM&#xA;   SITSReporting.srs_scj AS SCJ INNER JOIN SITSReporting.srs_sce AS SCE ON SCJ.scj_code = SCE.sce_scjc --AND SCE.sce_ayrc = @ayrcode&#xA;        AND SCE.sce_stac &lt;&gt; 'TRN' --Is this correct? Ask SITS Team or Craig Petch&#xA;   INNER JOIN SITSReporting.srs_crs AS CRS ON SCJ.scj_crsc = CRS.crs_code  &#xA;   INNER JOIN SITSReporting.srs_cbk AS CBK ON SCe.sce_crsc = CBK.cbk_crsc AND SCE.sce_blok = CBK.cbk_blok&#xA;   INNER JOIN SITSReporting.cam_smo AS SMO ON SCJ.scj_code = SMO.spr_code AND SCE.sce_ayrc = SMO.ayr_code&#xA;   INNER JOIN SITSReporting.cam_mav AS MAV ON SMO.mod_code = MAV.mod_code&#xA;   AND SMO.mav_occur = MAV.mav_occur&#xA;   AND SMO.ayr_code =  MAV.ayr_code&#xA;   AND SMO.psl_code =  MAV.psl_code&#xA;   INNER JOIN SITSReporting.ins_fpt AS FPT ON CBK.cbk_fptc = FPT.fpt_code&#xA;   INNER JOIN SITSReporting.ins_fpe AS FPE ON FPT.fpt_code = FPE.fpe_fptc &#xA;   AND FPE.fpe_prf1 = scj.scj_ayrc -- [fpe_prf1 = cap_ayrc] so we've assumed scj_ayrc will suffice and avoid having to get CAP involved&#xA;   AND FPE.fpe_ayrc = smo.ayr_code &#xA;   AND FPE.fpe_prf2 = SCE.sce_freg --[fpe_prf2 = cap_udfh] is the fee regime and this found on sce_freg also &#xA;   AND SCE.sce_fstc = FPE.fpe_fstc&#xA;   AND SCE.sce_moac = FPE.fpe_moac&#xA;   INNER JOIN SITSReporting.ins_dpt AS DPT ON CRS.crs_dptc  = DPT.dpt_code&#xA;   INNER JOIN SITSReporting.ins_dpt AS DPT2 ON MAV.dpt_code = DPT2.dpt_code&#xA;  /*&#xA;   I think some student are on more than one course,  The following INNER JOIN &#xA;   filters this out.  I don't think this is correct.  We need to ask the SITS Team what is going on regarding&#xA;   business rules '201305976' is example student PhD Physics&#xA;   */&#xA;   INNER JOIN&#xA;      (SELECT &#xA;          *&#xA;         ,ROW_NUMBER() OVER (PARTITION BY SCJ_STUC ORDER BY SCJ_SEQ2 DESC) AS SORTID&#xA;      FROM [SITSReporting].[SRS_SCJ]) SCJ1 ON SCJ.SCJ_CODE = SCJ1.SCJ_CODE AND SORTID = 1 --Deals with students enrolled on more that one course&#xA;      INNER JOIN &#xA;      (SELECT sce_scjc,max(sce_seq2) AS seq2&#xA;      FROM&#xA;      [SITSReporting].SRS_SCE SCE&#xA;      GROUP BY sce_scjc&#xA;      ) AS LatestSCE ON LatestSCE.SCE_SCJC = SCJ.SCJ_CODE  --This gets latest student record for the above course&#xA;        AND LatestSCE.seq2 = SCE.sce_seq2&#xA;   WHERE &#xA;       --DPT.dpt_facc &lt;&gt; DPT2.dpt_facc&#xA;&#x9;  --and  sce_ayrc = @ayrcode&#xA;&#x9;  --and &#xA;&#x9;  scj.scj_stac = 'ENR' ---Only Get currently enrolled students/SCJ  **--Is this correct? Ask SITS Team or Craig Petch&#xA;) &#xA;INSERT INTO UoH.FactModuleFinance (&#xA; [StudentId]&#xA;,[StudentOnCourseId]&#xA;,[YearOfModule]&#xA;,[ModuleCode]&#xA;,[CourseFaculty]&#xA;,[ModuleFaculty]&#xA;,[CourseDept]&#xA;,[ModuleDept]&#xA;,[FeeAmount]&#xA;,[TotalCourseModules]&#xA;,[TotalCourseCredits]&#xA;,[NumModulesInDept]&#xA;,[ModuleCredits]&#xA;)&#xA;SELECT &#xA; cf.StudentId&#xA;,cf.StudentOnCourseId&#xA;,cf.YearOfModule&#xA;,cf.ModuleCode&#xA;,cf.CourseFaculty&#xA;,cf.ModuleFaculty&#xA;,cf.CourseDept&#xA;,cf.ModuleDept&#xA;,cf.fpe_amnt AS FeeAmount&#xA;,cf2.TotalCourseModules&#xA;,cf2.TotalCourseCredits&#xA;,COUNT(*) as NumModulesInDept&#xA;,SUM(ModuleCredits) as ModuleCredits&#xA;--INTO UoH.FactModuleFinance&#xA; FROM CTE_FEE AS cf&#xA; INNER JOIN &#xA; (SELECT StudentId, count(*) as TotalCourseModules, sum(ModuleCredits) as TotalCourseCredits From CTE_FEE GROUP BY StudentId) AS cf2&#xA; ON cf.StudentId = cf2.StudentId&#xA; GROUP BY &#xA;  cf.StudentId&#xA;,cf.StudentOnCourseId&#xA;,cf.YearOfModule&#xA;,cf.ModuleCode&#xA;,cf.CourseFaculty&#xA;,cf.ModuleFaculty&#xA;,cf.CourseDept&#xA;,cf.ModuleDept&#xA;,cf.fpe_amnt&#xA;,cf2.TotalCourseModules&#xA;,cf2.TotalCourseCredits&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -3503,7 +3503,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Test data Hack"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3520,7 +3520,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Test data Hack 1"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3537,7 +3537,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Test data Hack 2"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3689,7 +3689,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="132.8,41.6"
           Id="Package\Build Student Dimension (DimStudent)\DimModule"
@@ -3701,7 +3701,7 @@
         <NodeLayout
           Size="166.4,41.6"
           Id="Package\Build Student Dimension (DimStudent)\DimStudentEvents"
-          TopLeft="491.200010286058,248.611770256993" />
+          TopLeft="488.914295961418,258.400005688387" />
         <NodeLayout
           Size="223.2,41.6"
           Id="Package\Build Student Dimension (DimStudent)\DimStudentOnModule"
@@ -3751,7 +3751,7 @@
           TopLeft="176.914288263905,46.7294141927805">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="17.1999997275212,28.4705884326289"
               Start="0,0"
               End="17.1999997275212,20.9705884326289">
@@ -3779,21 +3779,27 @@
           TopLeft="522.685722839589,229.03529881078">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-31.4857125535305,40.3764714462121"
+              StartConnector="{x:Null}"
+              EndConnector="49.4285731218291,29.3647068776069"
               Start="0,0"
-              End="-23.9857125535305,40.3764714462121">
+              End="49.4285731218291,21.8647068776069">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.3764714462121" />
+                    End="0,10.6823534388035" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,36.3764714462121"
-                    Point2="0,40.3764714462121"
-                    Point3="-4,40.3764714462121" />
+                    Point1="0,10.6823534388035"
+                    Point2="0,14.6823534388035"
+                    Point3="4,14.6823534388035" />
                   <mssgle:LineSegment
-                    End="-23.9857125535305,40.3764714462121" />
+                    End="45.4285731218291,14.6823534388035" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45.4285731218291,14.6823534388035"
+                    Point2="49.4285731218291,14.6823534388035"
+                    Point3="49.4285731218291,18.6823534388035" />
+                  <mssgle:LineSegment
+                    End="49.4285731218291,21.8647068776069" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3807,7 +3813,7 @@
           TopLeft="159.342859205907,538.44706775507">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,26.5882358689616"
               Start="0,0"
               End="0,19.0882358689616">
@@ -3829,7 +3835,7 @@
           TopLeft="548.525722839589,187.43529881078">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="251.169528256761,-129.082356210068"
               Start="0,0"
               End="251.169528256761,-121.582356210068">
@@ -3863,7 +3869,7 @@
           TopLeft="600.205722839589,187.43529881078">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="365.889531254023,-130.917650353455"
               Start="0,0"
               End="365.889531254023,-123.417650353455">
@@ -3897,7 +3903,7 @@
           TopLeft="672.800010762896,61.2705904746138">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="158.811432395857,300.988240098789"
               Start="0,0"
               End="158.811432395857,293.488240098789">
@@ -3931,7 +3937,7 @@
           TopLeft="849.561917763016,58.3529426007122">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="68.1295253957364,303.90588797269"
               Start="0,0"
               End="68.1295253957364,296.40588797269">
@@ -3965,7 +3971,7 @@
           TopLeft="1015.96192076028,56.5176484573259">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="-55.2304776015255,305.741182116076"
               Start="0,0"
               End="-55.2304776015255,298.241182116076">
@@ -3996,30 +4002,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Build Student Dimension (DimStudent).PrecedenceConstraints[Constraint 2]"
-          TopLeft="657.600010286058,269.411770256993">
+          TopLeft="655.314295961418,279.200005688387">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="26.5142904437332,59.2000007292803"
+              StartConnector="{x:Null}"
+              EndConnector="28.8000047683738,49.4117652978861"
               Start="0,0"
-              End="19.0142904437332,59.2000007292803">
+              End="21.3000047683738,49.4117652978861">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="9.25714522186661,0" />
+                    End="10.4000023841869,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="9.25714522186661,0"
-                    Point2="13.2571452218666,0"
-                    Point3="13.2571452218666,4" />
+                    Point1="10.4000023841869,0"
+                    Point2="14.4000023841869,0"
+                    Point3="14.4000023841869,4" />
                   <mssgle:LineSegment
-                    End="13.2571452218666,55.2000007292803" />
+                    End="14.4000023841869,45.4117652978861" />
                   <mssgle:CubicBezierSegment
-                    Point1="13.2571452218666,55.2000007292803"
-                    Point2="13.2571452218666,59.2000007292803"
-                    Point3="17.2571452218666,59.2000007292803" />
+                    Point1="14.4000023841869,45.4117652978861"
+                    Point2="14.4000023841869,49.4117652978861"
+                    Point3="18.4000023841869,49.4117652978861" />
                   <mssgle:LineSegment
-                    End="19.0142904437332,59.2000007292803" />
+                    End="21.3000047683738,49.4117652978861" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4033,7 +4039,7 @@
           TopLeft="153.771431408123,405.835301290334">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,26.3058833052967"
               Start="0,0"
               End="0,18.8058833052967">
@@ -4055,7 +4061,7 @@
           TopLeft="816.914300729792,328.611770986273">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="57.7371424289612,33.6470595871295"
               Start="0,0"
               End="57.7371424289612,26.1470595871295">
@@ -4083,7 +4089,7 @@
           TopLeft="784.571443158753,384.047065931868">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="-529.714297528168,0"
               Start="0,0"
               End="-522.214297528168,0">
@@ -4105,7 +4111,7 @@
           TopLeft="158.942859818984,473.741184595631">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,23.1058831594393"
               Start="0,0"
               End="0,15.6058831594393">
@@ -4127,7 +4133,7 @@
           TopLeft="496.845722839589,187.43529881078">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="119.154287923307,-126.164708336167"
               Start="0,0"
               End="119.154287923307,-118.664708336167">
@@ -4161,7 +4167,7 @@
           TopLeft="281.714287991426,96.0000026254094">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="43.2000017029901,31.2000007292804"
               Start="0,0"
               End="43.2000017029901,23.7000007292804">
@@ -4189,7 +4195,7 @@
           TopLeft="443.314289694416,148.00000335469">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="1.8514331451729,39.4352954560904"
               Start="0,0"
               End="1.8514331451729,31.9352954560904">
@@ -4212,21 +4218,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="I think sequence number needs to be accounted for &#xD;&#xA;and something is happening with fpe_fptc"
-          ParentId="Package\Build Student Dimension (DimStudent)"
-          Size="285.6,60"
-          Id="91d6e261-e912-480a-b63c-c001c14c0814"
-          TopLeft="254.342862952485,573.835303186463">
-          <AnnotationLayout.FontInfo>
-            <mssge:FontInfo
-              Color="#FF000000">
-              <mssge:FontInfo.TextDecorations>
-                <av:TextDecorationCollection />
-              </mssge:FontInfo.TextDecorations>
-            </mssge:FontInfo>
-          </AnnotationLayout.FontInfo>
-        </AnnotationLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
