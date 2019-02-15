@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="BuildStudentEngagementDataMart"
   DTS:PackageType="5"
-  DTS:VersionBuild="89"
-  DTS:VersionGUID="{DAF9C5B0-EFC7-4ED5-AC58-3F7199BF563B}">
+  DTS:VersionBuild="90"
+  DTS:VersionGUID="{B2CA3398-F6B2-4127-83F5-704E5FECD441}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -100,7 +100,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{039C4F4A-D48A-4073-9E4D-2188D9852D0E}"
-              SQLTask:SqlStatementSource="INSERT INTO UoH.DimStudent&#xA;SELECT  DISTINCT&#xA;    STU.STU_CODE AS StudentID&#xA;   ,CAST(SPR.PRS_CODE AS NVARCHAR(50))       AS TUTOR_STAFF_ID &#xA;   ,CAST(NULL AS NVARCHAR(100))              AS ULN&#xA;   ,CAST(CONVERT(DATE,STU.STU_DOB,126)       AS NVARCHAR(10)) as DOB --ISO8601&#xA;   ,COALESCE(ETH.ETH_HEID,90)                AS ETHNICITY --90 Not Known&#xA;   ,STU.STU_ETHC                             AS ETHNICITY_ETHC --90 Not Known&#xA;   ,ETH.eth_name                             AS EthnicityName&#xA;   ,-1                                       AS SexId   --COALESCE(GEN.GEN_HEID,4)                 AS SEXID --4 Unknown&#xA;   ,STU.stu_gend                             AS Gender&#xA;   ,COALESCE(NULLIF(COD.COD_CDDC,'NA'),'ZZ') AS DomicileCode --ZZ Unknown&#xA;   ,COD.cod_name                             AS DomicileName&#xA;   ,NULLIF(SCJ.SCJ_PARE,0)                   AS PARENTS_ED --Change 0 to NULL = No data&#xA;   ,CAST(STU.STU_SECL AS NVARCHAR(5))        AS SOCIO_EC --99 Not Known&#xA;   ,SEC.sec_name                             AS SocioEconomicName&#xA;   ,STU.STU_SURN                             AS LastName &#xA;   ,STU.STU_FNM1                             AS FirstName&#xA;   ,STU.STU_FUSD                             AS PreferredFirstName&#xA;   ,CASE &#xA;       WHEN STU.STU_FUSD IS NULL &#xA;&#x9;      THEN RTrim(Coalesce(STU.STU_FNM1 + ' ', '') + Coalesce(STU.STU_SURN + ' ', ''))&#xA;&#x9;   ELSE RTrim(Coalesce(STU.STU_FUSD + ' ', '') + Coalesce(STU.STU_SURN + ' ', ''))&#xA;&#x9;END                                      AS DisplayName    &#xA;   ,STU.stu_marc                             AS MaritalStatus&#xA;   ,STU.stu_ndep                             AS NumberOfDependancies&#xA;   ,STU.stu_deps                             AS TypeOfDependancy&#xA;   ,CASE &#xA;       WHEN STU.stu_deps = '01'  THEN 'Young people/children'&#xA;&#x9;   WHEN STU.stu_deps = '02'  THEN 'Other relative/friends'&#xA;       WHEN STU.stu_deps = '03'  THEN 'No dependants'&#xA;       WHEN STU.stu_deps = '04'  THEN 'Both young people/children &amp; other relatives/friends'&#xA;       WHEN STU.stu_deps = '99'  THEN 'Not known'&#xA;       ELSE 'Not Defined'&#xA;&#x9;END                                      AS TypeOfDependancyDescription&#xA;   ,STU.stu_had1                             AS ADDRESS_LINE_1&#xA;   ,STU.stu_had2                             AS ADDRESS_LINE_2&#xA;   ,STU.stu_had3                             AS ADDRESS_LINE_3&#xA;   ,STU.stu_had4                             AS ADDRESS_LINE_4&#xA;   ,STU.stu_had5                             AS ADDRESS_LINE_5&#xA;   ,STU.stu_hapc                             AS POSTCODE&#xA;   ,PCODE.DistanceFromHullUniKMs             AS DistanceFromHullUniversityInKm&#xA;   ,PCODE.DistanceFromHullUniMiles           AS DistanceFromHullUniversityInMiles&#xA;   ,PCODE.POLAR3Quintile                     AS POLAR3Quintile&#xA;   ,PCODE.POLAR4Quintile                     AS POLAR4Quintile&#xA;   ,STU.stu_haem                             AS PRIMARY_EMAIL_ADDRESS&#xA;   ,STU.stu_htel                             AS HOME_PHONE&#xA;   ,STU.stu_hat3                             AS MOBILE_PHONE --This is a guess!!! ************************&#xA;   ,CAST(NULL AS NVARCHAR(100))              AS PHOTO_URL&#xA; --,CAST(NULL AS NVARCHAR(50))               AS ENTRY_POSTCODE --Not sure what this is ********************************&#xA;   ,STU.stu_leac                             AS LEACode&#xA;   ,LEA.lea_name                             AS LEAName&#xA;   ,SCJ.scj_sclc                             AS LastSchoolCode&#xA;   ,SCL.scl_name                             AS LastSchoolName&#xA;   ,STU.stu_hqlc                             AS HighestQualCode&#xA;   ,HQL.hql_name                             AS HighestQualName&#xA;   ,STU.stu_natc                             AS NationalityCode&#xA;   ,NAT.nat_name                             AS NationalityName&#xA;   ,SCJ.scj_agoe                             AS AgeOnEntry&#xA;   ,STU.stu_sslc                             AS SPOKEN_LANGUAGE&#xA;   ,DPT.dpt_code                             AS DepartmentCode&#xA;   ,DPT.dpt_name                             AS DepartmentName&#xA;   ,CRS.crs_code                             AS CourseCode&#xA;   ,CRS.crs_name                             AS CourseName&#xA;   ,CRS.crs_titl                             AS CourseTitle&#xA;   ,CRS.crs_udf4                             AS CourseLevel&#xA;   ,CASE &#xA;       WHEN SCE.sce_yprg IS NULL THEN 0&#xA;&#x9;   ELSE SCE.sce_yprg&#xA;&#x9;END                                      AS YearOfProgramme                        &#xA;   ,SCE.sce_ysdy                             AS YearOfStudy&#xA; --,SMO.mod_code                             AS ModuleCode&#xA;   ,SCE.sce_moac                             AS ModeOfStudyCode&#xA;   ,MOA.moa_name                             AS ModeOfStudyDescription&#xA;   ,STU.stu_fstc                             AS FeeStatusCode&#xA;   ,FST.fst_name                             AS FeeStatusName&#xA;   ,SCE.sce_stac                             AS StatusCode&#xA;   ,STA.sta_name                             AS StatusName&#xA;  -- INTO TonyTweekDimStudent&#xA;FROM [SITSReporting].[ins_stu] STU&#xA;INNER JOIN [SITSReporting].[srs_scj] AS SCJ ON STU.stu_code = SCJ.scj_stuc&#xA;INNER JOIN [SITSReporting].[ins_spr] AS SPR ON SCJ.scj_sprc = SPR.spr_code&#xA;INNER JOIN [SITSReporting].[srs_crs] AS CRS ON SCJ.scj_crsc = CRS.crs_code  &#xA;INNER JOIN [SITSReporting].[ins_dpt] AS DPT ON CRS.crs_dptc = DPT.dpt_code&#xA;INNER JOIN [SITSReporting].[srs_sce] AS SCE ON SCJ.scj_code = SCE.sce_scjc&#xA;--INNER JOIN [SITSReporting].[cam_smo] AS SMO ON SCJ.scj_code = SMO.spr_code AND SCE.sce_ayrc = SMO.ayr_code&#xA;--INNER JOIN [SITSReporting].[cam_mav] AS MAV ON SMO.mod_code = MAV.mod_code&#xA;INNER JOIN [SITSReporting].[ins_moa] AS MOA ON SCE.sce_moac = MOA.moa_code&#xA;INNER JOIN [SITSReporting].[srs_sta] AS STA ON SCE.sce_stac = STA.sta_code&#xA;INNER JOIN&#xA;   (SELECT &#xA;       *&#xA;      ,ROW_NUMBER() OVER (PARTITION BY SCJ_STUC ORDER BY SCJ_SEQ2 DESC) AS SORTID&#xA;   FROM [SITSReporting].[SRS_SCJ]) SCJ1 ON SCJ.SCJ_CODE = SCJ1.SCJ_CODE AND SORTID = 1 --Deals with students enrolled on more that one course&#xA;   INNER JOIN &#xA;   (SELECT sce_scjc,max(sce_seq2) AS seq2&#xA;   FROM&#xA;   [SITSReporting].SRS_SCE SCE&#xA;   GROUP BY sce_scjc&#xA;   ) AS LatestSCE ON LatestSCE.SCE_SCJC = SCJ.SCJ_CODE  --This gets latest student record for the above course&#xA;     AND LatestSCE.seq2 = SCE.sce_seq2&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_ETH] ETH ON STU.STU_ETHC = ETH.ETH_CODE&#xA;LEFT JOIN&#xA;   [SITSReporting].[SRS_GEN] GEN ON STU.stu_gend = GEN.gen_code&#xA;LEFT JOIN&#xA;   [SITSReporting].[SRS_COD] COD ON STU.STU_CODC = COD.COD_CODE&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_FST] FST ON STU.stu_fstc = FST.fst_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_HQL] HQL ON STU.stu_hqlc = HQL.hql_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_NAT] NAT ON STU.stu_natc = NAT.nat_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_SEC] SEC ON STU.stu_secl = SEC.sec_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_LEA] LEA ON STU.stu_leac = LEA.lea_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_SCL] SCL ON SCJ.scj_sclc = SCL.scl_code&#xA;LEFT JOIN &#xA;   [UoHWarehouse].[PCode].[DimPostcode] PCODE ON STU.stu_hapc = PCODE.PostCode&#xA;WHERE (sta_code = 'ENRX' OR sta_code = 'ENR') --Enrolment codes only" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="--INSERT INTO UoH.DimStudent&#xA;SELECT  DISTINCT&#xA;    STU.STU_CODE AS StudentID&#xA;   ,CAST(SPR.PRS_CODE AS NVARCHAR(50))       AS TUTOR_STAFF_ID &#xA;   ,CAST(NULL AS NVARCHAR(100))              AS ULN&#xA;   ,CAST(CONVERT(DATE,STU.STU_DOB,126)       AS NVARCHAR(10)) as DOB --ISO8601&#xA;   ,COALESCE(ETH.ETH_HEID,90)                AS ETHNICITY --90 Not Known&#xA;   ,STU.STU_ETHC                             AS ETHNICITY_ETHC --90 Not Known&#xA;   ,ETH.eth_name                             AS EthnicityName&#xA;   ,-1                                       AS SexId   --COALESCE(GEN.GEN_HEID,4)                 AS SEXID --4 Unknown&#xA;   ,STU.stu_gend                             AS Gender&#xA;   ,COALESCE(NULLIF(COD.COD_CDDC,'NA'),'ZZ') AS DomicileCode --ZZ Unknown&#xA;   ,COD.cod_name                             AS DomicileName&#xA;   ,NULLIF(SCJ.SCJ_PARE,0)                   AS PARENTS_ED --Change 0 to NULL = No data&#xA;   ,CAST(STU.STU_SECL AS NVARCHAR(5))        AS SOCIO_EC --99 Not Known&#xA;   ,SEC.sec_name                             AS SocioEconomicName&#xA;   ,STU.STU_SURN                             AS LastName &#xA;   ,STU.STU_FNM1                             AS FirstName&#xA;   ,STU.STU_FUSD                             AS PreferredFirstName&#xA;   ,CASE &#xA;       WHEN STU.STU_FUSD IS NULL &#xA;&#x9;      THEN RTrim(Coalesce(STU.STU_FNM1 + ' ', '') + Coalesce(STU.STU_SURN + ' ', ''))&#xA;&#x9;   ELSE RTrim(Coalesce(STU.STU_FUSD + ' ', '') + Coalesce(STU.STU_SURN + ' ', ''))&#xA;&#x9;END                                      AS DisplayName    &#xA;   ,STU.stu_marc                             AS MaritalStatus&#xA;   ,STU.stu_ndep                             AS NumberOfDependancies&#xA;   ,STU.stu_deps                             AS TypeOfDependancy&#xA;   ,CASE &#xA;       WHEN STU.stu_deps = '01'  THEN 'Young people/children'&#xA;&#x9;   WHEN STU.stu_deps = '02'  THEN 'Other relative/friends'&#xA;       WHEN STU.stu_deps = '03'  THEN 'No dependants'&#xA;       WHEN STU.stu_deps = '04'  THEN 'Both young people/children &amp; other relatives/friends'&#xA;       WHEN STU.stu_deps = '99'  THEN 'Not known'&#xA;       ELSE 'Not Defined'&#xA;&#x9;END                                      AS TypeOfDependancyDescription&#xA;   ,STU.stu_had1                             AS ADDRESS_LINE_1&#xA;   ,STU.stu_had2                             AS ADDRESS_LINE_2&#xA;   ,STU.stu_had3                             AS ADDRESS_LINE_3&#xA;   ,STU.stu_had4                             AS ADDRESS_LINE_4&#xA;   ,STU.stu_had5                             AS ADDRESS_LINE_5&#xA;   ,STU.stu_hapc                             AS POSTCODE&#xA;   ,PCODE.DistanceFromHullUniKMs             AS DistanceFromHullUniversityInKm&#xA;   ,PCODE.DistanceFromHullUniMiles           AS DistanceFromHullUniversityInMiles&#xA;   ,PCODE.POLAR3Quintile                     AS POLAR3Quintile&#xA;   ,PCODE.POLAR4Quintile                     AS POLAR4Quintile&#xA;   ,STU.stu_haem                             AS PRIMARY_EMAIL_ADDRESS&#xA;   ,STU.stu_htel                             AS HOME_PHONE&#xA;   ,STU.stu_hat3                             AS MOBILE_PHONE --This is a guess!!! ************************&#xA;   ,CAST(NULL AS NVARCHAR(100))              AS PHOTO_URL&#xA; --,CAST(NULL AS NVARCHAR(50))               AS ENTRY_POSTCODE --Not sure what this is ********************************&#xA;   ,STU.stu_leac                             AS LEACode&#xA;   ,LEA.lea_name                             AS LEAName&#xA;   ,SCJ.scj_sclc                             AS LastSchoolCode&#xA;   ,SCL.scl_name                             AS LastSchoolName&#xA;   ,STU.stu_hqlc                             AS HighestQualCode&#xA;   ,HQL.hql_name                             AS HighestQualName&#xA;   ,STU.stu_natc                             AS NationalityCode&#xA;   ,NAT.nat_name                             AS NationalityName&#xA;   ,SCJ.scj_agoe                             AS AgeOnEntry&#xA;   ,STU.stu_sslc                             AS SPOKEN_LANGUAGE&#xA;   ,DPT.dpt_code                             AS DepartmentCode&#xA;   ,DPT.dpt_name                             AS DepartmentName&#xA;   ,CRS.crs_code                             AS CourseCode&#xA;   ,CRS.crs_name                             AS CourseName&#xA;   ,CRS.crs_titl                             AS CourseTitle&#xA;   ,CRS.crs_udf4                             AS CourseLevel&#xA;   ,CASE &#xA;       WHEN SCE.sce_yprg IS NULL THEN 0&#xA;&#x9;   ELSE SCE.sce_yprg&#xA;&#x9;END                                      AS YearOfProgramme                        &#xA;   ,SCE.sce_ysdy                             AS YearOfStudy&#xA; --,SMO.mod_code                             AS ModuleCode&#xA;   ,SCE.sce_moac                             AS ModeOfStudyCode&#xA;   ,MOA.moa_name                             AS ModeOfStudyDescription&#xA;   ,STU.stu_fstc                             AS FeeStatusCode&#xA;   ,FST.fst_name                             AS FeeStatusName&#xA;   ,SCE.sce_stac                             AS StatusCode&#xA;   ,STA.sta_name                             AS StatusName&#xA;   &#x9;&#x9; ,CASE   &#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '10'                                     THEN 'White'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '22'  &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '21' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '29'                                      THEN 'Black'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '33'&#xA;&#x9;&#x9;&#x9;  OR [STU].[STU_ETHC]  = '31' &#xA;&#x9;&#x9;&#x9;  OR [STU].[STU_ETHC]  = '32' &#xA;&#x9;&#x9;&#x9;  OR [STU].[STU_ETHC]  = '39'                                      THEN 'Asian'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '34'                                      THEN 'Chinese'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '50' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '80'                                      THEN 'Other'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '43' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '42' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '41' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '49'                                      THEN 'Mixed'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '90' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '98' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '99'                                      THEN 'Not Given'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = 'IR'                                      THEN 'Prefer not to say'&#xA;&#x9;&#x9;ELSE 'Unknown'&#xA;&#x9;&#x9;END AS EthnicityNameHESAGroup&#xA;       ,CASE  &#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC] =  '10'                                      THEN 'White'&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '21' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '22' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '29' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '31' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '32'&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '33'&#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '34' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '39' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '50'&#x9;&#x9;&#x9;&#x9;                              &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '41' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '42'             &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '43' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '49' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '80'                                    THEN 'BAME' &#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = '90' &#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '98'&#xA;&#x9;&#x9;&#x9;   OR [STU].[STU_ETHC] = '99'                                    THEN 'Not Given' &#xA;&#x9;&#x9;&#x9;WHEN [STU].[STU_ETHC]  = 'IR'                                    THEN 'Prefer not to say'&#xA;&#x9;&#x9;ELSE 'Unknown'&#xA;&#x9;&#x9;END AS BAMEGroup&#xA;&#x9;&#x9;,CASE  &#xA;&#x9;&#x9;&#x9;WHEN [SHC].[stu_natc] = '2826'&#x9;&#x9;&#x9;&#x9; THEN&#x9;'UK Domiciled'      &#x9;&#x9;&#x9;&#xA;--&#x9;&#x9;&#x9;WHEN [STU].[stu_natc] = '610'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '621'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '834'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '882'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '849'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '639'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '710'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '641'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '831'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '651'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '653'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '656'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '657'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '661'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '670'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '676'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '678'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '832'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '833'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '700'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '727'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '728'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '794'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '733'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '850'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '835'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '751'&#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = '755'&#x9;&#x9;&#x9;&#x9;&#x9; &#xA;--&#x9;&#x9;&#x9;OR   [STU].[stu_natc] = 'XE'&#x9;&#x9;&#x9;&#x9;&#x9;THEN&#x9;'EU Domiciled'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[stu_natc] IN (&#xA;&#x9;&#x9;&#x9;    '610'&#xA;&#x9;&#x9;&#x9;   ,'621'&#xA;&#x9;&#x9;&#x9;   ,'834'&#xA;&#x9;&#x9;&#x9;   ,'882'&#xA;&#x9;&#x9;&#x9;   ,'849'&#xA;&#x9;&#x9;&#x9;   ,'639'&#xA;&#x9;&#x9;&#x9;   ,'710'&#xA;&#x9;&#x9;&#x9;   ,'641'&#xA;&#x9;&#x9;&#x9;   ,'831'&#xA;&#x9;&#x9;&#x9;   ,'651'&#xA;&#x9;&#x9;&#x9;   ,'653'&#xA;&#x9;&#x9;&#x9;   ,'656'&#xA;&#x9;&#x9;&#x9;   ,'657'&#xA;&#x9;&#x9;&#x9;   ,'661'&#xA;&#x9;&#x9;&#x9;   ,'670'&#xA;&#x9;&#x9;&#x9;   ,'676'&#xA;&#x9;&#x9;&#x9;   ,'678'&#xA;&#x9;&#x9;&#x9;   ,'832'&#xA;&#x9;&#x9;&#x9;   ,'833'&#xA;&#x9;&#x9;&#x9;   ,'700'&#xA;&#x9;&#x9;&#x9;   ,'727'&#xA;&#x9;&#x9;&#x9;   ,'728'&#xA;&#x9;&#x9;&#x9;   ,'794'&#xA;&#x9;&#x9;&#x9;   ,'733'&#xA;&#x9;&#x9;&#x9;   ,'850'&#xA;&#x9;&#x9;&#x9;   ,'835'&#xA;&#x9;&#x9;&#x9;   ,'751'&#xA;&#x9;&#x9;&#x9;   ,'755'&#x9;&#x9;&#x9;&#x9;&#x9; &#xA;&#x9;&#x9;&#x9;   ,'XE')&#x9;&#x9;&#x9;&#x9;&#x9;THEN&#x9;'EU Domiciled'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[stu_natc] NOT IN (&#xA;&#x9;&#x9;&#x9;    '610'&#xA;&#x9;&#x9;&#x9;   ,'621'&#xA;&#x9;&#x9;&#x9;   ,'834'&#xA;&#x9;&#x9;&#x9;   ,'882'&#xA;&#x9;&#x9;&#x9;   ,'849'&#xA;&#x9;&#x9;&#x9;   ,'639'&#xA;&#x9;&#x9;&#x9;   ,'710'&#xA;&#x9;&#x9;&#x9;   ,'641'&#xA;&#x9;&#x9;&#x9;   ,'831'&#xA;&#x9;&#x9;&#x9;   ,'651'&#xA;&#x9;&#x9;&#x9;   ,'653'&#xA;&#x9;&#x9;&#x9;   ,'656'&#xA;&#x9;&#x9;&#x9;   ,'657'&#xA;&#x9;&#x9;&#x9;   ,'661'&#xA;&#x9;&#x9;&#x9;   ,'670'&#xA;&#x9;&#x9;&#x9;   ,'676'&#xA;&#x9;&#x9;&#x9;   ,'678'&#xA;&#x9;&#x9;&#x9;   ,'832'&#xA;&#x9;&#x9;&#x9;   ,'833'&#xA;&#x9;&#x9;&#x9;   ,'700'&#xA;&#x9;&#x9;&#x9;   ,'727'&#xA;&#x9;&#x9;&#x9;   ,'728'&#xA;&#x9;&#x9;&#x9;   ,'794'&#xA;&#x9;&#x9;&#x9;   ,'733'&#xA;&#x9;&#x9;&#x9;   ,'850'&#xA;&#x9;&#x9;&#x9;   ,'835'&#xA;&#x9;&#x9;&#x9;   ,'751'&#xA;&#x9;&#x9;&#x9;   ,'755'&#x9;&#x9;&#x9;&#x9;&#x9; &#xA;&#x9;&#x9;&#x9;   ,'XE')&#x9;&#x9;&#x9;&#x9;&#x9;THEN&#x9;'Non-EU Domiciled'&#xA;--&#x9;&#x9;&#x9;WHEN [STU].[stu_natc] = 'Angolan'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Bahraini'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Bangladeshi'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Cambodian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Cameroonian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Canadian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Chinese'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Congolese (DRC)'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Ecuadorian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Emirati'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Gambian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Ghanaian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Hong Kong'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Hungarian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Indian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Indonesian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Iranian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Iraqi'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Jamaican'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Japanese'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Jordanian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Kenyan'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Kuwaiti'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Latvian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Lithuanian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Malawian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Manx'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Nepalese'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Nigerian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Pakistani'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Philippine'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Portuguese'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Puerto Rico'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Qatari'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Romanian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Saudi Arabian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Sierra Leone'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Slovak'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'South African'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Sri Lankan'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Sudanese'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Syrian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Tanzanian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Tunisian'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Ugandan'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'United States citizen'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Uzbek'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Vietnamese'&#xA;--&#x9;&#x9;&#x9;OR&#x9; [STU].[stu_natc] = 'Zimbabwean'&#x9;&#x9;&#x9;&#x9;THEN 'Non-EU Domiciled'&#xA;&#x9;&#x9;&#x9;WHEN [STU].[stu_natc] = 'Not Known'&#x9;&#x9;&#x9;&#x9;THEN 'Not Collected'&#xA;&#x9;&#x9;&#x9;ELSE  'UoH Unclassified'&#xA;&#x9;&#x9;&#x9;END AS DomicileCategory&#xA;  -- INTO TonyTweekDimStudent&#xA;FROM [SITSReporting].[ins_stu] STU&#xA;INNER JOIN [SITSReporting].[srs_scj] AS SCJ ON STU.stu_code = SCJ.scj_stuc&#xA;INNER JOIN [SITSReporting].[ins_spr] AS SPR ON SCJ.scj_sprc = SPR.spr_code&#xA;INNER JOIN [SITSReporting].[srs_crs] AS CRS ON SCJ.scj_crsc = CRS.crs_code  &#xA;INNER JOIN [SITSReporting].[ins_dpt] AS DPT ON CRS.crs_dptc = DPT.dpt_code&#xA;INNER JOIN [SITSReporting].[srs_sce] AS SCE ON SCJ.scj_code = SCE.sce_scjc&#xA;--INNER JOIN [SITSReporting].[cam_smo] AS SMO ON SCJ.scj_code = SMO.spr_code AND SCE.sce_ayrc = SMO.ayr_code&#xA;--INNER JOIN [SITSReporting].[cam_mav] AS MAV ON SMO.mod_code = MAV.mod_code&#xA;INNER JOIN [SITSReporting].[ins_moa] AS MOA ON SCE.sce_moac = MOA.moa_code&#xA;INNER JOIN [SITSReporting].[srs_sta] AS STA ON SCE.sce_stac = STA.sta_code&#xA;INNER JOIN&#xA;   (SELECT &#xA;       *&#xA;      ,ROW_NUMBER() OVER (PARTITION BY SCJ_STUC ORDER BY SCJ_SEQ2 DESC) AS SORTID&#xA;   FROM [SITSReporting].[SRS_SCJ]) SCJ1 ON SCJ.SCJ_CODE = SCJ1.SCJ_CODE AND SORTID = 1 --Deals with students enrolled on more that one course&#xA;   INNER JOIN &#xA;   (SELECT sce_scjc,max(sce_seq2) AS seq2&#xA;   FROM&#xA;   [SITSReporting].SRS_SCE SCE&#xA;   GROUP BY sce_scjc&#xA;   ) AS LatestSCE ON LatestSCE.SCE_SCJC = SCJ.SCJ_CODE  --This gets latest student record for the above course&#xA;     AND LatestSCE.seq2 = SCE.sce_seq2&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_ETH] ETH ON STU.STU_ETHC = ETH.ETH_CODE&#xA;LEFT JOIN&#xA;   [SITSReporting].[SRS_GEN] GEN ON STU.stu_gend = GEN.gen_code&#xA;LEFT JOIN&#xA;   [SITSReporting].[SRS_COD] COD ON STU.STU_CODC = COD.COD_CODE&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_FST] FST ON STU.stu_fstc = FST.fst_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_HQL] HQL ON STU.stu_hqlc = HQL.hql_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_NAT] NAT ON STU.stu_natc = NAT.nat_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_SEC] SEC ON STU.stu_secl = SEC.sec_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_LEA] LEA ON STU.stu_leac = LEA.lea_code&#xA;LEFT JOIN &#xA;   [SITSReporting].[SRS_SCL] SCL ON SCJ.scj_sclc = SCL.scl_code&#xA;LEFT JOIN &#xA;   [UoHWarehouse].[PCode].[DimPostcode] PCODE ON STU.stu_hapc = PCODE.PostCode&#xA;WHERE (sta_code = 'ENRX' OR sta_code = 'ENR') --Enrolment codes only" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -3689,7 +3689,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="132.8,41.6"
           Id="Package\Build Student Dimension (DimStudent)\DimModule"
@@ -3751,7 +3751,7 @@
           TopLeft="176.914288263905,46.7294141927805">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="17.1999997275212,28.4705884326289"
               Start="0,0"
               End="17.1999997275212,20.9705884326289">
@@ -3779,7 +3779,7 @@
           TopLeft="522.685722839589,229.03529881078">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="49.4285731218291,29.3647068776069"
               Start="0,0"
               End="49.4285731218291,21.8647068776069">
@@ -3813,7 +3813,7 @@
           TopLeft="159.342859205907,538.44706775507">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,26.5882358689616"
               Start="0,0"
               End="0,19.0882358689616">
@@ -3835,7 +3835,7 @@
           TopLeft="548.525722839589,187.43529881078">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="251.169528256761,-129.082356210068"
               Start="0,0"
               End="251.169528256761,-121.582356210068">
@@ -3869,7 +3869,7 @@
           TopLeft="600.205722839589,187.43529881078">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="365.889531254023,-130.917650353455"
               Start="0,0"
               End="365.889531254023,-123.417650353455">
@@ -3903,7 +3903,7 @@
           TopLeft="672.800010762896,61.2705904746138">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="158.811432395857,300.988240098789"
               Start="0,0"
               End="158.811432395857,293.488240098789">
@@ -3937,7 +3937,7 @@
           TopLeft="849.561917763016,58.3529426007122">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="68.1295253957364,303.90588797269"
               Start="0,0"
               End="68.1295253957364,296.40588797269">
@@ -3971,7 +3971,7 @@
           TopLeft="1015.96192076028,56.5176484573259">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-55.2304776015255,305.741182116076"
               Start="0,0"
               End="-55.2304776015255,298.241182116076">
@@ -4005,7 +4005,7 @@
           TopLeft="655.314295961418,279.200005688387">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="28.8000047683738,49.4117652978861"
               Start="0,0"
               End="21.3000047683738,49.4117652978861">
@@ -4039,7 +4039,7 @@
           TopLeft="153.771431408123,405.835301290334">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,26.3058833052967"
               Start="0,0"
               End="0,18.8058833052967">
@@ -4061,7 +4061,7 @@
           TopLeft="816.914300729792,328.611770986273">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="57.7371424289612,33.6470595871295"
               Start="0,0"
               End="57.7371424289612,26.1470595871295">
@@ -4089,7 +4089,7 @@
           TopLeft="784.571443158753,384.047065931868">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-529.714297528168,0"
               Start="0,0"
               End="-522.214297528168,0">
@@ -4111,7 +4111,7 @@
           TopLeft="158.942859818984,473.741184595631">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,23.1058831594393"
               Start="0,0"
               End="0,15.6058831594393">
@@ -4133,7 +4133,7 @@
           TopLeft="496.845722839589,187.43529881078">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="119.154287923307,-126.164708336167"
               Start="0,0"
               End="119.154287923307,-118.664708336167">
@@ -4167,7 +4167,7 @@
           TopLeft="281.714287991426,96.0000026254094">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="43.2000017029901,31.2000007292804"
               Start="0,0"
               End="43.2000017029901,23.7000007292804">
@@ -4195,7 +4195,7 @@
           TopLeft="443.314289694416,148.00000335469">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="1.8514331451729,39.4352954560904"
               Start="0,0"
               End="1.8514331451729,31.9352954560904">
